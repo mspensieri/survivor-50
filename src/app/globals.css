@@ -16,6 +16,7 @@
     --text-color-primary: #faece5;
     --text-color-secondary: #b0aca2;
     --text-color-transparent: rgba(114, 111, 86, 0.814);
+    --background-color-primary: rgb(2, 40, 105);
 
     --component-background-color-primary: #faece5;
     --component-background-color-secondary: #d7d2c6;
@@ -44,6 +45,7 @@
     --text-color-primary: #dddddd;
     --text-color-secondary: #7f7f7f;
     --text-color-transparent: rgba(83, 83, 83, 0.814);
+    --background-color-primary: #1c1c1c;
 
     --component-background-color-primary: #3d3d3e;
     --component-background-color-secondary: #505050;
@@ -216,6 +218,14 @@
     background-color: var(--background-color-primary);
   }
 
+  .flip-card:not(.upside-down) .flip-card-back {
+    overflow-y: hidden;
+  }
+
+  .flip-card.upside-down .flip-card-front {
+    overflow-y: hidden;
+  }
+
   /* This container is needed to position the front and back side */
   .flip-card-inner {
     position: relative;
@@ -238,6 +248,7 @@
     height: 100%;
     -webkit-backface-visibility: hidden; /* Safari */
     backface-visibility: hidden;
+    background-color: var(--background-color-primary);
   }
 
   /* Style the back side */

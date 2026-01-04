@@ -3,45 +3,131 @@
 
   --bs-info-rgb: 7, 129, 154;
 
+  .flip-card {
+    --background-color-primary: rgb(2, 40, 105);
+
+    &.upside-down {
+      --background-color-primary: #1c1c1c;
+    }
+  }
+
+  .flip-card-front,
+  .offcanvas-front {
+    --text-color-primary: #faece5;
+    --text-color-secondary: #b0aca2;
+    --text-color-transparent: rgba(114, 111, 86, 0.814);
+
+    --component-background-color-primary: #faece5;
+    --component-background-color-secondary: #d7d2c6;
+    --component-text-color-primary: #000000;
+    --component-text-color-secondary: #84827a;
+
+    --green-indicator-color: green;
+    --red-indicator-color: red;
+
+    --medal-background-color: #facf8b;
+    --score-label-font-weight-override: bold;
+
+    --bs-body-color: var(--component-text-color-primary);
+    --bs-body-bg: var(--background-color-primary);
+    --bs-link-color: var(--text-color-primary);
+    --bs-tertiary-bg-rgb: var(--background-color-primary);
+    --bs-table-border-color: var(--text-color-primary);
+
+    .btn-close {
+      --bs-btn-close-bg: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' fill='%23000'%3e%3cpath d='M.293.293a1 1 0 0 1 1.414 0L8 6.586 14.293.293a1 1 0 1 1 1.414 1.414L9.414 8l6.293 6.293a1 1 0 0 1-1.414 1.414L8 9.414l-6.293 6.293a1 1 0 0 1-1.414-1.414L6.586 8 .293 1.707a1 1 0 0 1 0-1.414z'/%3e%3c/svg%3e");
+    }
+  }
+
+  .flip-card-back,
+  .offcanvas-back {
+    --text-color-primary: #dddddd;
+    --text-color-secondary: #7f7f7f;
+    --text-color-transparent: rgba(83, 83, 83, 0.814);
+
+    --component-background-color-primary: #3d3d3e;
+    --component-background-color-secondary: #505050;
+    --component-text-color-primary: #dddddd;
+    --component-text-color-secondary: #aaaaaa;
+
+    --green-indicator-color: rgb(0, 200, 5);
+    --red-indicator-color: rgb(255, 54, 36);
+
+    --medal-background-color: var(--text-color-secondary);
+    --score-label-color-override: var(--component-text-color-secondary);
+
+    --upside-down-image-filter: grayscale(1) saturate(200%);
+    --upside-down-image-transform: scaleY(-1);
+
+    --bs-body-color: var(--component-text-color-primary);
+    --bs-body-bg: var(--background-color-primary);
+    --bs-link-color: var(--text-color-primary);
+    --bs-tertiary-bg-rgb: var(--background-color-primary);
+    --bs-table-border-color: var(--text-color-primary);
+
+    .btn-close {
+      --bs-btn-close-bg: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' fill='%23fff'%3e%3cpath d='M.293.293a1 1 0 0 1 1.414 0L8 6.586 14.293.293a1 1 0 1 1 1.414 1.414L9.414 8l6.293 6.293a1 1 0 0 1-1.414 1.414L8 9.414l-6.293 6.293a1 1 0 0 1-1.414-1.414L6.586 8 .293 1.707a1 1 0 0 1 0-1.414z'/%3e%3c/svg%3e");
+    }
+  }
+
   .jump-shake {
     animation: jump-shaking 6s infinite;
   }
 
   .offcanvas {
-    /* TODO: Use color vars */
-    --bs-offcanvas-bg: #faece5;
-    --green-indicator-color: green;
-    --red-indicator-color: red;
+    --bs-offcanvas-bg: var(--component-background-color-primary);
 
     .offcanvas-header {
-      border-bottom: 1px solid #b0aca2;
+      border-bottom: 1px solid var(--component-text-color-primary);
+    }
+
+    .btn-close {
+      --bs-btn-close-opacity: 1;
     }
   }
 
   .accordion.week-selector-accordion {
-    --bs-accordion-color: var(--bs-link-color);
-    --bs-accordion-btn-color: var(--bs-link-color);
-    --bs-accordion-active-color: var(--bs-link-color);
-    --bs-accordion-active-bg: var(--bs-body-bg);
+    --bs-accordion-color: var(--text-color-secondary);
+    --bs-accordion-btn-color: var(--text-color-primary);
+    --bs-accordion-active-color: var(--text-color-primary);
+    --bs-accordion-active-bg: var(--background-color-primary);
     --bs-accordion-btn-focus-box-shadow: none;
     margin-bottom: 20px;
+
+    .accordion-button:not(.collapsed) {
+      box-shadow: none;
+    }
 
     --bs-accordion-btn-icon: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' fill='none' stroke='%23faece5' stroke-linecap='round' stroke-linejoin='round'%3e%3cpath d='M2 5L8 11L14 5'/%3e%3c/svg%3e");
 
     --bs-accordion-btn-active-icon: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' fill='none' stroke='%23faece5' stroke-linecap='round' stroke-linejoin='round'%3e%3cpath d='M2 5L8 11L14 5'/%3e%3c/svg%3e");
 
     .btn-link {
-      --bs-link-hover-color: var(--link-color);
-      --bs-link-color: var(--link-color-dark);
+      --bs-link-hover-color: var(--text-color-primary);
+      --bs-link-color: var(--component-background-color-primary);
+      --bs-btn-color: var(--text-color-secondary);
     }
   }
 
   .accordion.player-details-accordion {
+    --bs-accordion-active-color: var(--component-text-color-primary);
+    --bs-accordion-active-bg: var(--component-background-color-primary);
+    --bs-accordion-transition-color: var(--component-text-color-primary);
+    --bs-accordion-btn-focus-box-shadow: none;
+    --bs-accordion-btn-bg: var(--component-background-color-primary);
+    --bs-accordion-bg: var(--component-background-color-primary);
+    --bs-accordion-border-color: var(--component-text-color-primary);
+    --bs-accordion-btn-color: var(--component-text-color-primary);
+
     .accordion-button {
       font-size: "12px";
       padding: 10px;
       padding-left: 0px;
       padding-right: 0px;
+    }
+
+    .accordion-button:not(.collapsed) {
+      box-shadow: none;
     }
 
     .accordion-body {
@@ -53,31 +139,32 @@
 
   .navbar-brand {
     padding-left: 8px;
-    --bs-navbar-brand-color: var(--bs-link-color);
-    --bs-navbar-brand-hover-color: var(--bs-link-color);
+    --bs-navbar-brand-color: var(--text-color-primary);
+    --bs-navbar-brand-hover-color: var(--text-color-primary);
   }
 
   .nav {
-    --bs-nav-link-color: var(--link-color-dark);
-    --bs-nav-link-active-color: var(--link-color-dark);
-    --bs-nav-link-disabled-color: var(--link-color-dark-transparent);
-    --bs-nav-link-hover-color: var(--bs-link-color);
-    --bs-border-color: var(--link-color);
+    --bs-nav-link-color: var(--text-color-secondary);
+    --bs-nav-link-active-color: var(--text-color-primary);
+    --bs-nav-link-disabled-color: var(--text-color-transparent);
+    --bs-nav-link-hover-color: var(--text-color-primary);
+    --bs-border-color: var(--text-color-primary);
   }
 
   .nav-link {
-    --bs-nav-tabs-link-color: var(--link-color-dark);
-    --bs-nav-tabs-link-active-color: var(--bs-link-color);
-    --bs-nav-tabs-link-hover-color: var(--link-color-dark);
+    --bs-nav-tabs-link-active-color: var(--text-color-primary);
+    --bs-nav-tabs-link-color: var(--text-color-secondary);
+    --bs-nav-tabs-link-hover-color: var(--text-color-primary);
   }
 
   .nav-underline {
-    --bs-nav-underline-link-active-color: var(--bs-link-color);
+    --bs-nav-underline-link-active-color: var(--text-color-primary);
   }
 
   .card {
     --bs-card-spacer-y: 10px;
-    --bs-card-bg: var(--bs-link-color);
+    --bs-card-bg: var(--component-background-color-primary);
+    --bs-card-border-color: var(--component-text-color-secondary);
     margin-bottom: 24px;
   }
 
@@ -86,7 +173,7 @@
   }
 
   .rules {
-    color: var(--bs-link-color);
+    color: var(--text-color-primary);
   }
 
   .blur-container {
@@ -101,7 +188,19 @@
   }
 
   .btn-link {
-    --bs-link-hover-color: var(--link-color-dark);
+    --bs-link-hover-color: var(--text-color-secondary);
+  }
+
+  .table {
+    --bs-table-striped-bg: var(--component-background-color-primary);
+    --bs-table-accent-bg: var(--component-background-color-secondary);
+    --bs-table-color: var(--component-text-color-primary);
+    --bs-table-striped-color: var(--component-text-color-primary);
+  }
+
+  hr {
+    color: var(--component-text-color-secondary);
+    opacity: 1;
   }
 
   div.joined-card-left {
@@ -114,14 +213,7 @@
     height: 100%;
     position: fixed;
     overflow-y: scroll;
-
-    --background-color: rgb(2, 40, 105);
-    background-color: var(--background-color);
-
-    &.upside-down {
-      --background-color: #1c1c1c;
-      background-color: var(--background-color);
-    }
+    background-color: var(--background-color-primary);
   }
 
   /* This container is needed to position the front and back side */
@@ -148,102 +240,14 @@
     backface-visibility: hidden;
   }
 
-  /* Style the front side (fallback if image is missing) */
-  .flip-card-front {
-    --link-color: #faece5;
-    --link-color-dark: #b0aca2;
-    --link-color-dark-transparent: rgba(114, 111, 86, 0.814);
-    --table-accent-color: #d7d2c6;
-    --player-caption-color: #84827a;
-    --green-indicator-color: green;
-    --red-indicator-color: red;
-    --medal-background-color: #facf8b;
-
-    --bs-body-bg: var(--background-color);
-    --bs-link-color: var(--link-color);
-    --bs-tertiary-bg-rgb: var(--background-color);
-    --bs-card-spacer-y: 10px;
-    --bs-table-border-color: var(--bs-link-color);
-
-    --score-label-font-weight-override: bold;
-
-    --background-color: rgb(2, 40, 105);
-    background-color: var(--background-color);
-
-    .table {
-      --bs-table-striped-bg: var(--bs-link-color);
-      --bs-table-bg: var(--background-color);
-      --bs-table-accent-bg: var(--table-accent-color);
-      --table-accent-bg: var(--bs-link-color);
-      --bs-table-border-color: var(--bs-link-color);
-    }
-
-    .accordion.player-details-accordion {
-      --bs-accordion-active-color: var(--bs-body-color);
-      --bs-accordion-active-bg: var(--bs-link-color);
-      --bs-accordion-transition-color: var(--bs-body-color);
-      --bs-accordion-btn-focus-box-shadow: none;
-      --bs-accordion-btn-bg: var(--bs-link-color);
-      --bs-accordion-bg: var(--bs-link-color);
-      --bs-accordion-border-color: var(--bs-link-color);
-    }
-  }
-
   /* Style the back side */
   .flip-card-back {
     transform: rotateX(180deg);
+    background-color: var(--background-color-primary);
+
     --pool-title-transform: scaleY(-1);
 
-    --dark-grey-accent-color: #3d3d3e;
-    --bs-body-color: #dddddd;
-    --link-color: #dddddd;
-    --link-color-dark: #7f7f7f;
-    --link-color-dark-transparent: rgba(83, 83, 83, 0.814);
-    --player-caption-color: #aaaaaa;
-    --upside-down-image-filter: grayscale(1) saturate(200%);
-    --upside-down-image-transform: scaleY(-1);
-    --green-indicator-color: rgb(0, 200, 5);
-    --red-indicator-color: rgb(255, 54, 36);
-    --medal-background-color: var(--link-color-dark);
-    --table-accent-color: var(--dark-grey-accent-color);
-
-    --bs-body-bg: var(--background-color);
-    --bs-link-color: var(--link-color);
-    --bs-tertiary-bg-rgb: var(--background-color);
-    --bs-table-border-color: var(--bs-link-color);
-
-    --score-label-color-override: var(--player-caption-color);
-
-    --background-color: #1c1c1c;
-    background-color: var(--background-color);
-
-    .table {
-      --bs-table-color: #dddddd;
-      --bs-table-striped-color: #dddddd;
-      --bs-table-striped-bg: #505050;
-      --bs-table-bg: var(--background-color);
-      --bs-table-accent-bg: var(--table-accent-color);
-    }
-
-    .card {
-      --bs-card-bg: var(--dark-grey-accent-color);
-      --bs-card-border-color: var(--link-color-dark);
-
-      hr {
-        color: var(--link-color-dark);
-      }
-    }
-
     .accordion.player-details-accordion {
-      --bs-accordion-active-color: var(--bs-body-color);
-      --bs-accordion-active-bg: var(--dark-grey-accent-color);
-      --bs-accordion-transition-color: var(--bs-body-color);
-      --bs-accordion-btn-focus-box-shadow: none;
-      --bs-accordion-btn-bg: var(--dark-grey-accent-color);
-      --bs-accordion-bg: var(--dark-grey-accent-color);
-      --bs-accordion-border-color: var(--bs-body-color);
-      --bs-accordion-btn-color: var(--bs-body-color);
-
       .accordion-button::after {
         background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' fill='none' stroke='%23ddd' stroke-linecap='round' stroke-linejoin='round'%3e%3cpath d='M2 5L8 11L14 5'/%3e%3c/svg%3e");
       }

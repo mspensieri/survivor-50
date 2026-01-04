@@ -5,7 +5,7 @@ import Table from "react-bootstrap/Table";
 import Offcanvas from "react-bootstrap/Offcanvas";
 
 import { TeamRankings } from "../providers/types";
-import { TeamScore } from "../data/types";
+import { RuleSet, TeamScore } from "../data/types";
 import PlayerList from "./playerList";
 import RuleSetContext from "../context/ruleSetContext";
 
@@ -24,7 +24,7 @@ const styles = {
   },
   captain: {
     fontSize: "8pt",
-    color: "var(--player-caption-color)",
+    color: "var(--component-text-color-secondary)",
   },
   row: {
     lineHeight: "1",
@@ -172,6 +172,9 @@ export default function Leaderboard(props: {
         onHide={() => setOffcanvasShown(false)}
         placement="end"
         backdrop={false}
+        className={
+          ruleSet === RuleSet.UPSIDE_DOWN ? "offcanvas-back" : "offcanvas-front"
+        }
       >
         <Offcanvas.Header closeButton>
           <Offcanvas.Title>Team stats</Offcanvas.Title>

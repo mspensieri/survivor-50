@@ -21,16 +21,14 @@ import React, { useContext } from "react";
 import { Container } from "react-bootstrap";
 import TeamContext from "../context/teamContext";
 import PlayerContext from "../context/playerContext";
-import RuleSetContext from "../context/ruleSetContext";
-import { RuleSet } from "../data/types";
 
 const currentWeek = weeks.length;
 
 const styles: Record<string, React.CSSProperties> = {
   spoilersButton: {
-    color: "var(--link-color)",
-    backgroundColor: "var(--background-color)",
-    border: "1px solid var(--link-color)",
+    color: "var(--text-color-primary)",
+    backgroundColor: "var(--background-color-primary)",
+    border: "1px solid var(--text-color-primary)",
     width: "200px",
     height: "50px",
     borderRadius: "25px",

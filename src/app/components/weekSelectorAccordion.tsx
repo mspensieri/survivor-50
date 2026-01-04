@@ -8,7 +8,7 @@ import { airDates } from "../data/weeks";
 
 const styles = {
   weekButtonContainer: {
-    borderTop: "0.1em solid var(--bs-link-color)",
+    borderTop: "0.1em solid var(--text-color-primary)",
   },
   weekButton: {
     borderRadius: "0",
@@ -18,8 +18,8 @@ const styles = {
     textDecoration: "none",
   },
   selectedWeekButton: {
-    backgroundColor: "var(--table-accent-color)",
-    color: "var(--bs-body-color)",
+    backgroundColor: "var(--component-background-color-secondary)",
+    color: "var(--component-text-color-primary)",
     border: "none",
     width: "100%",
   },
@@ -74,7 +74,7 @@ class WeekSelectorAccordion extends React.Component<
                   style={{
                     ...styles.weekButtonContainer,
                     ...(weekNumber === airDates.length - 1 && {
-                      borderBottom: "0.1em solid var(--bs-link-color)",
+                      borderBottom: "0.1em solid var(--text-color-primary)",
                     }),
                   }}
                   key={weekNumber}

@@ -3,7 +3,7 @@ import "./bootstrap.css";
 import "./globals.css";
 
 export const metadata: Metadata = {
-  title: "Survivor Pool Season 49",
+  title: "Survivor Pool Season 50",
   description: "Outwit. Outplay. Outlast.",
 };
 

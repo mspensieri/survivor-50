@@ -43,18 +43,24 @@ export type Team = {
 
 export type TeamScore = {
   team: Team;
-  total: number;
-  rank: number;
+  [RuleSet.STANDARD]: {
+    rank: number;
+    total: number;
+  };
+  [RuleSet.UPSIDE_DOWN]: {
+    rank: number;
+    total: number;
+  };
 };
 
 export type PlayerStatus = "active" | "eliminated" | "jury" | "winner";
 
-export type UpsideDownAchievement = {
-  reason: string;
-  points: number;
-};
+export enum RuleSet {
+  STANDARD = "standard",
+  UPSIDE_DOWN = "upsideDown",
+}
 
-export type Points = {
+export type StandardPoints = {
   teamImmunity?: number;
   individualImmunity?: number;
   advantage?: number;
@@ -64,21 +70,35 @@ export type Points = {
   survival?: number;
   votes?: number;
   fire?: number;
-  upsideDown?: Array<UpsideDownAchievement>;
+};
+
+export type UpsideDownPoints = {
+  losingTeam?: number;
+  abysmalChallenge?: number;
+  crying?: number;
+  wrongVote?: number;
+  blindsided?: number;
+  outFirst?: number;
+  outPreMerge?: number;
+  outPostMerge?: number;
+  medEvac?: number;
+  threatenedToQuit?: number;
+
+  // One-off point types
+  vomit?: number;
 };
 
 export type PlayerScore = {
   player: Player;
-  total: number;
-  points: Points;
-  rank: number;
   status: PlayerStatus;
-};
-
-export type UpsideDownPlayerScore = {
-  player: Player;
-  total: number;
-  achievements: Array<UpsideDownAchievement>;
-  rank: number;
-  status: PlayerStatus;
+  [RuleSet.STANDARD]: {
+    rank: number;
+    total: number;
+    points: StandardPoints;
+  };
+  [RuleSet.UPSIDE_DOWN]: {
+    rank: number;
+    total: number;
+    points: UpsideDownPoints;
+  };
 };

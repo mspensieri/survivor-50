@@ -1,26 +1,12 @@
-import {
-  Player,
-  PlayerScore,
-  Team,
-  TeamScore,
-  UpsideDownPlayerScore,
-} from "../data/types";
+import { Player, PlayerScore, RuleSet, Team, TeamScore } from "../data/types";
 import { weeks } from "../data/weeks";
 import {
-  computePlayerScore,
+  computePlayerPoints,
   computePlayerStatus,
-  computeUpsideDownPlayerScore,
-  getPlayerUpsideDownAchievements,
+  computePlayerTotal,
 } from "./playerStatsProvider";
-import {
-  computeTeamScore,
-  computeUpsideDownTeamScore,
-} from "./teamStatsProvider";
-import {
-  PlayerRankings,
-  TeamRankings,
-  UpsideDownPlayerRankings,
-} from "./types";
+import { computeTeamScore } from "./teamStatsProvider";
+import { PlayerRankings, TeamRankings } from "./types";
 
 function assignRanks<T extends { total: number; rank: number }>(
   items: Array<T>
@@ -38,129 +24,116 @@ function assignRanks<T extends { total: number; rank: number }>(
 function getTeamRankingsForWeek(
   teams: Array<Team>,
   weekNumber: number
-): TeamRankings {
-  return assignRanks<TeamScore>(
-    teams
-      .map((team) => {
-        return {
-          team,
-          total: computeTeamScore(team, weekNumber),
-          rank: 0,
-        };
-      })
-      .sort((a, b) => {
-        return b.total - a.total;
-      })
-  );
-}
+): {
+  standardOrder: Array<TeamScore>;
+  upsideDownOrder: Array<TeamScore>;
+} {
+  const unsortedTeams = teams.map((team) => {
+    return {
+      team,
+      [RuleSet.STANDARD]: {
+        total: computeTeamScore(team, weekNumber, RuleSet.STANDARD),
+        rank: 0,
+      },
+      [RuleSet.UPSIDE_DOWN]: {
+        total: computeTeamScore(team, weekNumber, RuleSet.UPSIDE_DOWN),
+        rank: 0,
+      },
+    };
+  });
 
-function getUpsideDownTeamRankingsForWeek(
-  teams: Array<Team>,
-  weekNumber: number
-): TeamRankings {
-  return assignRanks<TeamScore>(
-    teams
-      .map((team) => {
-        return {
-          team,
-          total: computeUpsideDownTeamScore(team, weekNumber),
-          rank: 0,
-        };
-      })
-      .sort((a, b) => {
-        return b.total - a.total;
-      })
+  const standardOrder = [...unsortedTeams].sort(
+    (a, b) => b[RuleSet.STANDARD].total - a[RuleSet.STANDARD].total
   );
+  const upsideDownOrder = [...unsortedTeams].sort(
+    (a, b) => b[RuleSet.UPSIDE_DOWN].total - a[RuleSet.UPSIDE_DOWN].total
+  );
+
+  assignRanks(standardOrder.map((player) => player[RuleSet.STANDARD]));
+  assignRanks(upsideDownOrder.map((player) => player[RuleSet.UPSIDE_DOWN]));
+
+  return {
+    standardOrder: standardOrder,
+    upsideDownOrder: upsideDownOrder,
+  };
 }
 
 export function getTeamRankings(teams: Array<Team>): {
   standard: Array<TeamRankings>;
   upsideDown: Array<TeamRankings>;
 } {
+  const standardWeeklyRankings: Array<TeamRankings> = [];
+  const upsideDownWeeklyRankings: Array<TeamRankings> = [];
+
+  for (let weekNumber = 0; weekNumber < weeks.length; weekNumber++) {
+    const weeklyRankings = getTeamRankingsForWeek(teams, weekNumber);
+
+    standardWeeklyRankings.push(weeklyRankings.standardOrder);
+    upsideDownWeeklyRankings.push(weeklyRankings.upsideDownOrder);
+  }
+
   return {
-    standard: new Array(weeks.length).fill(undefined).map((_, weekNumber) => {
-      return getTeamRankingsForWeek(teams, weekNumber);
-    }),
-    upsideDown: new Array(weeks.length).fill(undefined).map((_, weekNumber) => {
-      return getUpsideDownTeamRankingsForWeek(teams, weekNumber);
-    }),
+    standard: standardWeeklyRankings,
+    upsideDown: upsideDownWeeklyRankings,
   };
 }
 
 function getPlayerRankingsForWeek(
   players: Array<Player>,
   weekNumber: number
-): PlayerRankings {
-  return assignRanks<PlayerScore>(
-    players
-      .map((player) => {
-        return {
-          player,
-          total: computePlayerScore(player, weekNumber, "total"),
-          points: {
-            survival: computePlayerScore(player, weekNumber, "survival"),
-            votes: computePlayerScore(player, weekNumber, "votes"),
-            teamImmunity: computePlayerScore(
-              player,
-              weekNumber,
-              "teamImmunity"
-            ),
-            individualImmunity: computePlayerScore(
-              player,
-              weekNumber,
-              "individualImmunity"
-            ),
-            advantage: computePlayerScore(player, weekNumber, "advantage"),
-            idolFound: computePlayerScore(player, weekNumber, "idolFound"),
-            voteNullified: computePlayerScore(
-              player,
-              weekNumber,
-              "voteNullified"
-            ),
-            placement: computePlayerScore(player, weekNumber, "placement"),
-            fire: computePlayerScore(player, weekNumber, "fire"),
-          },
-          status: computePlayerStatus(player, weekNumber),
-          rank: 0,
-        };
-      })
-      .sort((a, b) => {
-        return b.total - a.total;
-      })
-  );
-}
+): {
+  standardOrder: Array<PlayerScore>;
+  upsideDownOrder: Array<PlayerScore>;
+} {
+  const unsortedPlayers = players.map((player) => {
+    return {
+      player,
+      status: computePlayerStatus(player, weekNumber),
+      [RuleSet.STANDARD]: {
+        rank: 0,
+        total: computePlayerTotal(player, weekNumber, RuleSet.STANDARD),
+        points: computePlayerPoints(player, weekNumber, RuleSet.STANDARD),
+      },
+      [RuleSet.UPSIDE_DOWN]: {
+        rank: 0,
+        total: computePlayerTotal(player, weekNumber, RuleSet.UPSIDE_DOWN),
+        points: computePlayerPoints(player, weekNumber, RuleSet.UPSIDE_DOWN),
+      },
+    };
+  });
 
-function getUpsideDownPlayerRankingsForWeek(
-  players: Array<Player>,
-  weekNumber: number
-): UpsideDownPlayerRankings {
-  return assignRanks<UpsideDownPlayerScore>(
-    players
-      .map((player) => {
-        return {
-          player,
-          total: computeUpsideDownPlayerScore(player, weekNumber),
-          achievements: getPlayerUpsideDownAchievements(player, weekNumber),
-          status: computePlayerStatus(player, weekNumber),
-          rank: 0,
-        };
-      })
-      .sort((a, b) => {
-        return b.total - a.total;
-      })
+  const standardOrder = [...unsortedPlayers].sort(
+    (a, b) => b[RuleSet.STANDARD].total - a[RuleSet.STANDARD].total
   );
+  const upsideDownOrder = [...unsortedPlayers].sort(
+    (a, b) => b[RuleSet.UPSIDE_DOWN].total - a[RuleSet.UPSIDE_DOWN].total
+  );
+
+  assignRanks(standardOrder.map((player) => player[RuleSet.STANDARD]));
+  assignRanks(upsideDownOrder.map((player) => player[RuleSet.UPSIDE_DOWN]));
+
+  return {
+    standardOrder: standardOrder,
+    upsideDownOrder: upsideDownOrder,
+  };
 }
 
 export function getPlayerRankings(players: Array<Player>): {
   standard: Array<PlayerRankings>;
-  upsideDown: Array<UpsideDownPlayerRankings>;
+  upsideDown: Array<PlayerRankings>;
 } {
+  const standardWeeklyRankings: Array<PlayerRankings> = [];
+  const upsideDownWeeklyRankings: Array<PlayerRankings> = [];
+
+  for (let weekNumber = 0; weekNumber < weeks.length; weekNumber++) {
+    const weeklyRankings = getPlayerRankingsForWeek(players, weekNumber);
+
+    standardWeeklyRankings.push(weeklyRankings.standardOrder);
+    upsideDownWeeklyRankings.push(weeklyRankings.upsideDownOrder);
+  }
+
   return {
-    standard: new Array(weeks.length).fill(undefined).map((_, weekNumber) => {
-      return getPlayerRankingsForWeek(players, weekNumber);
-    }),
-    upsideDown: new Array(weeks.length).fill(undefined).map((_, weekNumber) => {
-      return getUpsideDownPlayerRankingsForWeek(players, weekNumber);
-    }),
+    standard: standardWeeklyRankings,
+    upsideDown: upsideDownWeeklyRankings,
   };
 }

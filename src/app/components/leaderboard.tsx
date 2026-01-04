@@ -1,9 +1,13 @@
 "use client";
 
+import React, { useContext, useState } from "react";
 import Table from "react-bootstrap/Table";
-import React from "react";
+import Offcanvas from "react-bootstrap/Offcanvas";
 
 import { TeamRankings } from "../providers/types";
+import { TeamScore } from "../data/types";
+import PlayerList from "./playerList";
+import RuleSetContext from "../context/ruleSetContext";
 
 const styles = {
   indicatorGreen: {
@@ -27,14 +31,28 @@ const styles = {
   },
 };
 
-class Leaderboard extends React.Component<{
+export default function Leaderboard(props: {
   thisWeekRankings: TeamRankings;
   lastWeekRankings: TeamRankings;
-}> {
-  render() {
-    const { thisWeekRankings = [], lastWeekRankings = [] } = this.props;
+  currentWeek: number;
+}) {
+  const { thisWeekRankings = [], lastWeekRankings = [], currentWeek } = props;
+  const ruleSet = useContext(RuleSetContext);
 
-    return (
+  const [selectedTeam, setSelectedTeam] = useState<TeamScore | null>(null);
+  const [offcanvasShown, setOffcanvasShown] = useState(false);
+
+  function displayTeamDetails(teamScore: TeamScore) {
+    if (selectedTeam === teamScore) {
+      setOffcanvasShown(!offcanvasShown);
+    } else {
+      setSelectedTeam(teamScore);
+      setOffcanvasShown(true);
+    }
+  }
+
+  return (
+    <>
       <Table striped responsive>
         <thead>
           <tr>
@@ -51,48 +69,61 @@ class Leaderboard extends React.Component<{
 
             function getScore() {
               if (lastWeekScore) {
-                if (thisWeekScore.total > lastWeekScore.total) {
+                if (
+                  thisWeekScore[ruleSet].total > lastWeekScore[ruleSet].total
+                ) {
                   return (
                     <>
-                      {thisWeekScore.total}{" "}
+                      {thisWeekScore[ruleSet].total}{" "}
                       <span style={styles.indicatorGreen}>
-                        (+{thisWeekScore.total - lastWeekScore.total})
+                        (+
+                        {thisWeekScore[ruleSet].total -
+                          lastWeekScore[ruleSet].total}
+                        )
                       </span>
                     </>
                   );
                 } else {
-                  return <>{thisWeekScore.total || "-"}</>;
+                  return <>{thisWeekScore[ruleSet].total || "-"}</>;
                 }
               } else {
-                return <>{thisWeekScore.total || "-"}</>;
+                return <>{thisWeekScore[ruleSet].total || "-"}</>;
               }
             }
 
             let rank;
             if (lastWeekScore) {
-              if (thisWeekScore.rank < lastWeekScore.rank) {
+              if (thisWeekScore[ruleSet].rank < lastWeekScore[ruleSet].rank) {
                 rank = (
                   <td>
-                    #{thisWeekScore.rank + 1}{" "}
+                    #{thisWeekScore[ruleSet].rank + 1}{" "}
                     <span style={styles.indicatorGreen}>
-                      (▲ {lastWeekScore.rank - thisWeekScore.rank})
+                      (▲{" "}
+                      {lastWeekScore[ruleSet].rank -
+                        thisWeekScore[ruleSet].rank}
+                      )
                     </span>
                   </td>
                 );
-              } else if (thisWeekScore.rank > lastWeekScore.rank) {
+              } else if (
+                thisWeekScore[ruleSet].rank > lastWeekScore[ruleSet].rank
+              ) {
                 rank = (
                   <td>
-                    #{thisWeekScore.rank + 1}{" "}
+                    #{thisWeekScore[ruleSet].rank + 1}{" "}
                     <span style={styles.indicatorRed}>
-                      (▼ {thisWeekScore.rank - lastWeekScore.rank})
+                      (▼{" "}
+                      {thisWeekScore[ruleSet].rank -
+                        lastWeekScore[ruleSet].rank}
+                      )
                     </span>
                   </td>
                 );
               } else {
-                rank = <td>#{thisWeekScore.rank + 1}</td>;
+                rank = <td>#{thisWeekScore[ruleSet].rank + 1}</td>;
               }
             } else {
-              rank = <td>#{thisWeekScore.rank + 1}</td>;
+              rank = <td>#{thisWeekScore[ruleSet].rank + 1}</td>;
             }
 
             let medals;
@@ -118,7 +149,10 @@ class Leaderboard extends React.Component<{
             return (
               <tr key={thisWeekScore.team.name}>
                 {rank}
-                <td style={styles.row}>
+                <td
+                  style={styles.row}
+                  onClick={() => displayTeamDetails(thisWeekScore)}
+                >
                   {thisWeekScore.team.name}
                   {medals}
                   <br />
@@ -132,8 +166,34 @@ class Leaderboard extends React.Component<{
           })}
         </tbody>
       </Table>
-    );
-  }
-}
 
-export default Leaderboard;
+      <Offcanvas
+        show={offcanvasShown}
+        onHide={() => setOffcanvasShown(false)}
+        placement="end"
+        backdrop={false}
+      >
+        <Offcanvas.Header closeButton>
+          <Offcanvas.Title>Team stats</Offcanvas.Title>
+        </Offcanvas.Header>
+        <Offcanvas.Body>
+          {selectedTeam && (
+            <>
+              <h1>{selectedTeam.team.name}</h1>
+              <h3>{selectedTeam.team.captain}</h3>
+              Rank: #
+              {selectedTeam &&
+                thisWeekRankings.findIndex(
+                  (r) => r.team === selectedTeam.team
+                ) + 1}
+              <PlayerList
+                currentWeek={currentWeek}
+                teamScore={selectedTeam}
+              ></PlayerList>
+            </>
+          )}
+        </Offcanvas.Body>
+      </Offcanvas>
+    </>
+  );
+}

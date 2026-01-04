@@ -12,6 +12,10 @@ import { teams } from "./data/teams";
 import MainView from "./components/mainView";
 import { Inter, Metal_Mania } from "next/font/google";
 import * as storage from "./utils/storage";
+import TeamContext from "./context/teamContext";
+import PlayerContext from "./context/playerContext";
+import RuleSetContext from "./context/ruleSetContext";
+import { RuleSet } from "./data/types";
 
 const inter = Inter({ subsets: ["latin"] });
 const metalMania = Metal_Mania({ weight: "400", subsets: ["latin"] });
@@ -21,10 +25,8 @@ const initialActiveTab = storage.getItem("lastActiveTab") || "leaderboard";
 const initialShakeState = storage.getItem("shakeState") || "enabled";
 
 const currentWeek = weeks.length;
-const { standard: teamRankings, upsideDown: upsideDownTeamRankings } =
-  getTeamRankings(teams);
-const { standard: playerRankings, upsideDown: upsideDownPlayerRankings } =
-  getPlayerRankings(players);
+const teamRankings = getTeamRankings(teams);
+const playerRankings = getPlayerRankings(players);
 
 const styles: Record<string, React.CSSProperties> = {
   torchContainer: {
@@ -113,34 +115,42 @@ function Page() {
       </div>
       <div className="flip-card-inner">
         <div className={`flip-card-front ${inter.className}`}>
-          <MainView
-            selectedWeek={selectedWeek}
-            onWeekSelected={setSelectedWeek}
-            reveal={reveal}
-            onRevealChange={setReveal}
-            isSmallScreen={isSmallScreen}
-            screenWidth={screenWidth}
-            teamRankings={teamRankings}
-            playerRankings={playerRankings}
-            active={side === "front"}
-            activeTab={activeTab}
-            setActiveTab={updateTabAndStore}
-          ></MainView>
+          <RuleSetContext.Provider value={RuleSet.STANDARD}>
+            <TeamContext.Provider value={teamRankings.standard}>
+              <PlayerContext.Provider value={playerRankings.standard}>
+                <MainView
+                  selectedWeek={selectedWeek}
+                  onWeekSelected={setSelectedWeek}
+                  reveal={reveal}
+                  onRevealChange={setReveal}
+                  isSmallScreen={isSmallScreen}
+                  screenWidth={screenWidth}
+                  active={side === "front"}
+                  activeTab={activeTab}
+                  setActiveTab={updateTabAndStore}
+                ></MainView>
+              </PlayerContext.Provider>
+            </TeamContext.Provider>
+          </RuleSetContext.Provider>
         </div>
         <div className={`flip-card-back ${metalMania.className}`}>
-          <MainView
-            selectedWeek={selectedWeek}
-            onWeekSelected={setSelectedWeek}
-            reveal={reveal}
-            onRevealChange={setReveal}
-            isSmallScreen={isSmallScreen}
-            screenWidth={screenWidth}
-            teamRankings={upsideDownTeamRankings}
-            upsideDownPlayerRankings={upsideDownPlayerRankings}
-            active={side === "back"}
-            activeTab={activeTab}
-            setActiveTab={updateTabAndStore}
-          ></MainView>
+          <RuleSetContext.Provider value={RuleSet.UPSIDE_DOWN}>
+            <TeamContext.Provider value={teamRankings.upsideDown}>
+              <PlayerContext.Provider value={playerRankings.upsideDown}>
+                <MainView
+                  selectedWeek={selectedWeek}
+                  onWeekSelected={setSelectedWeek}
+                  reveal={reveal}
+                  onRevealChange={setReveal}
+                  isSmallScreen={isSmallScreen}
+                  screenWidth={screenWidth}
+                  active={side === "back"}
+                  activeTab={activeTab}
+                  setActiveTab={updateTabAndStore}
+                ></MainView>
+              </PlayerContext.Provider>
+            </TeamContext.Provider>
+          </RuleSetContext.Provider>
         </div>
       </div>
     </div>

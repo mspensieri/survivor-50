@@ -1,13 +1,10 @@
-import { Player, Team } from "../data/types";
-import {
-  computePlayerScore,
-  computeUpsideDownPlayerScore,
-} from "./playerStatsProvider";
+import { RuleSet, Team } from "../data/types";
+import { computePlayerTotal } from "./playerStatsProvider";
 
-function computeScore(
+export function computeTeamScore(
   team: Team,
   weekNumber: number,
-  computeFn: (player: Player, week: number) => number
+  ruleSet: RuleSet
 ) {
   let score = 0;
   let fullTimePlayers = [...team.players];
@@ -15,26 +12,18 @@ function computeScore(
   if (team.swap && weekNumber >= team.swap.week) {
     fullTimePlayers.splice(fullTimePlayers.indexOf(team.swap.playerOut), 1);
 
-    score += computeFn(team.swap.playerIn, weekNumber);
-    score += computeFn(team.swap.playerOut, team.swap.week);
-    score -= computeFn(team.swap.playerIn, team.swap.week - 1);
+    score += computePlayerTotal(team.swap.playerIn, weekNumber, ruleSet);
+    score += computePlayerTotal(team.swap.playerOut, team.swap.week, ruleSet);
+    score -= computePlayerTotal(
+      team.swap.playerIn,
+      team.swap.week - 1,
+      ruleSet
+    );
   }
 
   for (const player of fullTimePlayers) {
-    score += computeFn(player, weekNumber);
+    score += computePlayerTotal(player, weekNumber, ruleSet);
   }
 
   return score;
-}
-
-export function computeTeamScore(team: Team, weekNumber: number) {
-  return computeScore(team, weekNumber, (p, w) =>
-    computePlayerScore(p, w, "total")
-  );
-}
-
-export function computeUpsideDownTeamScore(team: Team, weekNumber: number) {
-  return computeScore(team, weekNumber, (p, w) =>
-    computeUpsideDownPlayerScore(p, w)
-  );
 }

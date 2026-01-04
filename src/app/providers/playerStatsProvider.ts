@@ -1,75 +1,50 @@
-import {
-  Player,
-  PlayerStatus,
-  Points,
-  UpsideDownAchievement,
-} from "../data/types";
+import { Player, PlayerStatus, RuleSet } from "../data/types";
 import { airDates, weeks } from "../data/weeks";
 
-export function computePlayerScore(
+export function computePlayerTotal(
   player: Player,
   weekNumber: number,
-  scoreKey: keyof Omit<Points, "upsideDown"> | "total"
+  ruleSet: RuleSet
 ) {
   let score = 0;
 
   for (const week of weeks.slice(0, weekNumber + 1)) {
-    if (scoreKey === "total") {
-      score +=
-        (week[player.key]?.survival || 0) +
-        (week[player.key]?.votes || 0) +
-        (week[player.key]?.teamImmunity || 0) +
-        (week[player.key]?.individualImmunity || 0) +
-        (week[player.key]?.advantage || 0) +
-        (week[player.key]?.idolFound || 0) +
-        (week[player.key]?.voteNullified || 0) +
-        (week[player.key]?.placement || 0) +
-        (week[player.key]?.fire || 0);
-    } else {
-      score += week[player.key]?.[scoreKey] || 0;
+    const scoreForWeek = week[player.key];
+
+    if (!scoreForWeek) {
+      continue;
+    }
+
+    for (const scoreValue of Object.values(scoreForWeek[ruleSet] || {})) {
+      score += scoreValue;
     }
   }
 
   return score;
 }
 
-export function computeUpsideDownPlayerScore(
+export function computePlayerPoints(
   player: Player,
-  weekNumber: number
+  weekNumber: number,
+  ruleSet: RuleSet
 ) {
-  const achievements = getPlayerUpsideDownAchievements(player, weekNumber);
-
-  return achievements.reduce(
-    (total, achievement) => total + achievement.points,
-    0
-  );
-}
-
-export function getPlayerUpsideDownAchievements(
-  player: Player,
-  weekNumber: number
-): Array<UpsideDownAchievement> {
-  let achievements: Array<UpsideDownAchievement> = [];
+  const points: Record<string, number> = {};
 
   for (const week of weeks.slice(0, weekNumber + 1)) {
-    const achievementsThisWeek = week[player.key]?.upsideDown || [];
+    const scoreForWeek = week[player.key];
 
-    for (const achievement of achievementsThisWeek) {
-      const alreadyEarnedAchievement = achievements.find(
-        (a) => a.reason === achievement.reason
-      );
+    if (!scoreForWeek) {
+      continue;
+    }
 
-      if (alreadyEarnedAchievement) {
-        alreadyEarnedAchievement.points += achievement.points;
-      } else {
-        achievements.push({
-          ...achievement,
-        });
-      }
+    const pointsForWeek = scoreForWeek[ruleSet] || {};
+
+    for (const [key, value] of Object.entries(pointsForWeek)) {
+      points[key] = (points[key] || 0) + value;
     }
   }
 
-  return achievements;
+  return points;
 }
 
 export function computePlayerStatus(

@@ -7,6 +7,17 @@
     animation: jump-shaking 6s infinite;
   }
 
+  .offcanvas {
+    /* TODO: Use color vars */
+    --bs-offcanvas-bg: #faece5;
+    --green-indicator-color: green;
+    --red-indicator-color: red;
+
+    .offcanvas-header {
+      border-bottom: 1px solid #b0aca2;
+    }
+  }
+
   .accordion.week-selector-accordion {
     --bs-accordion-color: var(--bs-link-color);
     --bs-accordion-btn-color: var(--bs-link-color);
@@ -153,6 +164,8 @@
     --bs-tertiary-bg-rgb: var(--background-color);
     --bs-card-spacer-y: 10px;
     --bs-table-border-color: var(--bs-link-color);
+
+    --score-label-font-weight-override: bold;
 
     --background-color: rgb(2, 40, 105);
     background-color: var(--background-color);

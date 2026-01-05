@@ -1,33 +1,68 @@
 "use client";
 
 import React, { useContext, useState } from "react";
-import Table from "react-bootstrap/Table";
 import Offcanvas from "react-bootstrap/Offcanvas";
 
 import { TeamRankings } from "../providers/types";
 import { RuleSet, TeamScore } from "../data/types";
 import PlayerList from "./playerList";
 import RuleSetContext from "../context/ruleSetContext";
+import { airDates } from "../data/weeks";
+import { SWAP_DEADLINE } from "../data/teams";
+import PlayerContext from "../context/playerContext";
 
-const styles = {
+const styles: Record<string, React.CSSProperties> = {
   indicatorGreen: {
-    fontSize: "10pt",
     color: "var(--green-indicator-color)",
   },
   indicatorRed: {
-    fontSize: "10pt",
     color: "var(--red-indicator-color)",
   },
-  medals: {
-    fontSize: "17pt",
+  rank: {
+    fontSize: "12pt",
+    padding: "2px 6px",
+    marginBottom: "5px",
+    borderRadius: "6px",
+    backgroundColor: "var(--component-background-color-secondary)",
+  },
+  medal: {
+    fontSize: "12pt",
     filter: "var(--upside-down-image-filter)",
+    justifySelf: "stretch",
+    alignSelf: "end",
+    borderTop: "1px solid var(--component-text-color-secondary)",
+    height: "100%",
+    textAlign: "right",
+    paddingTop: "8px",
+  },
+  rankContainer: {
+    justifySelf: "center",
+  },
+  teamName: {
+    textAlign: "center",
+    justifySelf: "center",
+    gridRow: "span 2",
   },
   captain: {
-    fontSize: "8pt",
+    fontSize: "10pt",
     color: "var(--component-text-color-secondary)",
   },
-  row: {
-    lineHeight: "1",
+  points: {
+    textAlign: "center",
+    justifySelf: "center",
+  },
+  playerCount: {
+    fontSize: "12pt",
+    gridColumn: "span 2",
+    justifySelf: "stretch",
+    alignSelf: "end",
+    borderTop: "1px solid var(--component-text-color-secondary)",
+    height: "100%",
+    paddingTop: "8px",
+  },
+  diff: {
+    justifySelf: "center",
+    fontSize: "8pt",
   },
 };
 
@@ -36,8 +71,9 @@ export default function Leaderboard(props: {
   lastWeekRankings: TeamRankings;
   currentWeek: number;
 }) {
-  const { thisWeekRankings = [], lastWeekRankings = [], currentWeek } = props;
+  const { lastWeekRankings = [], thisWeekRankings = [], currentWeek } = props;
   const ruleSet = useContext(RuleSetContext);
+  const playerRankings = useContext(PlayerContext);
 
   const [selectedTeam, setSelectedTeam] = useState<TeamScore | null>(null);
   const [offcanvasShown, setOffcanvasShown] = useState(false);
@@ -51,121 +87,145 @@ export default function Leaderboard(props: {
     }
   }
 
-  return (
-    <>
-      <Table striped responsive>
-        <thead>
-          <tr>
-            <th>Rank</th>
-            <th>Team Name</th>
-            <th>Score</th>
-          </tr>
-        </thead>
-        <tbody>
-          {...thisWeekRankings.map((thisWeekScore) => {
-            const lastWeekScore = lastWeekRankings?.find(
-              (r) => r.team === thisWeekScore.team
-            );
+  let firstPlaceGroup = thisWeekRankings.filter(
+    (teamScore) => teamScore[ruleSet].rank === 0
+  );
 
-            function getScore() {
-              if (lastWeekScore) {
-                if (
-                  thisWeekScore[ruleSet].total > lastWeekScore[ruleSet].total
-                ) {
-                  return (
-                    <>
-                      {thisWeekScore[ruleSet].total}{" "}
-                      <span style={styles.indicatorGreen}>
-                        (+
-                        {thisWeekScore[ruleSet].total -
-                          lastWeekScore[ruleSet].total}
-                        )
-                      </span>
-                    </>
-                  );
-                } else {
-                  return <>{thisWeekScore[ruleSet].total || "-"}</>;
-                }
-              } else {
-                return <>{thisWeekScore[ruleSet].total || "-"}</>;
-              }
+  let remainingTeams: TeamRankings;
+  if (firstPlaceGroup.length > 5) {
+    firstPlaceGroup = [];
+    remainingTeams = thisWeekRankings;
+  } else {
+    remainingTeams = thisWeekRankings.filter(
+      (teamScore) => teamScore[ruleSet].rank > 0
+    );
+  }
+
+  function teamFlexGroup(rankings: TeamRankings) {
+    return (
+      <>
+        {...rankings.map((thisWeekScore) => {
+          const lastWeekScore = lastWeekRankings?.find(
+            (r) => r.team === thisWeekScore.team
+          );
+
+          function getScoreDiff() {
+            const scoreDiff =
+              thisWeekScore[ruleSet].total -
+              (lastWeekScore ? lastWeekScore[ruleSet].total : 0);
+
+            if (scoreDiff > 0) {
+              return (
+                <>
+                  <span style={styles.indicatorGreen}>
+                    (+
+                    {scoreDiff})
+                  </span>
+                </>
+              );
+            } else {
+              return "(-)";
             }
+          }
 
-            let rank;
+          function getRankDiff() {
             if (lastWeekScore) {
               if (thisWeekScore[ruleSet].rank < lastWeekScore[ruleSet].rank) {
-                rank = (
-                  <td>
-                    #{thisWeekScore[ruleSet].rank + 1}{" "}
+                return (
+                  <>
                     <span style={styles.indicatorGreen}>
                       (▲{" "}
                       {lastWeekScore[ruleSet].rank -
                         thisWeekScore[ruleSet].rank}
                       )
                     </span>
-                  </td>
+                  </>
                 );
               } else if (
                 thisWeekScore[ruleSet].rank > lastWeekScore[ruleSet].rank
               ) {
-                rank = (
-                  <td>
-                    #{thisWeekScore[ruleSet].rank + 1}{" "}
+                return (
+                  <>
                     <span style={styles.indicatorRed}>
                       (▼{" "}
                       {thisWeekScore[ruleSet].rank -
                         lastWeekScore[ruleSet].rank}
                       )
                     </span>
-                  </td>
+                  </>
                 );
               } else {
-                rank = <td>#{thisWeekScore[ruleSet].rank + 1}</td>;
+                return "(-)";
               }
             } else {
-              rank = <td>#{thisWeekScore[ruleSet].rank + 1}</td>;
+              return "(-)";
             }
+          }
 
-            let medals;
-            if (thisWeekScore.team.accolades) {
-              const { first, second, third } = thisWeekScore.team.accolades;
+          const { team } = thisWeekScore;
 
-              const medalsString = [
-                first && "🥇".repeat(first.length),
-                second && "🥈".repeat(second.length),
-                third && "🥉".repeat(third.length),
-              ]
-                .filter((a) => a)
-                .join("");
-
-              medals = (
-                <span>
-                  {" "}
-                  (<span style={styles.medals}>{medalsString}</span>)
-                </span>
-              );
-            }
+          const players = [...team.players].concat(
+            team.swap ? [team.swap.playerIn] : []
+          );
+          const activePlayers = players.filter((player) => {
+            const playerScore = playerRankings[currentWeek].find(
+              (r) => r.player === player
+            );
 
             return (
-              <tr key={thisWeekScore.team.name}>
-                {rank}
-                <td
-                  style={styles.row}
-                  onClick={() => displayTeamDetails(thisWeekScore)}
-                >
-                  {thisWeekScore.team.name}
-                  {medals}
-                  <br />
-                  <span style={styles.captain}>
-                    {thisWeekScore.team.captain}
-                  </span>
-                </td>
-                <td>{getScore()}</td>
-              </tr>
+              playerScore &&
+              !["eliminated", "jury"].includes(playerScore.status)
             );
-          })}
-        </tbody>
-      </Table>
+          });
+
+          return (
+            <>
+              <div
+                key={team.name}
+                className="flex-item-card team-grid-container"
+                onClick={() => displayTeamDetails(thisWeekScore)}
+              >
+                <div style={styles.rankContainer}>
+                  <span style={styles.rank}>
+                    {`#${thisWeekScore[ruleSet].rank + 1}`}
+                  </span>
+                </div>
+                <div style={styles.teamName}>
+                  {team.name} <br />
+                  <span style={styles.captain}>{team.captain}</span>
+                </div>
+                <div style={styles.points}>
+                  {thisWeekScore[ruleSet].total}pts
+                </div>
+                <div style={styles.diff}>{getRankDiff()}</div>
+                <div style={styles.diff}>{getScoreDiff()}</div>
+                <div style={styles.playerCount}>
+                  {activePlayers.length} player
+                  {activePlayers.length !== 1 ? "s" : ""} remaining
+                </div>
+                <div style={styles.medal}>
+                  {"🥇".repeat(team.accolades?.first?.length || 0)}
+                  {"🥈".repeat(team.accolades?.second?.length || 0)}
+                  {"🥉".repeat(team.accolades?.third?.length || 0)}
+                </div>
+              </div>
+            </>
+          );
+        })}
+      </>
+    );
+  }
+
+  return (
+    <>
+      {firstPlaceGroup.length && (
+        <div className="leaderboard-flex-container first-place-group">
+          {teamFlexGroup(firstPlaceGroup)}
+        </div>
+      )}
+      <div className="leaderboard-flex-container">
+        {teamFlexGroup(remainingTeams)}
+      </div>
 
       <Offcanvas
         show={offcanvasShown}
@@ -193,6 +253,21 @@ export default function Leaderboard(props: {
                 currentWeek={currentWeek}
                 teamScore={selectedTeam}
               ></PlayerList>
+              {selectedTeam.team.swap ? (
+                <>
+                  <hr />
+                  {selectedTeam.team.swap.playerOut.name} ➔{" "}
+                  {selectedTeam.team.swap.playerIn.name} (
+                  {airDates[selectedTeam.team.swap.week]})
+                </>
+              ) : (
+                <>
+                  <hr />
+                  {currentWeek > SWAP_DEADLINE
+                    ? "Swap expired"
+                    : "Swap available"}
+                </>
+              )}
             </>
           )}
         </Offcanvas.Body>

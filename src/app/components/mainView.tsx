@@ -13,7 +13,6 @@ import {
 } from "../providers/rankingsProvider";
 import { teams, fakeTeams } from "../data/teams";
 import Leaderboard from "../components/leaderboard";
-import Teams from "../components/teams";
 import Scores from "../components/scores";
 import Rules from "../components/rules";
 import WeekSelectorAccordion from "../components/weekSelectorAccordion";
@@ -155,28 +154,6 @@ export default function MainView(props: {
     }
   }
 
-  function generateTeams() {
-    if (reveal) {
-      return (
-        <Teams
-          thisWeekRankings={teamRankings[currentWeek - 1]}
-          playerRankings={playerRankings || []}
-          currentWeek={currentWeek - 1}
-        ></Teams>
-      );
-    } else {
-      return (
-        <SpoilerMask>
-          <Teams
-            thisWeekRankings={getTeamRankings(fakeTeams).standard[0]}
-            playerRankings={playerRankings || []}
-            currentWeek={currentWeek - 1}
-          ></Teams>
-        </SpoilerMask>
-      );
-    }
-  }
-
   if (screenWidth < 0) {
     return <div></div>;
   }
@@ -239,9 +216,6 @@ export default function MainView(props: {
                 })}
               </Tabs>
             )}
-          </Tab>
-          <Tab eventKey="teams" title="Teams">
-            {generateTeams()}
           </Tab>
           <Tab eventKey="players" title="Players">
             {isSmallScreen ? (

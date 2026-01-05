@@ -15,6 +15,15 @@ import TeamContext from "../context/teamContext";
 import { airDates } from "../data/weeks";
 import RuleSetContext from "../context/ruleSetContext";
 
+const generateHash = (string) => {
+  let hash = 0;
+  for (const char of string) {
+    hash = (hash << 5) - hash + char.charCodeAt(0);
+    hash |= 0; // Constrain to 32bit integer
+  }
+  return hash;
+};
+
 const styles: Record<string, React.CSSProperties> = {
   tooltip: {
     backgroundColor: "var(--component-background-color-primary)",
@@ -123,20 +132,24 @@ export default function PlacementChart(props: {
     };
   });
 
+  const dataId = generateHash(JSON.stringify(data));
   if (simple) {
     return (
       <LineChart data={data} style={{ width: "100%", aspectRatio: 2.75 }}>
         <defs>
-          <linearGradient id="area" x1="0" y1="0" x2="100%" y2="0">
-            {...areaGradient}
-          </linearGradient>
-          <linearGradient id="line" x1="0" y1="0" x2="100%" y2="0">
+          <linearGradient
+            id={`simple-line-${dataId}`}
+            x1="0"
+            y1="0"
+            x2="100%"
+            y2="0"
+          >
             {...lineGradient}
           </linearGradient>
         </defs>
         <Line
           dataKey="Rank"
-          stroke="url(#line)"
+          stroke={`url(#simple-line-${dataId})`}
           dot={false}
           strokeWidth={3}
           legendType="none"
@@ -160,17 +173,17 @@ export default function PlacementChart(props: {
     return (
       <AreaChart data={data} style={{ width: "100%", aspectRatio: 1.618 }}>
         <defs>
-          <linearGradient id="area" x1="0" y1="0" x2="100%" y2="0">
+          <linearGradient id={`area-${dataId}`} x1="0" y1="0" x2="100%" y2="0">
             {...areaGradient}
           </linearGradient>
-          <linearGradient id="line" x1="0" y1="0" x2="100%" y2="0">
+          <linearGradient id={`line-${dataId}`} x1="0" y1="0" x2="100%" y2="0">
             {...lineGradient}
           </linearGradient>
         </defs>
         <Area
           dataKey="Rank"
-          fill="url(#area)"
-          stroke="url(#line)"
+          fill={`url(#area-${dataId})`}
+          stroke={`url(#line-${dataId})`}
           baseValue={teamRankings[0].length}
         />
         <XAxis stroke="var(--component-text-color-primary)" dataKey="name" />

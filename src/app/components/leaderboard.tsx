@@ -203,7 +203,13 @@ export default function Leaderboard(props: {
                 {activePlayers.length} active player
                 {activePlayers.length !== 1 ? "s" : ""}
               </div>
-              <div style={styles.placementHistory}></div>
+              <div style={styles.placementHistory}>
+                <PlacementChart
+                  team={team}
+                  currentWeek={currentWeek}
+                  simple={true}
+                ></PlacementChart>
+              </div>
             </div>
           );
         })}

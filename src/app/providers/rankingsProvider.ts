@@ -15,7 +15,7 @@ function assignRanks<T extends { total: number; rank: number }>(
     const curr = items[i];
     const prev = items[i - 1];
 
-    curr.rank = curr.total === prev.total ? prev.rank : prev.rank + 1;
+    curr.rank = curr.total === prev.total ? prev.rank : i + 1;
   }
 
   return items;
@@ -33,11 +33,11 @@ function getTeamRankingsForWeek(
       team,
       [RuleSet.STANDARD]: {
         total: computeTeamScore(team, weekNumber, RuleSet.STANDARD),
-        rank: 0,
+        rank: 1,
       },
       [RuleSet.UPSIDE_DOWN]: {
         total: computeTeamScore(team, weekNumber, RuleSet.UPSIDE_DOWN),
-        rank: 0,
+        rank: 1,
       },
     };
   });
@@ -90,12 +90,12 @@ function getPlayerRankingsForWeek(
       player,
       status: computePlayerStatus(player, weekNumber),
       [RuleSet.STANDARD]: {
-        rank: 0,
+        rank: 1,
         total: computePlayerTotal(player, weekNumber, RuleSet.STANDARD),
         points: computePlayerPoints(player, weekNumber, RuleSet.STANDARD),
       },
       [RuleSet.UPSIDE_DOWN]: {
-        rank: 0,
+        rank: 1,
         total: computePlayerTotal(player, weekNumber, RuleSet.UPSIDE_DOWN),
         points: computePlayerPoints(player, weekNumber, RuleSet.UPSIDE_DOWN),
       },

@@ -222,7 +222,7 @@ export default function Scores(props: {
           if (thisWeekScore[ruleSet].rank < lastWeekScore[ruleSet].rank) {
             rank = (
               <span>
-                #{thisWeekScore[ruleSet].rank + 1}{" "}
+                #{thisWeekScore[ruleSet].rank}{" "}
                 <span style={styles.indicatorGreen}>
                   (▲ {lastWeekScore[ruleSet].rank - thisWeekScore[ruleSet].rank}
                   )
@@ -234,7 +234,7 @@ export default function Scores(props: {
           ) {
             rank = (
               <span>
-                #{thisWeekScore[ruleSet].rank + 1}{" "}
+                #{thisWeekScore[ruleSet].rank}{" "}
                 <span style={styles.indicatorRed}>
                   (▼ {thisWeekScore[ruleSet].rank - lastWeekScore[ruleSet].rank}
                   )
@@ -242,16 +242,15 @@ export default function Scores(props: {
               </span>
             );
           } else {
-            rank = <span>#{thisWeekScore[ruleSet].rank + 1}</span>;
             rank = (
               <span>
-                #{thisWeekScore[ruleSet].rank + 1}{" "}
+                #{thisWeekScore[ruleSet].rank}{" "}
                 <span style={styles.indicatorNeutral}>(-)</span>
               </span>
             );
           }
         } else {
-          rank = <span>#{thisWeekScore[ruleSet].rank + 1}</span>;
+          rank = <span>#{thisWeekScore[ruleSet].rank}</span>;
         }
 
         const popularity = teams.reduce((acc, curr) => {

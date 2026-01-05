@@ -10,6 +10,7 @@ import RuleSetContext from "../context/ruleSetContext";
 import { airDates } from "../data/weeks";
 import { SWAP_DEADLINE } from "../data/teams";
 import PlayerContext from "../context/playerContext";
+import PlacementChart from "./placementChart";
 
 const styles: Record<string, React.CSSProperties> = {
   indicatorGreen: {
@@ -25,15 +26,16 @@ const styles: Record<string, React.CSSProperties> = {
     borderRadius: "6px",
     backgroundColor: "var(--component-background-color-secondary)",
   },
-  medal: {
+  placementHistory: {
     fontSize: "12pt",
     filter: "var(--upside-down-image-filter)",
     justifySelf: "stretch",
-    alignSelf: "end",
+    alignSelf: "stretch",
     borderTop: "1px solid var(--component-text-color-secondary)",
     height: "100%",
     textAlign: "right",
     paddingTop: "8px",
+    gridColumn: "span 2",
   },
   rankContainer: {
     justifySelf: "center",
@@ -42,9 +44,10 @@ const styles: Record<string, React.CSSProperties> = {
     textAlign: "center",
     justifySelf: "center",
     gridRow: "span 2",
+    gridColumn: "span 2",
   },
   captain: {
-    fontSize: "10pt",
+    fontSize: "9pt",
     color: "var(--component-text-color-secondary)",
   },
   points: {
@@ -88,7 +91,7 @@ export default function Leaderboard(props: {
   }
 
   let firstPlaceGroup = thisWeekRankings.filter(
-    (teamScore) => teamScore[ruleSet].rank === 0
+    (teamScore) => teamScore[ruleSet].rank === 1
   );
 
   let remainingTeams: TeamRankings;
@@ -97,14 +100,14 @@ export default function Leaderboard(props: {
     remainingTeams = thisWeekRankings;
   } else {
     remainingTeams = thisWeekRankings.filter(
-      (teamScore) => teamScore[ruleSet].rank > 0
+      (teamScore) => teamScore[ruleSet].rank > 1
     );
   }
 
   function teamFlexGroup(rankings: TeamRankings) {
     return (
       <>
-        {...rankings.map((thisWeekScore) => {
+        {...rankings.map((thisWeekScore, index) => {
           const lastWeekScore = lastWeekRankings?.find(
             (r) => r.team === thisWeekScore.team
           );
@@ -179,37 +182,29 @@ export default function Leaderboard(props: {
           });
 
           return (
-            <>
-              <div
-                key={team.name}
-                className="flex-item-card team-grid-container"
-                onClick={() => displayTeamDetails(thisWeekScore)}
-              >
-                <div style={styles.rankContainer}>
-                  <span style={styles.rank}>
-                    {`#${thisWeekScore[ruleSet].rank + 1}`}
-                  </span>
-                </div>
-                <div style={styles.teamName}>
-                  {team.name} <br />
-                  <span style={styles.captain}>{team.captain}</span>
-                </div>
-                <div style={styles.points}>
-                  {thisWeekScore[ruleSet].total}pts
-                </div>
-                <div style={styles.diff}>{getRankDiff()}</div>
-                <div style={styles.diff}>{getScoreDiff()}</div>
-                <div style={styles.playerCount}>
-                  {activePlayers.length} player
-                  {activePlayers.length !== 1 ? "s" : ""} remaining
-                </div>
-                <div style={styles.medal}>
-                  {"🥇".repeat(team.accolades?.first?.length || 0)}
-                  {"🥈".repeat(team.accolades?.second?.length || 0)}
-                  {"🥉".repeat(team.accolades?.third?.length || 0)}
-                </div>
+            <div
+              key={index}
+              className="flex-item-card team-grid-container"
+              onClick={() => displayTeamDetails(thisWeekScore)}
+            >
+              <div style={styles.rankContainer}>
+                <span style={styles.rank}>
+                  {`#${thisWeekScore[ruleSet].rank}`}
+                </span>
               </div>
-            </>
+              <div style={styles.teamName}>
+                {team.name} <br />
+                <span style={styles.captain}>{team.captain} (★★☆☆☆)</span>
+              </div>
+              <div style={styles.points}>{thisWeekScore[ruleSet].total}pts</div>
+              <div style={styles.diff}>{getRankDiff()}</div>
+              <div style={styles.diff}>{getScoreDiff()}</div>
+              <div style={styles.playerCount}>
+                {activePlayers.length} active player
+                {activePlayers.length !== 1 ? "s" : ""}
+              </div>
+              <div style={styles.placementHistory}></div>
+            </div>
           );
         })}
       </>
@@ -268,6 +263,11 @@ export default function Leaderboard(props: {
                     : "Swap available"}
                 </>
               )}
+              <hr />
+              <PlacementChart
+                team={selectedTeam.team}
+                currentWeek={currentWeek}
+              ></PlacementChart>
             </>
           )}
         </Offcanvas.Body>

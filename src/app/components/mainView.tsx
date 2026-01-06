@@ -45,7 +45,7 @@ const styles: Record<string, React.CSSProperties> = {
     position: "absolute",
     width: "180px",
     margin: "auto",
-    left: 320,
+    left: 250,
     top: 10,
     filter: "var(--upside-down-image-filter)",
     transform: "var(--upside-down-image-transform)",
@@ -162,12 +162,12 @@ export default function MainView(props: {
     <Container fluid>
       <Row>
         <img
-          src="logo.webp"
+          src="logo.png"
           alt="survivor logo"
           className="logo"
           style={{
             ...styles.logo,
-            ...(screenWidth < 510 ? styles.logoSmall : {}),
+            ...(screenWidth < 490 ? styles.logoSmall : {}),
           }}
         ></img>
         <Navbar className="bg-body-tertiary">

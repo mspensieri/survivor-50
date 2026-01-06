@@ -4,7 +4,7 @@
   --bs-info-rgb: 7, 129, 154;
 
   .flip-card {
-    --background-color-primary: rgb(2, 40, 105);
+    --background-color-primary: rgb(42, 2, 105);
 
     &.upside-down {
       --background-color-primary: #1c1c1c;
@@ -16,7 +16,7 @@
     --text-color-primary: #faece5;
     --text-color-secondary: #b0aca2;
     --text-color-transparent: rgba(114, 111, 86, 0.814);
-    --background-color-primary: rgb(2, 40, 105);
+    --background-color-primary: rgb(42, 2, 105);
 
     --component-background-color-primary: #faece5;
     --component-background-color-secondary: #e5e0d2;

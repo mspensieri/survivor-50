@@ -9,6 +9,7 @@ import {
   Tooltip,
   LineChart,
 } from "recharts";
+import { RechartsDevtools } from "@recharts/devtools";
 
 import { Team } from "../data/types";
 import TeamContext from "../context/teamContext";
@@ -28,6 +29,9 @@ const styles: Record<string, React.CSSProperties> = {
   tooltip: {
     backgroundColor: "var(--component-background-color-primary)",
     color: "var(--component-text-color-primary)",
+  },
+  axisLabel: {
+    fontSize: "10pt",
   },
 };
 
@@ -155,7 +159,7 @@ export default function PlacementChart(props: {
       <LineChart
         responsive
         data={data}
-        style={{ width: "100%", aspectRatio: 2.75, pointerEvents: "none" }}
+        style={{ width: "90px", height: "30px", pointerEvents: "none" }}
       >
         <defs>
           <linearGradient
@@ -183,21 +187,32 @@ export default function PlacementChart(props: {
         />
         <XAxis
           stroke="var(--component-text-color-primary)"
+          strokeWidth={2}
           dataKey="name"
           tick={false}
+          height={2}
+          width="100%"
+          padding={{ right: 0, left: 0 }}
         />
         <YAxis
           reversed
           domain={[1, teamRankings[0].length]}
-          interval="preserveStartEnd"
           stroke="var(--component-text-color-primary)"
+          strokeWidth={2}
           tick={false}
+          width={2}
+          height="100%"
+          padding={{ top: 0, bottom: 0 }}
         />
       </LineChart>
     );
   } else {
     return (
-      <AreaChart data={data} style={{ width: "100%", aspectRatio: 1.618 }}>
+      <AreaChart
+        data={data}
+        responsive
+        style={{ width: "100%", height: "200px" }}
+      >
         <defs>
           <linearGradient id={`area-${dataId}`} x1="0" y1="0" x2="100%" y2="0">
             {...areaGradient}
@@ -212,12 +227,19 @@ export default function PlacementChart(props: {
           stroke={`url(#line-${dataId})`}
           baseValue={teamRankings[0].length}
         />
-        <XAxis stroke="var(--component-text-color-primary)" dataKey="name" />
+        <XAxis
+          stroke="var(--component-text-color-primary)"
+          dataKey="name"
+          interval="preserveEnd"
+          style={styles.axisLabel}
+        />
         <YAxis
           reversed
           domain={[1, teamRankings[0].length]}
-          interval="preserveStartEnd"
+          interval="preserveStart"
           stroke="var(--component-text-color-primary)"
+          width="auto"
+          style={styles.axisLabel}
         />
         <Tooltip cursor={false} contentStyle={styles.tooltip} />
         <CartesianGrid />

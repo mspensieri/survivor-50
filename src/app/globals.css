@@ -305,7 +305,7 @@
 
   .team-grid-container {
     display: grid;
-    grid-template-rows: 25px auto 35px;
+    grid-template-rows: 25px auto 0px 35px;
     grid-template-columns: 44px auto auto 44px;
     cursor: pointer;
     background-color: var(--component-background-color-primary);

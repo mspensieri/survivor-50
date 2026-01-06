@@ -27,9 +27,9 @@ const styles: Record<string, React.CSSProperties> = {
     backgroundColor: "var(--component-background-color-secondary)",
   },
   placementHistory: {
-    borderTop: "1px solid var(--component-text-color-secondary)",
     paddingTop: "8px",
     gridColumn: "span 2",
+    justifySelf: "end",
   },
   rankContainer: {
     justifySelf: "center",
@@ -49,12 +49,10 @@ const styles: Record<string, React.CSSProperties> = {
     justifySelf: "center",
   },
   playerCount: {
-    fontSize: "12pt",
+    fontSize: "11pt",
     gridColumn: "span 2",
-    justifySelf: "stretch",
+    justifySelf: "start",
     alignSelf: "end",
-    borderTop: "1px solid var(--component-text-color-secondary)",
-    height: "100%",
     paddingTop: "8px",
   },
   diff: {
@@ -63,6 +61,10 @@ const styles: Record<string, React.CSSProperties> = {
   },
   units: {
     fontSize: "10pt",
+  },
+  divider: {
+    borderBottom: "1px solid var(--component-text-color-secondary)",
+    gridColumn: "span 4",
   },
 };
 
@@ -205,6 +207,7 @@ export default function Leaderboard(props: {
               </div>
               <div style={styles.diff}>{getRankDiff()}</div>
               <div style={styles.diff}>{getScoreDiff()}</div>
+              <div style={styles.divider}></div>
               <div style={styles.playerCount}>
                 {activePlayers.length} active player
                 {activePlayers.length !== 1 ? "s" : ""}

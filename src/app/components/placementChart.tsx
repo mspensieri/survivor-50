@@ -15,9 +15,9 @@ import TeamContext from "../context/teamContext";
 import { airDates } from "../data/weeks";
 import RuleSetContext from "../context/ruleSetContext";
 
-const generateHash = (string) => {
+const generateHash = (str: string) => {
   let hash = 0;
-  for (const char of string) {
+  for (const char of str) {
     hash = (hash << 5) - hash + char.charCodeAt(0);
     hash |= 0; // Constrain to 32bit integer
   }
@@ -135,7 +135,11 @@ export default function PlacementChart(props: {
   const dataId = generateHash(JSON.stringify(data));
   if (simple) {
     return (
-      <LineChart data={data} style={{ width: "100%", aspectRatio: 2.75 }}>
+      <LineChart
+        responsive
+        data={data}
+        style={{ width: "100%", aspectRatio: 2.75, pointerEvents: "none" }}
+      >
         <defs>
           <linearGradient
             id={`simple-line-${dataId}`}
@@ -154,6 +158,7 @@ export default function PlacementChart(props: {
           strokeWidth={3}
           legendType="none"
           activeDot={false}
+          isAnimationActive={false}
         />
         <XAxis
           stroke="var(--component-text-color-primary)"

@@ -27,13 +27,7 @@ const styles: Record<string, React.CSSProperties> = {
     backgroundColor: "var(--component-background-color-secondary)",
   },
   placementHistory: {
-    fontSize: "12pt",
-    filter: "var(--upside-down-image-filter)",
-    justifySelf: "stretch",
-    alignSelf: "stretch",
     borderTop: "1px solid var(--component-text-color-secondary)",
-    height: "100%",
-    textAlign: "right",
     paddingTop: "8px",
     gridColumn: "span 2",
   },

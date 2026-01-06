@@ -40,97 +40,111 @@ export default function PlacementChart(props: {
   const teamRankings = useContext(TeamContext);
   const ruleSet = useContext(RuleSetContext);
 
-  const areaGradient = [
-    <stop
-      key="0"
-      offset="0%"
-      stopColor="var(--component-text-color-secondary)"
-    />,
-  ];
-  const lineGradient = [
-    <stop
-      key="0"
-      offset="0%"
-      stopColor="var(--component-text-color-secondary)"
-    />,
-  ];
+  const areaGradient: Array<JSX.Element> = [];
+  const lineGradient: Array<JSX.Element> = [];
 
-  let colorChanged = false;
-  let directionOfChange = 0;
-  let currentColor = "var(--component-text-color-secondary)";
+  let segment: { direction?: number; startIndex: number } | undefined;
 
-  const data = new Array(airDates.length).fill(undefined).map((_, index) => {
-    if (index > currentWeek) {
-      return {
-        name: airDates[index],
-        value: null,
-      };
+  function beginSegment(index: number) {
+    segment = { startIndex: index };
+  }
+
+  // Work around a bug where the line doesn't render if its simply a straight, flat line
+  let flatLineOnly = true;
+  function endSegment(index: number) {
+    if (typeof segment?.direction === "undefined") {
+      segment = undefined;
+      return;
     }
 
+    let color: string;
+    if (segment.direction > 0) {
+      color = "var(--red-indicator-color)";
+      flatLineOnly = false;
+    } else if (segment.direction < 0) {
+      color = "var(--green-indicator-color)";
+      flatLineOnly = false;
+    } else {
+      color = "var(--component-text-color-secondary)";
+    }
+
+    const startPercentage = (segment.startIndex / currentWeek) * 100;
+    const endPercentage = (index / currentWeek) * 100;
+
+    areaGradient.push(
+      <stop
+        key={areaGradient.length}
+        offset={`${startPercentage}%`}
+        stopColor={color}
+      />,
+      <stop
+        key={areaGradient.length + 1}
+        offset={`${endPercentage}%`}
+        stopColor={color}
+      />
+    );
+    lineGradient.push(
+      <stop
+        key={lineGradient.length}
+        offset={`${startPercentage}%`}
+        stopColor={color}
+      />,
+      <stop
+        key={lineGradient.length + 1}
+        offset={`${endPercentage}%`}
+        stopColor={color}
+      />
+    );
+
+    segment = undefined;
+  }
+
+  const data = airDates.map((date, index) => {
     const thisWeekScore = teamRankings[index].find(
-      (ts) => ts.team.name === team.name
-    )!;
-    const lastWeekScore = teamRankings[index - 1]?.find(
       (ts) => ts.team.name === team.name
     );
 
-    if (thisWeekScore && lastWeekScore) {
-      const diffDirection = Math.max(
-        Math.min(1, thisWeekScore[ruleSet].rank - lastWeekScore[ruleSet].rank),
-        -1
+    if (index === 0) {
+      beginSegment(index);
+    } else if (index > currentWeek) {
+      endSegment(index);
+
+      return {
+        name: date,
+        value: null,
+      };
+    } else {
+      const lastWeekScore = teamRankings[index - 1].find(
+        (ts) => ts.team.name === team.name
       );
 
-      if (diffDirection !== directionOfChange || index === currentWeek) {
-        // We are at an inflection point, or at the end of the line. Update color of the graph
-        const percentage = ((index - 1) / currentWeek) * 100;
-
-        // End the current color
-        areaGradient.push(
-          <stop
-            key={areaGradient.length}
-            offset={`${percentage}%`}
-            stopColor={currentColor}
-          />
-        );
-        lineGradient.push(
-          <stop
-            key={lineGradient.length}
-            offset={`${percentage}%`}
-            stopColor={currentColor}
-          />
+      if (thisWeekScore && lastWeekScore) {
+        const diffDirection = Math.max(
+          Math.min(
+            1,
+            thisWeekScore[ruleSet].rank - lastWeekScore[ruleSet].rank
+          ),
+          -1
         );
 
-        directionOfChange = diffDirection;
-        if (directionOfChange > 0) {
-          currentColor = "var(--red-indicator-color)";
-          colorChanged = true;
-        } else if (directionOfChange < 0) {
-          currentColor = "var(--green-indicator-color)";
-          colorChanged = true;
-        } else {
-          currentColor = "var(--component-text-color-secondary)";
+        if (
+          typeof segment?.direction !== "undefined" &&
+          diffDirection !== segment.direction
+        ) {
+          endSegment(index - 1);
+          beginSegment(index - 1);
         }
 
-        // Begin the new color
-        areaGradient.push(
-          <stop
-            key={areaGradient.length}
-            offset={`${percentage}%`}
-            stopColor={currentColor}
-          />
-        );
-        lineGradient.push(
-          <stop
-            key={lineGradient.length}
-            offset={`${percentage}%`}
-            stopColor={currentColor}
-          />
-        );
+        segment!.direction = diffDirection;
       }
     }
 
+    if (index === currentWeek) {
+      endSegment(index);
+    }
+
     return {
-      name: airDates[index],
+      name: date,
       Rank: thisWeekScore?.[ruleSet].rank,
     };
   });
@@ -157,9 +171,9 @@ export default function PlacementChart(props: {
         <Line
           dataKey="Rank"
           stroke={
-            colorChanged
-              ? `url(#simple-line-${dataId})`
-              : "var(--component-text-color-secondary)"
+            flatLineOnly
+              ? "var(--component-text-color-secondary)"
+              : `url(#simple-line-${dataId})`
           }
           dot={false}
           strokeWidth={3}

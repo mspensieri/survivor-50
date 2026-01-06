@@ -55,6 +55,7 @@ export default function PlacementChart(props: {
     />,
   ];
 
+  let colorChanged = false;
   let directionOfChange = 0;
   let currentColor = "var(--component-text-color-secondary)";
 
@@ -102,8 +103,10 @@ export default function PlacementChart(props: {
         directionOfChange = diffDirection;
         if (directionOfChange > 0) {
           currentColor = "var(--red-indicator-color)";
+          colorChanged = true;
         } else if (directionOfChange < 0) {
           currentColor = "var(--green-indicator-color)";
+          colorChanged = true;
         } else {
           currentColor = "var(--component-text-color-secondary)";
         }
@@ -153,7 +156,11 @@ export default function PlacementChart(props: {
         </defs>
         <Line
           dataKey="Rank"
-          stroke={`url(#simple-line-${dataId})`}
+          stroke={
+            colorChanged
+              ? `url(#simple-line-${dataId})`
+              : "var(--component-text-color-secondary)"
+          }
           dot={false}
           strokeWidth={3}
           legendType="none"

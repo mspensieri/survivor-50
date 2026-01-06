@@ -29,7 +29,7 @@ export default function PlayerList(props: {
   const playerRankings = useContext(PlayerContext);
 
   const players = [...team.players].concat(
-    team.swap ? [team.swap.playerIn] : []
+    team.swap && team.swap.week <= currentWeek ? [team.swap.playerIn] : []
   );
 
   return (

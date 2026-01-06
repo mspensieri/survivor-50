@@ -61,6 +61,9 @@ const styles: Record<string, React.CSSProperties> = {
     justifySelf: "center",
     fontSize: "8pt",
   },
+  units: {
+    fontSize: "10pt",
+  },
 };
 
 export default function Leaderboard(props: {
@@ -162,7 +165,9 @@ export default function Leaderboard(props: {
           const { team } = thisWeekScore;
 
           const players = [...team.players].concat(
-            team.swap ? [team.swap.playerIn] : []
+            team.swap && team.swap.week <= currentWeek
+              ? [team.swap.playerIn]
+              : []
           );
           const activePlayers = players.filter((player) => {
             const playerScore = playerRankings[currentWeek].find(
@@ -177,8 +182,12 @@ export default function Leaderboard(props: {
 
           return (
             <div
-              key={index}
-              className="flex-item-card team-grid-container"
+              key={team.name}
+              className={`flex-item-card team-grid-container ${
+                selectedTeam?.team === thisWeekScore.team && offcanvasShown
+                  ? "active"
+                  : ""
+              }`}
               onClick={() => displayTeamDetails(thisWeekScore)}
             >
               <div style={styles.rankContainer}>
@@ -190,7 +199,10 @@ export default function Leaderboard(props: {
                 {team.name} <br />
                 <span style={styles.captain}>{team.captain} (★★☆☆☆)</span>
               </div>
-              <div style={styles.points}>{thisWeekScore[ruleSet].total}pts</div>
+              <div style={styles.points}>
+                {thisWeekScore[ruleSet].total}
+                <span style={styles.units}>pts</span>
+              </div>
               <div style={styles.diff}>{getRankDiff()}</div>
               <div style={styles.diff}>{getScoreDiff()}</div>
               <div style={styles.playerCount}>
@@ -226,7 +238,6 @@ export default function Leaderboard(props: {
         show={offcanvasShown}
         onHide={() => setOffcanvasShown(false)}
         placement="end"
-        backdrop={false}
         className={
           ruleSet === RuleSet.UPSIDE_DOWN ? "offcanvas-back" : "offcanvas-front"
         }

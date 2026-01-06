@@ -19,8 +19,9 @@
     --background-color-primary: rgb(2, 40, 105);
 
     --component-background-color-primary: #faece5;
-    --component-background-color-secondary: #d7d2c6;
+    --component-background-color-secondary: #e5e0d2;
     --component-background-color-highlight: #f6c928;
+    --component-background-color-active: #f1e1a8;
     --component-text-color-primary: #000000;
     --component-text-color-secondary: #84827a;
 
@@ -51,6 +52,7 @@
     --component-background-color-primary: #3d3d3e;
     --component-background-color-secondary: #505050;
     --component-background-color-highlight: #bebebe;
+    --component-background-color-active: #606060;
     --component-text-color-primary: #dddddd;
     --component-text-color-secondary: #aaaaaa;
 
@@ -307,6 +309,10 @@
     grid-template-columns: 44px auto auto 44px;
     cursor: pointer;
     background-color: var(--component-background-color-primary);
+
+    &.active {
+      background-color: var(--component-background-color-active);
+    }
 
     &:hover {
       opacity: 0.9;

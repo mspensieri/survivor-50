@@ -132,31 +132,22 @@ function getScoreElement(
   thisWeekPoints: number = 0,
   lastWeekPoints: number | undefined
 ) {
-  if (typeof lastWeekPoints !== "undefined") {
-    if (thisWeekPoints > lastWeekPoints) {
-      return (
-        <span>
-          {thisWeekPoints}
-          <span style={styles.units}>pts</span>{" "}
-          <span style={styles.indicatorGreen}>
-            (+{thisWeekPoints - lastWeekPoints})
-          </span>
-        </span>
-      );
-    } else {
-      return (
-        <span>
-          {thisWeekPoints}
-          <span style={styles.units}>pts</span>{" "}
-          <span style={styles.indicatorNeutral}>(-)</span>
-        </span>
-      );
-    }
+  const scoreDiff = thisWeekPoints - (lastWeekPoints || 0);
+
+  if (scoreDiff > 0) {
+    return (
+      <span>
+        {thisWeekPoints}
+        <span style={styles.units}>pts</span>{" "}
+        <span style={styles.indicatorGreen}>(+{scoreDiff})</span>
+      </span>
+    );
   } else {
     return (
       <span>
         {thisWeekPoints}
-        <span style={styles.units}>pts</span>
+        <span style={styles.units}>pts</span>{" "}
+        <span style={styles.indicatorNeutral}>(-)</span>
       </span>
     );
   }

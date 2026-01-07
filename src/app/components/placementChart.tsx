@@ -103,7 +103,7 @@ export default function PlacementChart(props: {
   }
 
   const data = airDates.map((date, index) => {
-    const thisWeekScore = teamRankings[index].find(
+    const thisWeekScore = teamRankings[index]?.find(
       (ts) => ts.team.name === team.name
     );
 

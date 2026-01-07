@@ -1,19 +1,19 @@
 import { PlayerKeys, RuleSet, StandardPoints, UpsideDownPoints } from "./types";
 
 export const airDates = [
-  "Sept 24",
-  "Oct 1",
-  "Oct 8",
-  "Oct 15",
-  "Oct 22",
-  "Oct 29",
-  "Nov 5",
-  "Nov 12",
-  "Nov 19",
-  "Nov 26",
-  "Dec 3",
-  "Dec 10",
-  "Dec 17",
+  "Feb 25",
+  "Mar 4",
+  "Mar 11",
+  "Mar 18",
+  "Mar 25",
+  "Apr 1",
+  "Apr 8",
+  "Apr 15",
+  "Apr 22",
+  "Apr 29",
+  "May 6",
+  "May 13",
+  "May 20",
 ];
 
 type WeeklyPoints = {

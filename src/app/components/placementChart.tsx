@@ -9,7 +9,6 @@ import {
   Tooltip,
   LineChart,
 } from "recharts";
-import { RechartsDevtools } from "@recharts/devtools";
 
 import { Team } from "../data/types";
 import TeamContext from "../context/teamContext";
@@ -232,6 +231,7 @@ export default function PlacementChart(props: {
           dataKey="name"
           interval="preserveEnd"
           style={styles.axisLabel}
+          height={15}
         />
         <YAxis
           reversed

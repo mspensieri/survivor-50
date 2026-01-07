@@ -1,6 +1,5 @@
 "use client";
 
-import Card from "react-bootstrap/Card";
 import React, { useContext } from "react";
 
 import { TeamScore } from "../data/types";
@@ -28,29 +27,30 @@ export default function PlayerList(props: {
   const ruleSet = useContext(RuleSetContext);
   const playerRankings = useContext(PlayerContext);
 
+  const swapInPlay = team.swap && team.swap.week <= currentWeek;
   const players = [...team.players].concat(
-    team.swap && team.swap.week <= currentWeek ? [team.swap.playerIn] : []
+    swapInPlay ? [team.swap!.playerIn] : []
   );
 
   return (
     <>
       {...players
         .map((player) => {
-          if (team.swap?.playerIn === player) {
+          if (swapInPlay && team.swap!.playerIn === player) {
             return {
               player,
               scoreForTeam:
                 playerRankings[currentWeek].find((r) => r.player === player)![
                   ruleSet
                 ].total -
-                playerRankings[team.swap.week - 1]?.find(
+                playerRankings[team.swap!.week - 1]?.find(
                   (r) => r.player === player
                 )![ruleSet].total,
             };
-          } else if (team.swap?.playerOut === player) {
+          } else if (swapInPlay && team.swap!.playerOut === player) {
             return {
               player,
-              scoreForTeam: playerRankings[team.swap.week - 1]?.find(
+              scoreForTeam: playerRankings[team.swap!.week - 1]?.find(
                 (r) => r.player === player
               )![ruleSet].total,
             };
@@ -70,7 +70,7 @@ export default function PlayerList(props: {
           )!;
 
           return (
-            <Card.Text key={j}>
+            <div key={j}>
               {player === teamScore.team.winner ? (
                 <span style={styles.indicatorGreenLarge}>[W] </span>
               ) : (
@@ -82,7 +82,7 @@ export default function PlayerList(props: {
                 player.name
               )}{" "}
               ({score || 0})
-            </Card.Text>
+            </div>
           );
         })}
     </>

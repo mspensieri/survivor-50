@@ -1,16 +1,13 @@
 "use client";
 
 import React, { useContext, useState } from "react";
-import Offcanvas from "react-bootstrap/Offcanvas";
 
 import { TeamRankings } from "../providers/types";
-import { RuleSet, TeamScore } from "../data/types";
-import PlayerList from "./playerList";
+import { TeamScore } from "../data/types";
 import RuleSetContext from "../context/ruleSetContext";
-import { airDates } from "../data/weeks";
-import { SWAP_DEADLINE } from "../data/teams";
 import PlayerContext from "../context/playerContext";
 import PlacementChart from "./placementChart";
+import Sidebar from "./sidebar";
 
 const styles: Record<string, React.CSSProperties> = {
   indicatorGreen: {
@@ -237,55 +234,14 @@ export default function Leaderboard(props: {
         {teamFlexGroup(remainingTeams)}
       </div>
 
-      <Offcanvas
-        show={offcanvasShown}
-        onHide={() => setOffcanvasShown(false)}
-        placement="end"
-        className={
-          ruleSet === RuleSet.UPSIDE_DOWN ? "offcanvas-back" : "offcanvas-front"
-        }
-      >
-        <Offcanvas.Header closeButton>
-          <Offcanvas.Title>Team stats</Offcanvas.Title>
-        </Offcanvas.Header>
-        <Offcanvas.Body>
-          {selectedTeam && (
-            <>
-              <h1>{selectedTeam.team.name}</h1>
-              <h3>{selectedTeam.team.captain}</h3>
-              Rank: #
-              {selectedTeam &&
-                thisWeekRankings.findIndex(
-                  (r) => r.team === selectedTeam.team
-                ) + 1}
-              <PlayerList
-                currentWeek={currentWeek}
-                teamScore={selectedTeam}
-              ></PlayerList>
-              {selectedTeam.team.swap ? (
-                <>
-                  <hr />
-                  {selectedTeam.team.swap.playerOut.name} ➔{" "}
-                  {selectedTeam.team.swap.playerIn.name} (
-                  {airDates[selectedTeam.team.swap.week]})
-                </>
-              ) : (
-                <>
-                  <hr />
-                  {currentWeek > SWAP_DEADLINE
-                    ? "Swap expired"
-                    : "Swap available"}
-                </>
-              )}
-              <hr />
-              <PlacementChart
-                team={selectedTeam.team}
-                currentWeek={currentWeek}
-              ></PlacementChart>
-            </>
-          )}
-        </Offcanvas.Body>
-      </Offcanvas>
+      {selectedTeam && (
+        <Sidebar
+          shown={offcanvasShown}
+          onHide={() => setOffcanvasShown(false)}
+          teamScore={selectedTeam}
+          currentWeek={currentWeek}
+        ></Sidebar>
+      )}
     </>
   );
 }

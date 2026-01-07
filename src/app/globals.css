@@ -90,6 +90,21 @@
     .btn-close {
       --bs-btn-close-opacity: 1;
     }
+
+    h2 {
+      font-size: 12pt;
+      background-color: var(--component-background-color-secondary);
+      border-top: 1px solid var(--component-text-color-secondary);
+      border-bottom: 1px solid var(--component-text-color-secondary);
+      color: var(--component-text-color-secondary);
+      text-transform: uppercase;
+      margin: 15px 0px;
+      padding: 5px;
+    }
+
+    hr {
+      margin: 10px 0px;
+    }
   }
 
   .accordion.week-selector-accordion {
@@ -203,6 +218,7 @@
     --bs-table-accent-bg: var(--component-background-color-secondary);
     --bs-table-color: var(--component-text-color-primary);
     --bs-table-striped-color: var(--component-text-color-primary);
+    --bs-table-border-color: var(--component-text-color-primary);
   }
 
   hr {

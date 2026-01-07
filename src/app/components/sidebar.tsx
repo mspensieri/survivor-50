@@ -1,7 +1,7 @@
 import { useContext } from "react";
 import { Offcanvas, Table } from "react-bootstrap";
 
-import { RuleSet, TeamScore } from "../data/types";
+import { RuleSet, TeamScore, Team } from "../data/types";
 import RuleSetContext from "../context/ruleSetContext";
 import PlayerList from "./playerList";
 import { airDates } from "../data/weeks";
@@ -9,6 +9,7 @@ import { SWAP_DEADLINE } from "../data/teams";
 import PlacementChart from "./placementChart";
 import TeamContext from "../context/teamContext";
 import { standardFontClass, upsideDownFontClass } from "../utils/fonts";
+import { captainNames, stars } from "../utils/format";
 
 const styles: Record<string, React.CSSProperties> = {
   captain: {
@@ -39,12 +40,10 @@ const styles: Record<string, React.CSSProperties> = {
   },
 };
 
-function stars(rating: number) {
-  return "★".repeat(rating) + "☆".repeat(5 - rating);
-}
-
 function ratingDescription(rating: number) {
   switch (rating) {
+    case 0:
+      return "First time in the pool. Good luck!";
     case 1:
       return "No significant placements yet";
     case 2:
@@ -62,8 +61,10 @@ function ratingDescription(rating: number) {
 
 function ratingTitle(rating: number) {
   switch (rating) {
-    case 1:
+    case 0:
       return "Rookie";
+    case 1:
+      return "Amateur";
     case 2:
       return "Apprentice";
     case 3:
@@ -101,14 +102,16 @@ export default function Sidebar(props: {
   currentWeek: number;
 }) {
   const { shown, onHide, teamScore, currentWeek } = props;
+  const { team } = teamScore;
+  const { history } = team;
   const ruleSet = useContext(RuleSetContext);
   const teamRankings = useContext(TeamContext);
   let bestRank = teamScore[ruleSet].rank;
 
   for (let week = 0; week <= currentWeek; week++) {
-    const weekRank = teamRankings[week].find(
-      (ts) => ts.team === teamScore.team
-    )?.[ruleSet].rank;
+    const weekRank = teamRankings[week].find((ts) => ts.team === team)?.[
+      ruleSet
+    ].rank;
 
     if (weekRank && weekRank < bestRank) {
       bestRank = weekRank;
@@ -130,9 +133,9 @@ export default function Sidebar(props: {
         <Offcanvas.Title>Team stats</Offcanvas.Title>
       </Offcanvas.Header>
       <Offcanvas.Body>
-        <div style={styles.teamName}>{teamScore.team.name}</div>
-        <div style={styles.captain}>{teamScore.team.captain}</div>
-        <h2>Season performance</h2>
+        <div style={styles.teamName}>{team.name}</div>
+        <div style={styles.captain}>{captainNames(team)}</div>
+        <h2>Placement</h2>
         <div style={styles.gridContainer}>
           <div>
             <span style={styles.emphasis}>Current Rank: </span>#
@@ -142,10 +145,7 @@ export default function Sidebar(props: {
             <span style={styles.emphasis}>Best Rank: </span>#{bestRank}
           </div>
         </div>
-        <PlacementChart
-          team={teamScore.team}
-          currentWeek={currentWeek}
-        ></PlacementChart>
+        <PlacementChart team={team} currentWeek={currentWeek}></PlacementChart>
         <h2>Roster</h2>
         <PlayerList
           currentWeek={currentWeek}
@@ -153,11 +153,10 @@ export default function Sidebar(props: {
         ></PlayerList>
         <hr />
         <div style={styles.swap}>
-          {teamScore.team.swap && teamScore.team.swap.week <= currentWeek ? (
+          {team.swap && team.swap.week <= currentWeek ? (
             <>
-              {teamScore.team.swap.playerOut.name} ➔{" "}
-              {teamScore.team.swap.playerIn.name} (
-              {airDates[teamScore.team.swap.week]})
+              {team.swap.playerOut.name} ➔ {team.swap.playerIn.name} (
+              {airDates[team.swap.week]})
             </>
           ) : currentWeek > SWAP_DEADLINE ? (
             "Swap expired"
@@ -168,31 +167,26 @@ export default function Sidebar(props: {
         <h2>History</h2>
         <div>
           <span style={styles.emphasis}>Overall rating: </span>
-          {stars(2)} ({ratingTitle(2)})
+          {stars(history.overallRating)} ({ratingTitle(history.overallRating)})
         </div>
-        <div style={styles.ratingDescription}>{ratingDescription(2)}</div>
-        <Table striped bordered style={styles.table}>
-          <tbody>
-            <tr>
-              <td>Season 49</td>
-              <td>
-                {stars(1)} ({ratingSummary(1)})
-              </td>
-            </tr>
-            <tr>
-              <td>Season 48</td>
-              <td>
-                {stars(2)} ({ratingSummary(2)})
-              </td>
-            </tr>
-            <tr>
-              <td>Season 47</td>
-              <td>
-                {stars(4)} ({ratingSummary(4)})
-              </td>
-            </tr>
-          </tbody>
-        </Table>
+        <div style={styles.ratingDescription}>
+          {ratingDescription(history.overallRating)}
+        </div>
+        {history.placements.length > 0 && (
+          <Table striped bordered style={styles.table}>
+            <tbody>
+              {history.placements.map((placement) => (
+                <tr key={placement.season}>
+                  <td>Season {placement.season}</td>
+                  <td>
+                    {stars(placement.rating)} ({ratingSummary(placement.rating)}
+                    )
+                  </td>
+                </tr>
+              ))}
+            </tbody>
+          </Table>
+        )}
       </Offcanvas.Body>
     </Offcanvas>
   );

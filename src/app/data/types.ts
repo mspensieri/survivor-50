@@ -19,6 +19,63 @@ export enum PlayerKeys {
   STEVEN = "STEVEN",
 }
 
+export const Captains = {
+  adam: "Adam",
+  alec: "Alec",
+  alex: "Alex",
+  ally: "Ally",
+  alyssa: "Alyssa",
+  andrea_d: "Andrea",
+  andrea_r: "Andrea R",
+  andy: "Andy",
+  anne: "Anne",
+  brendan: "Brendan",
+  bruno: "Bruno",
+  carrie: "Carrie",
+  colleen: "Colleen",
+  dan: "Dan",
+  dana: "Dana",
+  danny: "Danny",
+  dean: "Dean",
+  diego: "Diego",
+  elana: "Elana",
+  elizabeth: "Elizabeth",
+  erick: "Erick",
+  fekre: "Fekre",
+  frank: "Frank",
+  glaser: "Glaser",
+  greg: "Greg",
+  jacklyn: "Jacklyn",
+  jacob: "Jacob",
+  jeremy: "Jeremy",
+  jessie: "Jessie",
+  joanne: "Joanne",
+  kara: "Kara",
+  katie_rando: "Katie",
+  katie: "Katie",
+  kelly: "Kelly",
+  kevin: "Kevin",
+  kian: "Kian",
+  lally: "Lally",
+  leigh: "Leigh",
+  leila: "Leila",
+  meagan: "Meagan",
+  menard: "Menard",
+  mikey: "Mikey",
+  renee: "Renee",
+  ryan: "Ryan",
+  sab: "Sab",
+  sandy: "Sandy",
+  sarah: "Sarah",
+  sean: "Sean",
+  spen: "Spen",
+  stanley: "Stanley",
+  susan: "Susan",
+  taylor: "Taylor",
+  thomas: "Thomas",
+  vanesa: "Vanesa",
+};
+
 export type Player = {
   key: PlayerKeys;
   name: string;
@@ -26,11 +83,8 @@ export type Player = {
 
 export type Team = {
   name: string;
-  captain?: string;
-  accolades?: {
-    first?: Array<number>;
-    second?: Array<number>;
-    third?: Array<number>;
+  captain: {
+    ids: Array<keyof typeof Captains>;
   };
   winner: Player | "UNKNOWN";
   players: Array<Player>;
@@ -38,6 +92,13 @@ export type Team = {
     week: number;
     playerOut: Player;
     playerIn: Player;
+  };
+  history: {
+    overallRating: number;
+    placements: Array<{
+      season: number;
+      rating: number;
+    }>;
   };
 };
 
@@ -101,4 +162,12 @@ export type PlayerScore = {
     total: number;
     points: UpsideDownPoints;
   };
+};
+
+export type SeasonHistory = {
+  season: number;
+  placements: Array<{
+    cids: Array<keyof typeof Captains>;
+    rank: number;
+  }>;
 };

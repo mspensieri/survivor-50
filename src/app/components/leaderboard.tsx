@@ -8,6 +8,7 @@ import RuleSetContext from "../context/ruleSetContext";
 import PlayerContext from "../context/playerContext";
 import PlacementChart from "./placementChart";
 import Sidebar from "./sidebar";
+import { captainNames, stars } from "../utils/format";
 
 const styles: Record<string, React.CSSProperties> = {
   indicatorGreen: {
@@ -196,7 +197,9 @@ export default function Leaderboard(props: {
               </div>
               <div style={styles.teamName}>
                 {team.name} <br />
-                <span style={styles.captain}>{team.captain} (★★☆☆☆)</span>
+                <span style={styles.captain}>
+                  {captainNames(team)} ({stars(team.history.overallRating)})
+                </span>
               </div>
               <div style={styles.points}>
                 {thisWeekScore[ruleSet].total}

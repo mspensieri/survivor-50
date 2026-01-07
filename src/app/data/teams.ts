@@ -1,5 +1,6 @@
 import { PLAYERS } from "./players";
 import { Team } from "./types";
+import { computeHistory } from "./history";
 
 const {
   ALEX,
@@ -24,13 +25,12 @@ const {
 
 export const SWAP_DEADLINE = 6;
 
-export const teams: Array<Team> = [
+export const teams: Array<Team> = computeHistory([
   {
-    captain: "Alex",
-    name: "Wendy's Chickens",
-    accolades: {
-      first: [48],
+    captain: {
+      ids: ["alex"],
     },
+    name: "Wendy's Chickens",
     players: [SAVANNAH, JEREMIAH, ALEX, KRISTINA, SOPHI, SHANNON],
     winner: ALEX,
     swap: {
@@ -40,7 +40,9 @@ export const teams: Array<Team> = [
     },
   },
   {
-    captain: "Kara",
+    captain: {
+      ids: ["kara"],
+    },
     name: "Here's Your Headstone",
     players: [ANNIE, KRISTINA, MC, JAKE, SHANNON, SOPHI],
     winner: ANNIE,
@@ -51,11 +53,10 @@ export const teams: Array<Team> = [
     },
   },
   {
-    captain: "Joanne",
-    name: "TEAM JO",
-    accolades: {
-      third: [47],
+    captain: {
+      ids: ["joanne"],
     },
+    name: "TEAM JO",
     players: [SAVANNAH, STEVEN, RIZO, JAKE, ALEX, MATT],
     winner: STEVEN,
     swap: {
@@ -65,7 +66,9 @@ export const teams: Array<Team> = [
     },
   },
   {
-    captain: "Spen",
+    captain: {
+      ids: ["spen"],
+    },
     name: "Come On In Guys",
     players: [JAKE, MATT, ANNIE, STEVEN, SHANNON, MC],
     winner: MC,
@@ -76,7 +79,9 @@ export const teams: Array<Team> = [
     },
   },
   {
-    captain: "Andrea and Susan",
+    captain: {
+      ids: ["andrea_d", "susan"],
+    },
     name: "The Dils",
     players: [SAVANNAH, ANNIE, MC, JAKE, MATT, SOPHIE],
     winner: MC,
@@ -87,7 +92,9 @@ export const teams: Array<Team> = [
     },
   },
   {
-    captain: "Diego",
+    captain: {
+      ids: ["diego"],
+    },
     name: "Operation Italy",
     players: [ANNIE, SAGE, JASON, JAKE, JAWAN, SOPHIE],
     winner: JASON,
@@ -98,7 +105,9 @@ export const teams: Array<Team> = [
     },
   },
   {
-    captain: "Elizabeth",
+    captain: {
+      ids: ["elizabeth"],
+    },
     name: "Play Your Idol",
     players: [JAWAN, JEREMIAH, ANNIE, STEVEN, SOPHIE, MC],
     winner: JAWAN,
@@ -109,7 +118,9 @@ export const teams: Array<Team> = [
     },
   },
   {
-    captain: "Mikey",
+    captain: {
+      ids: ["mikey"],
+    },
     name: "First Time in Fiji",
     players: [MATT, JAKE, STEVEN, SAGE, SOPHIE, SHANNON],
     winner: SHANNON,
@@ -120,23 +131,26 @@ export const teams: Array<Team> = [
     },
   },
   {
-    captain: "Alec",
+    captain: {
+      ids: ["alec"],
+    },
     name: "The Ghost of Andy",
     players: [SAVANNAH, ANNIE, RIZO, JASON, JAKE, SOPHI],
     winner: JAKE,
   },
   {
-    captain: "Leila",
+    captain: {
+      ids: ["leila"],
+    },
     name: "Got Nothin' For Ya",
     players: [KRISTINA, STEVEN, JASON, JAKE, JAWAN, SOPHIE],
     winner: STEVEN,
   },
   {
-    captain: "Katie",
-    name: "Truth Kamikazee",
-    accolades: {
-      second: [45],
+    captain: {
+      ids: ["katie"],
     },
+    name: "Truth Kamikazee",
     players: [STEVEN, RIZO, NATE, JAKE, JAWAN, NICOLE],
     winner: JAKE,
     swap: {
@@ -146,7 +160,9 @@ export const teams: Array<Team> = [
     },
   },
   {
-    captain: "Danny",
+    captain: {
+      ids: ["danny"],
+    },
     name: "chud (lower case)",
     players: [KRISTINA, JEREMIAH, NATE, JAWAN, ALEX, NICOLE],
     winner: NATE,
@@ -157,11 +173,10 @@ export const teams: Array<Team> = [
     },
   },
   {
-    captain: "Stanley",
-    name: "UNDERDOGS",
-    accolades: {
-      second: [44],
+    captain: {
+      ids: ["stanley"],
     },
+    name: "UNDERDOGS",
     players: [SOPHIE, ALEX, NATE, NICOLE, MATT, JEREMIAH],
     winner: SOPHIE,
     swap: {
@@ -171,11 +186,10 @@ export const teams: Array<Team> = [
     },
   },
   {
-    captain: "Sandy",
-    name: "Sandy's Spynest",
-    accolades: {
-      second: [46],
+    captain: {
+      ids: ["sandy"],
     },
+    name: "Sandy's Spynest",
     players: [KRISTINA, MC, RIZO, JAKE, MATT, SOPHIE],
     winner: KRISTINA,
     swap: {
@@ -185,7 +199,9 @@ export const teams: Array<Team> = [
     },
   },
   {
-    captain: "Colleen",
+    captain: {
+      ids: ["colleen"],
+    },
     name: "Mermaid Dragon",
     players: [SAVANNAH, RIZO, MC, JAKE, JAWAN, SHANNON],
     winner: JAWAN,
@@ -196,11 +212,10 @@ export const teams: Array<Team> = [
     },
   },
   {
-    captain: "Brendan",
-    name: "KING OF THE JUNGLE",
-    accolades: {
-      third: [45],
+    captain: {
+      ids: ["brendan"],
     },
+    name: "KING OF THE JUNGLE",
     players: [SAVANNAH, SAGE, RIZO, JAKE, SOPHI, SHANNON],
     winner: JAKE,
     swap: {
@@ -210,7 +225,9 @@ export const teams: Array<Team> = [
     },
   },
   {
-    captain: "Kevin",
+    captain: {
+      ids: ["kevin"],
+    },
     name: "Jeff's Dimples",
     players: [KRISTINA, MC, RIZO, JASON, JAKE, JAWAN],
     winner: MC,
@@ -221,7 +238,9 @@ export const teams: Array<Team> = [
     },
   },
   {
-    captain: "Carrie",
+    captain: {
+      ids: ["carrie"],
+    },
     name: "4blackcats",
     players: [SAVANNAH, JEREMIAH, STEVEN, JAKE, JAWAN, MC],
     winner: JAWAN,
@@ -232,11 +251,10 @@ export const teams: Array<Team> = [
     },
   },
   {
-    captain: "Sean",
-    name: "Leafs Nation",
-    accolades: {
-      third: [46],
+    captain: {
+      ids: ["sean"],
     },
+    name: "Leafs Nation",
     players: [SAVANNAH, STEVEN, RIZO, JAKE, SOPHI, SHANNON],
     winner: SOPHI,
     swap: {
@@ -246,7 +264,9 @@ export const teams: Array<Team> = [
     },
   },
   {
-    captain: "Sarah",
+    captain: {
+      ids: ["sarah"],
+    },
     name: "Sole Survivor of Sass",
     players: [SAVANNAH, SAGE, KRISTINA, JAWAN, ALEX, NICOLE],
     winner: SAVANNAH,
@@ -257,13 +277,17 @@ export const teams: Array<Team> = [
     },
   },
   {
-    captain: "Frank",
+    captain: {
+      ids: ["frank"],
+    },
     name: "Bottom of the Pool",
     players: [SAGE, JEREMIAH, JAWAN, JASON, MATT, SHANNON],
     winner: JAWAN,
   },
   {
-    captain: "Thomas",
+    captain: {
+      ids: ["thomas"],
+    },
     name: "Chicken Dinner",
     players: [STEVEN, SAGE, NATE, JAKE, SOPHI, SOPHIE],
     winner: SOPHI,
@@ -274,11 +298,10 @@ export const teams: Array<Team> = [
     },
   },
   {
-    captain: "Vanesa",
-    name: "The Immunity Drip",
-    accolades: {
-      second: [48],
+    captain: {
+      ids: ["vanesa"],
     },
+    name: "The Immunity Drip",
     players: [SAVANNAH, STEVEN, RIZO, JAKE, MC, NICOLE],
     winner: JAKE,
     swap: {
@@ -288,11 +311,10 @@ export const teams: Array<Team> = [
     },
   },
   {
-    captain: "Erick",
-    name: "Chuckwurself before you jeckwurself",
-    accolades: {
-      second: [47],
+    captain: {
+      ids: ["erick"],
     },
+    name: "Chuckwurself before you jeckwurself",
     players: [JAKE, STEVEN, RIZO, JASON, MC, SOPHI],
     winner: MC,
     swap: {
@@ -302,7 +324,9 @@ export const teams: Array<Team> = [
     },
   },
   {
-    captain: "Andrea R",
+    captain: {
+      ids: ["andrea_r"],
+    },
     name: "Here For Friendship",
     players: [ANNIE, SAGE, JAWAN, MATT, KRISTINA, MC],
     winner: SAGE,
@@ -313,7 +337,9 @@ export const teams: Array<Team> = [
     },
   },
   {
-    captain: "Menard",
+    captain: {
+      ids: ["menard"],
+    },
     name: "You Go Girl",
     players: [SAVANNAH, SAGE, KRISTINA, SOPHI, SOPHIE, SHANNON],
     winner: SAVANNAH,
@@ -324,7 +350,9 @@ export const teams: Array<Team> = [
     },
   },
   {
-    captain: "Leigh",
+    captain: {
+      ids: ["leigh"],
+    },
     name: "LIVIN'",
     players: [SAVANNAH, JEREMIAH, STEVEN, JASON, NATE, SHANNON],
     winner: SHANNON,
@@ -335,13 +363,17 @@ export const teams: Array<Team> = [
     },
   },
   {
-    captain: "Elana",
+    captain: {
+      ids: ["elana"],
+    },
     name: "Probst Malone",
     players: [JEREMIAH, NATE, MC, MATT, NICOLE, ANNIE],
     winner: MC,
   },
   {
-    captain: "Alyssa and Adam",
+    captain: {
+      ids: ["alyssa", "adam"],
+    },
     name: "AA Tribe",
     players: [ANNIE, NATE, MC, JAKE, JAWAN, KRISTINA],
     winner: JAKE,
@@ -352,12 +384,10 @@ export const teams: Array<Team> = [
     },
   },
   {
-    captain: "Greg",
-    name: "Ate 2 Much Kokoda",
-    accolades: {
-      first: [46],
-      second: [44],
+    captain: {
+      ids: ["greg"],
     },
+    name: "Ate 2 Much Kokoda",
     players: [SAVANNAH, JEREMIAH, RIZO, JAKE, SOPHI, SHANNON],
     winner: JEREMIAH,
     swap: {
@@ -367,7 +397,9 @@ export const teams: Array<Team> = [
     },
   },
   {
-    captain: "Andy and Lally",
+    captain: {
+      ids: ["andy", "lally"],
+    },
     name: "Ogatally DeVotes",
     players: [SAGE, MC, JAKE, JASON, JAWAN, NICOLE],
     winner: JAWAN,
@@ -378,7 +410,9 @@ export const teams: Array<Team> = [
     },
   },
   {
-    captain: "Jacob",
+    captain: {
+      ids: ["jacob"],
+    },
     name: "With You 100%",
     players: [KRISTINA, JAKE, ALEX, NATE, ANNIE, JEREMIAH],
     winner: KRISTINA,
@@ -389,7 +423,9 @@ export const teams: Array<Team> = [
     },
   },
   {
-    captain: "Jacklyn",
+    captain: {
+      ids: ["jacklyn"],
+    },
     name: "JSpenny",
     players: [MC, KRISTINA, JAKE, JASON, SOPHIE, JAWAN],
     winner: MC,
@@ -400,13 +436,17 @@ export const teams: Array<Team> = [
     },
   },
   {
-    captain: "Sab and Bruno",
+    captain: {
+      ids: ["sab", "bruno"],
+    },
     name: "Bing and Bugz",
     players: [JAKE, SAVANNAH, SAGE, ANNIE, STEVEN, JAWAN],
     winner: SAVANNAH,
   },
   {
-    captain: "Meagan",
+    captain: {
+      ids: ["meagan"],
+    },
     name: "Totally Oswald",
     players: [ANNIE, MC, JAKE, MATT, NICOLE, SOPHIE],
     winner: ANNIE,
@@ -417,7 +457,9 @@ export const teams: Array<Team> = [
     },
   },
   {
-    captain: "Taylor",
+    captain: {
+      ids: ["taylor"],
+    },
     name: "Clyde's Castaways",
     players: [ANNIE, SAGE, MC, JAWAN, JASON, JEREMIAH],
     winner: JAWAN,
@@ -428,7 +470,9 @@ export const teams: Array<Team> = [
     },
   },
   {
-    captain: "Dan and Dana",
+    captain: {
+      ids: ["dan", "dana"],
+    },
     name: "Ducky & Boinko Forever",
     players: [ANNIE, MC, JAKE, JASON, NICOLE, SOPHIE],
     winner: JASON,
@@ -439,12 +483,10 @@ export const teams: Array<Team> = [
     },
   },
   {
-    captain: "Dean",
-    name: "Dean's ⒿETⓈ",
-    accolades: {
-      first: [44],
-      third: [45],
+    captain: {
+      ids: ["dean"],
     },
+    name: "Dean's ⒿETⓈ",
     players: [STEVEN, SAGE, JAKE, SOPHI, SOPHIE, SHANNON],
     winner: JAKE,
     swap: {
@@ -454,7 +496,9 @@ export const teams: Array<Team> = [
     },
   },
   {
-    captain: "Jeremy",
+    captain: {
+      ids: ["jeremy"],
+    },
     name: "Jere-atrics",
     players: [NATE, JAKE, STEVEN, SOPHIE, SHANNON, SAVANNAH],
     winner: SOPHIE,
@@ -465,7 +509,9 @@ export const teams: Array<Team> = [
     },
   },
   {
-    captain: "Jessie",
+    captain: {
+      ids: ["jessie"],
+    },
     name: "Outwit, Outplay, Out-Rizz",
     players: [SAVANNAH, STEVEN, RIZO, JAKE, SOPHI, SOPHIE],
     winner: RIZO,
@@ -476,60 +522,235 @@ export const teams: Array<Team> = [
     },
   },
   {
-    captain: "Anne",
+    captain: {
+      ids: ["anne"],
+    },
     name: "Challenge Beasts",
     players: [SAVANNAH, STEVEN, RIZO, JAKE, MC, SOPHIE],
     winner: SAVANNAH,
-    accolades: {
-      first: [45],
-    },
     swap: {
       week: 3,
       playerOut: JAKE,
       playerIn: JASON,
     },
   },
-];
+]);
 
-export const fakeTeams = [
+export const fakeTeams: Array<Team> = [
   {
     name: "1",
+    captain: {
+      ids: ["alex"],
+    },
     winner: ALEX,
     players: [ALEX, ANNIE, JAKE, JASON, JAWAN, JEREMIAH],
+    history: {
+      overallRating: 1,
+      placements: [],
+    },
   },
   {
     name: "2",
+    captain: {
+      ids: ["alex"],
+    },
     winner: ALEX,
     players: [KRISTINA, MATT, MC, NATE, NICOLE, RIZO],
+    history: {
+      overallRating: 1,
+      placements: [],
+    },
   },
   {
     name: "3",
+    captain: {
+      ids: ["alex"],
+    },
     winner: ALEX,
     players: [SAGE, SAVANNAH, SHANNON, SOPHI, SOPHIE, STEVEN],
+    history: {
+      overallRating: 1,
+      placements: [],
+    },
   },
   {
     name: "4",
+    captain: {
+      ids: ["alex"],
+    },
     winner: ALEX,
     players: [MATT, MC, NATE, NICOLE, RIZO, SAGE],
+    history: {
+      overallRating: 1,
+      placements: [],
+    },
   },
   {
     name: "5",
+    captain: {
+      ids: ["alex"],
+    },
     winner: ALEX,
     players: [SOPHI, SOPHIE, STEVEN, KRISTINA, MATT, MC],
+    history: {
+      overallRating: 1,
+      placements: [],
+    },
   },
   {
     name: "6",
+    captain: {
+      ids: ["alex"],
+    },
     winner: ALEX,
     players: [JAWAN, JEREMIAH, KRISTINA, MATT, MC, NATE],
+    history: {
+      overallRating: 1,
+      placements: [],
+    },
   },
   {
     name: "7",
+    captain: {
+      ids: ["alex"],
+    },
     winner: ALEX,
     players: [NATE, NICOLE, RIZO, SAGE, SAVANNAH, SHANNON],
+    history: {
+      overallRating: 1,
+      placements: [],
+    },
   },
   {
     name: "8",
+    captain: {
+      ids: ["alex"],
+    },
     winner: ALEX,
     players: [SHANNON, SOPHI, SOPHIE, STEVEN, KRISTINA, MATT],
+    history: {
+      overallRating: 1,
+      placements: [],
+    },
+  },
+  {
+    name: "9",
+    captain: {
+      ids: ["alex"],
+    },
+    winner: ALEX,
+    players: [JAWAN, JEREMIAH, KRISTINA, MATT, MC, NATE],
+    history: {
+      overallRating: 1,
+      placements: [],
+    },
+  },
+  {
+    name: "10",
+    captain: {
+      ids: ["alex"],
+    },
+    winner: ALEX,
+    players: [NICOLE, RIZO, SAGE, SAVANNAH, SHANNON, SOPHI],
+    history: {
+      overallRating: 1,
+      placements: [],
+    },
+  },
+  {
+    name: "11",
+    captain: {
+      ids: ["alex"],
+    },
+    winner: ALEX,
+    players: [SOPHIE, STEVEN, KRISTINA, MATT, MC, NATE],
+    history: {
+      overallRating: 1,
+      placements: [],
+    },
+  },
+  {
+    name: "12",
+    captain: {
+      ids: ["alex"],
+    },
+    winner: ALEX,
+    players: [JAWAN, JEREMIAH, NICOLE, RIZO, SAGE, SAVANNAH],
+    history: {
+      overallRating: 1,
+      placements: [],
+    },
+  },
+  {
+    name: "13",
+    captain: {
+      ids: ["alex"],
+    },
+    winner: ALEX,
+    players: [SHANNON, SOPHI, SOPHIE, STEVEN, KRISTINA, NATE],
+    history: {
+      overallRating: 1,
+      placements: [],
+    },
+  },
+  {
+    name: "14",
+    captain: {
+      ids: ["alex"],
+    },
+    winner: ALEX,
+    players: [MATT, MC, NICOLE, RIZO, SAGE, SAVANNAH],
+    history: {
+      overallRating: 1,
+      placements: [],
+    },
+  },
+  {
+    name: "15",
+    captain: {
+      ids: ["alex"],
+    },
+    winner: ALEX,
+    players: [JAWAN, JEREMIAH, SHANNON, SOPHI, SOPHIE, STEVEN],
+    history: {
+      overallRating: 1,
+      placements: [],
+    },
+  },
+  {
+    name: "16",
+    captain: {
+      ids: ["alex"],
+    },
+    winner: ALEX,
+    players: [KRISTINA, MATT, MC, NATE, NICOLE, RIZO],
+    history: {
+      overallRating: 1,
+      placements: [],
+    },
+  },
+  {
+    name: "17",
+    captain: {
+      ids: ["alex"],
+    },
+    winner: ALEX,
+    players: [SAGE, SAVANNAH, SHANNON, SOPHI, SOPHIE, STEVEN],
+    history: {
+      overallRating: 1,
+      placements: [],
+    },
+  },
+  {
+    name: "18",
+    captain: {
+      ids: ["alex"],
+    },
+    winner: ALEX,
+    players: [JAWAN, JEREMIAH, KRISTINA, MATT, MC, NATE],
+    history: {
+      overallRating: 1,
+      placements: [],
+    },
   },
 ];

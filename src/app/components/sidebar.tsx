@@ -50,7 +50,7 @@ export default function Sidebar(props: {
   const teamRankings = useContext(TeamContext);
   let bestRank = teamScore[ruleSet].rank;
 
-  for (let week = 1; week <= currentWeek; week++) {
+  for (let week = 0; week <= currentWeek; week++) {
     const weekRank = teamRankings[week].find(
       (ts) => ts.team === teamScore.team
     )?.[ruleSet].rank;

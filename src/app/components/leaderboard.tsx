@@ -70,8 +70,14 @@ export default function Leaderboard(props: {
   thisWeekRankings: TeamRankings;
   lastWeekRankings: TeamRankings;
   currentWeek: number;
+  screenWidth: number;
 }) {
-  const { lastWeekRankings = [], thisWeekRankings = [], currentWeek } = props;
+  const {
+    lastWeekRankings = [],
+    thisWeekRankings = [],
+    currentWeek,
+    screenWidth,
+  } = props;
   const ruleSet = useContext(RuleSetContext);
   const playerRankings = useContext(PlayerContext);
 
@@ -226,10 +232,35 @@ export default function Leaderboard(props: {
     );
   }
 
+  function sizeForSegments(segmentCount: number) {
+    const segmentWidth = 350;
+    const segmentMargin = 15;
+
+    return Math.min(
+      screenWidth - 2 * segmentMargin,
+      segmentCount * segmentWidth +
+        2 * segmentMargin +
+        segmentMargin * (segmentCount - 1)
+    );
+  }
+
+  let numberOfSegments = 1;
+  for (let i = 1; i <= 10; i++) {
+    if (screenWidth <= sizeForSegments(i + 1)) {
+      numberOfSegments = i;
+      break;
+    }
+  }
+
   return (
     <>
       {firstPlaceGroup.length && (
-        <div className="leaderboard-flex-container first-place-group">
+        <div
+          className="leaderboard-flex-container first-place-group"
+          style={{
+            maxWidth: sizeForSegments(numberOfSegments),
+          }}
+        >
           {teamFlexGroup(firstPlaceGroup)}
         </div>
       )}

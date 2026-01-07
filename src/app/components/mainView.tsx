@@ -115,6 +115,7 @@ export default function MainView(props: {
             thisWeekRankings={getTeamRankings(fakeTeams).standard[0]}
             lastWeekRankings={getTeamRankings(fakeTeams).standard[0]}
             currentWeek={weekNumber}
+            screenWidth={screenWidth}
           ></Leaderboard>
         </SpoilerMask>
       );
@@ -124,6 +125,7 @@ export default function MainView(props: {
           thisWeekRankings={teamRankings[weekNumber]}
           lastWeekRankings={teamRankings[weekNumber - 1]}
           currentWeek={weekNumber}
+          screenWidth={screenWidth}
         ></Leaderboard>
       );
     }

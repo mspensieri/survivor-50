@@ -303,6 +303,9 @@
       border-radius: 6px;
       padding: 15px;
       background-color: var(--component-background-color-highlight);
+      width: fit-content;
+      margin-left: auto;
+      margin-right: auto;
     }
 
     .flex-item-card {

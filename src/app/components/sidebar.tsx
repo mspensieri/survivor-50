@@ -8,6 +8,7 @@ import { airDates } from "../data/weeks";
 import { SWAP_DEADLINE } from "../data/teams";
 import PlacementChart from "./placementChart";
 import TeamContext from "../context/teamContext";
+import { standardFontClass, upsideDownFontClass } from "../utils/fonts";
 
 const styles: Record<string, React.CSSProperties> = {
   captain: {
@@ -65,7 +66,9 @@ export default function Sidebar(props: {
       onHide={onHide}
       placement="end"
       className={
-        ruleSet === RuleSet.UPSIDE_DOWN ? "offcanvas-back" : "offcanvas-front"
+        ruleSet === RuleSet.UPSIDE_DOWN
+          ? `offcanvas-back ${upsideDownFontClass}`
+          : `offcanvas-front ${standardFontClass}`
       }
     >
       <Offcanvas.Header closeButton>

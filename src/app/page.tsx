@@ -10,15 +10,12 @@ import {
 } from "./providers/rankingsProvider";
 import { teams } from "./data/teams";
 import MainView from "./components/mainView";
-import { Inter, Metal_Mania } from "next/font/google";
 import * as storage from "./utils/storage";
 import TeamContext from "./context/teamContext";
 import PlayerContext from "./context/playerContext";
 import RuleSetContext from "./context/ruleSetContext";
 import { RuleSet } from "./data/types";
-
-const inter = Inter({ subsets: ["latin"] });
-const metalMania = Metal_Mania({ weight: "400", subsets: ["latin"] });
+import { standardFontClass, upsideDownFontClass } from "./utils/fonts";
 
 const initialSide = storage.getItem("lastSide") || "front";
 const initialActiveTab = storage.getItem("lastActiveTab") || "leaderboard";
@@ -114,7 +111,7 @@ function Page() {
         ></img>
       </div>
       <div className="flip-card-inner">
-        <div className={`flip-card-front ${inter.className}`}>
+        <div className={`flip-card-front ${standardFontClass}`}>
           <RuleSetContext.Provider value={RuleSet.STANDARD}>
             <TeamContext.Provider value={teamRankings.standard}>
               <PlayerContext.Provider value={playerRankings.standard}>
@@ -133,7 +130,7 @@ function Page() {
             </TeamContext.Provider>
           </RuleSetContext.Provider>
         </div>
-        <div className={`flip-card-back ${metalMania.className}`}>
+        <div className={`flip-card-back ${upsideDownFontClass}`}>
           <RuleSetContext.Provider value={RuleSet.UPSIDE_DOWN}>
             <TeamContext.Provider value={teamRankings.upsideDown}>
               <PlayerContext.Provider value={playerRankings.upsideDown}>

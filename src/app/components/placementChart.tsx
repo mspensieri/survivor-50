@@ -161,13 +161,7 @@ export default function PlacementChart(props: {
         style={{ width: "90px", height: "30px", pointerEvents: "none" }}
       >
         <defs>
-          <linearGradient
-            id={`simple-line-${dataId}`}
-            x1="0"
-            y1="0"
-            x2="100%"
-            y2="0"
-          >
+          <linearGradient id={`line-${dataId}`} x1="0" y1="0" x2="100%" y2="0">
             {...lineGradient}
           </linearGradient>
         </defs>
@@ -176,7 +170,7 @@ export default function PlacementChart(props: {
           stroke={
             flatLineOnly
               ? "var(--component-text-color-secondary)"
-              : `url(#simple-line-${dataId})`
+              : `url(#line-${dataId})`
           }
           dot={false}
           strokeWidth={3}
@@ -216,14 +210,11 @@ export default function PlacementChart(props: {
           <linearGradient id={`area-${dataId}`} x1="0" y1="0" x2="100%" y2="0">
             {...areaGradient}
           </linearGradient>
-          <linearGradient id={`line-${dataId}`} x1="0" y1="0" x2="100%" y2="0">
-            {...lineGradient}
-          </linearGradient>
         </defs>
         <Area
           dataKey="Rank"
           fill={`url(#area-${dataId})`}
-          stroke={`url(#line-${dataId})`}
+          stroke="var(--component-text-color-primary)"
           baseValue={teamRankings[0].length}
         />
         <XAxis

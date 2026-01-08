@@ -236,12 +236,16 @@ export default function Leaderboard(props: {
     const segmentWidth = 350;
     const segmentMargin = 15;
 
-    return Math.min(
-      screenWidth - 2 * segmentMargin,
+    const elementWidth =
       segmentCount * segmentWidth +
-        2 * segmentMargin +
-        segmentMargin * (segmentCount - 1)
-    );
+      2 * segmentMargin +
+      segmentMargin * (segmentCount - 1);
+
+    if (segmentCount === 1) {
+      return Math.min(screenWidth - 2 * segmentMargin, elementWidth);
+    } else {
+      return elementWidth;
+    }
   }
 
   let numberOfSegments = 1;

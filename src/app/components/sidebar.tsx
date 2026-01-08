@@ -13,13 +13,11 @@ import { captainNames, stars } from "../utils/format";
 
 const styles: Record<string, React.CSSProperties> = {
   captain: {
-    fontSize: "16pt",
+    fontSize: "14pt",
     color: "var(--component-text-color-secondary)",
-    marginBottom: "10px",
   },
-  teamName: {
-    fontSize: "24pt",
-    fontWeight: "bold",
+  firstHeader: {
+    marginTop: "0px",
   },
   emphasis: {
     color: "var(--score-label-color-override)",
@@ -108,7 +106,7 @@ export default function Sidebar(props: {
   const teamRankings = useContext(TeamContext);
   let bestRank = teamScore[ruleSet].rank;
 
-  for (let week = 0; week <= currentWeek; week++) {
+  for (let week = 1; week <= currentWeek; week++) {
     const weekRank = teamRankings[week].find((ts) => ts.team === team)?.[
       ruleSet
     ].rank;
@@ -130,12 +128,13 @@ export default function Sidebar(props: {
       }
     >
       <Offcanvas.Header closeButton>
-        <Offcanvas.Title>Team stats</Offcanvas.Title>
+        <Offcanvas.Title>
+          {team.name}
+          <div style={styles.captain}>{captainNames(team)}</div>
+        </Offcanvas.Title>
       </Offcanvas.Header>
       <Offcanvas.Body>
-        <div style={styles.teamName}>{team.name}</div>
-        <div style={styles.captain}>{captainNames(team)}</div>
-        <h2>Placement</h2>
+        <h2 style={styles.firstHeader}>Placement</h2>
         <div style={styles.gridContainer}>
           <div>
             <span style={styles.emphasis}>Current Rank: </span>#

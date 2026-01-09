@@ -46,6 +46,7 @@ const styles: Record<string, React.CSSProperties> = {
     paddingTop: "8px",
     gridColumn: "span 2",
     justifySelf: "end",
+    marginRight: "-4px",
   },
   rankContainer: {
     justifySelf: "center",

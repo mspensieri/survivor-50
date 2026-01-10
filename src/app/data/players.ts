@@ -1,77 +1,126 @@
-import { Player, PlayerKeys } from "./types";
+import { Player, PlayerKeys, PlayerTribes } from "./types";
+const { PURPLE, ORANGE, TEAL } = PlayerTribes;
 
 export const PLAYERS: Record<PlayerKeys, Player> = {
-  [PlayerKeys.ALEX]: {
-    key: PlayerKeys.ALEX,
-    name: "Alex",
+  [PlayerKeys.ANGELINA]: {
+    key: PlayerKeys.ANGELINA,
+    name: "Angelina",
+    tribe: PURPLE,
   },
-  [PlayerKeys.ANNIE]: {
-    key: PlayerKeys.ANNIE,
-    name: "Annie",
+  [PlayerKeys.AUBRY]: {
+    key: PlayerKeys.AUBRY,
+    name: "Aubry",
+    tribe: PURPLE,
   },
-  [PlayerKeys.JAKE]: {
-    key: PlayerKeys.JAKE,
-    name: "Jake",
+  [PlayerKeys.CHARLIE]: {
+    key: PlayerKeys.CHARLIE,
+    name: "Charlie",
+    tribe: TEAL,
   },
-  [PlayerKeys.JASON]: {
-    key: PlayerKeys.JASON,
-    name: "Jason",
+  [PlayerKeys.CHRISSY]: {
+    key: PlayerKeys.CHRISSY,
+    name: "Chrissy",
+    tribe: TEAL,
   },
-  [PlayerKeys.JAWAN]: {
-    key: PlayerKeys.JAWAN,
-    name: "Jawan",
+  [PlayerKeys.CHRISTIAN]: {
+    key: PlayerKeys.CHRISTIAN,
+    name: "Christian",
+    tribe: ORANGE,
   },
-  [PlayerKeys.JEREMIAH]: {
-    key: PlayerKeys.JEREMIAH,
-    name: "Jeremiah",
+  [PlayerKeys.CIRIE]: {
+    key: PlayerKeys.CIRIE,
+    name: "Cirie",
+    tribe: ORANGE,
   },
-  [PlayerKeys.KRISTINA]: {
-    key: PlayerKeys.KRISTINA,
-    name: "Kristina",
+  [PlayerKeys.COACH]: {
+    key: PlayerKeys.COACH,
+    name: "Coach",
+    tribe: TEAL,
   },
-  [PlayerKeys.MATT]: {
-    key: PlayerKeys.MATT,
-    name: "Matt",
+  [PlayerKeys.COLBY]: {
+    key: PlayerKeys.COLBY,
+    name: "Colby",
+    tribe: PURPLE,
   },
-  [PlayerKeys.MC]: {
-    key: PlayerKeys.MC,
-    name: "MC",
+  [PlayerKeys.DEE]: {
+    key: PlayerKeys.DEE,
+    name: "Dee",
+    tribe: TEAL,
   },
-  [PlayerKeys.NATE]: {
-    key: PlayerKeys.NATE,
-    name: "Nate",
+  [PlayerKeys.EMILY]: {
+    key: PlayerKeys.EMILY,
+    name: "Emily",
+    tribe: ORANGE,
   },
-  [PlayerKeys.NICOLE]: {
-    key: PlayerKeys.NICOLE,
-    name: "Nicole",
+  [PlayerKeys.GENEVIEVE]: {
+    key: PlayerKeys.GENEVIEVE,
+    name: "Genevieve",
+    tribe: PURPLE,
   },
   [PlayerKeys.RIZO]: {
     key: PlayerKeys.RIZO,
     name: "Rizo",
+    tribe: PURPLE,
   },
-  [PlayerKeys.SAGE]: {
-    key: PlayerKeys.SAGE,
-    name: "Sage",
+  [PlayerKeys.JENNA]: {
+    key: PlayerKeys.JENNA,
+    name: "Jenna",
+    tribe: ORANGE,
   },
   [PlayerKeys.SAVANNAH]: {
     key: PlayerKeys.SAVANNAH,
     name: "Savannah",
+    tribe: ORANGE,
   },
-  [PlayerKeys.SHANNON]: {
-    key: PlayerKeys.SHANNON,
-    name: "Shannon",
+  [PlayerKeys.JOE]: {
+    key: PlayerKeys.JOE,
+    name: "Joe",
+    tribe: ORANGE,
   },
-  [PlayerKeys.SOPHI]: {
-    key: PlayerKeys.SOPHI,
-    name: "Sophi",
+  [PlayerKeys.JONATHAN]: {
+    key: PlayerKeys.JONATHAN,
+    name: "Jonathan",
+    tribe: TEAL,
   },
-  [PlayerKeys.SOPHIE]: {
-    key: PlayerKeys.SOPHIE,
-    name: "Sophie",
+  [PlayerKeys.KAMILLA]: {
+    key: PlayerKeys.KAMILLA,
+    name: "Kamilla",
+    tribe: TEAL,
   },
-  [PlayerKeys.STEVEN]: {
-    key: PlayerKeys.STEVEN,
-    name: "Steven",
+  [PlayerKeys.KYLE]: {
+    key: PlayerKeys.KYLE,
+    name: "Kyle",
+    tribe: PURPLE,
+  },
+  [PlayerKeys.MIKE]: {
+    key: PlayerKeys.MIKE,
+    name: "Mike",
+    tribe: TEAL,
+  },
+  [PlayerKeys.OZZY]: {
+    key: PlayerKeys.OZZY,
+    name: "Ozzy",
+    tribe: ORANGE,
+  },
+  [PlayerKeys.Q]: {
+    key: PlayerKeys.Q,
+    name: "Q",
+    tribe: PURPLE,
+  },
+  [PlayerKeys.RICK]: {
+    key: PlayerKeys.RICK,
+    name: "Rick",
+    tribe: ORANGE,
+  },
+  [PlayerKeys.STEPHENIE]: {
+    key: PlayerKeys.STEPHENIE,
+    name: "Stephenie",
+    tribe: PURPLE,
+  },
+  [PlayerKeys.TIFFANY]: {
+    key: PlayerKeys.TIFFANY,
+    name: "Tiffany",
+    tribe: TEAL,
   },
 };
 

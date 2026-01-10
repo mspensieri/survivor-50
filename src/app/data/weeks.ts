@@ -27,30 +27,30 @@ interface Week extends Partial<Record<PlayerKeys, WeeklyPoints>> {
 }
 
 const {
-  ALEX,
-  ANNIE,
-  JAKE,
-  JASON,
-  JAWAN,
-  JEREMIAH,
-  KRISTINA,
-  MATT,
-  MC,
-  NATE,
-  NICOLE,
+  ANGELINA,
+  AUBRY,
+  CHARLIE,
+  CHRISSY,
+  CHRISTIAN,
+  CIRIE,
+  COACH,
+  COLBY,
+  DEE,
+  EMILY,
+  GENEVIEVE,
   RIZO,
-  SAGE,
+  JENNA,
   SAVANNAH,
-  SHANNON,
-  SOPHI,
-  SOPHIE,
-  STEVEN,
+  JOE,
+  JONATHAN,
+  KAMILLA,
+  KYLE,
 } = PlayerKeys;
 
 export const weeks: Array<Week> = [
   {
-    eliminated: [NICOLE],
-    [ALEX]: {
+    eliminated: [GENEVIEVE],
+    [ANGELINA]: {
       standard: {
         votes: 1,
       },
@@ -59,7 +59,7 @@ export const weeks: Array<Week> = [
         abysmalChallenge: 2,
       },
     },
-    [ANNIE]: {
+    [AUBRY]: {
       standard: {
         votes: 1,
       },
@@ -67,7 +67,7 @@ export const weeks: Array<Week> = [
         losingTeam: 2,
       },
     },
-    [JAKE]: {
+    [CHARLIE]: {
       standard: {
         votes: 1,
       },
@@ -75,12 +75,12 @@ export const weeks: Array<Week> = [
         losingTeam: 2,
       },
     },
-    [JASON]: {
+    [CHRISSY]: {
       standard: {
         teamImmunity: 1,
       },
     },
-    [JAWAN]: {
+    [CHRISTIAN]: {
       standard: {
         teamImmunity: 1,
       },
@@ -88,7 +88,7 @@ export const weeks: Array<Week> = [
         crying: 4,
       },
     },
-    [JEREMIAH]: {
+    [CIRIE]: {
       standard: {
         votes: 1,
       },
@@ -96,27 +96,27 @@ export const weeks: Array<Week> = [
         losingTeam: 2,
       },
     },
-    [KRISTINA]: {
+    [COACH]: {
       standard: {
         teamImmunity: 1,
       },
     },
-    [MATT]: {
+    [COLBY]: {
       standard: {
         teamImmunity: 1,
       },
     },
-    [MC]: {
+    [DEE]: {
       standard: {
         teamImmunity: 1,
       },
     },
-    [NATE]: {
+    [EMILY]: {
       standard: {
         teamImmunity: 1,
       },
     },
-    [NICOLE]: {
+    [GENEVIEVE]: {
       upsideDown: {
         losingTeam: 2,
         wrongVote: 2,
@@ -134,7 +134,7 @@ export const weeks: Array<Week> = [
         crying: 4,
       },
     },
-    [SAGE]: {
+    [JENNA]: {
       standard: {
         teamImmunity: 1,
       },
@@ -144,12 +144,12 @@ export const weeks: Array<Week> = [
         teamImmunity: 1,
       },
     },
-    [SHANNON]: {
+    [JOE]: {
       standard: {
         teamImmunity: 1,
       },
     },
-    [SOPHI]: {
+    [JONATHAN]: {
       standard: {
         votes: 1,
       },
@@ -157,20 +157,20 @@ export const weeks: Array<Week> = [
         losingTeam: 2,
       },
     },
-    [SOPHIE]: {
+    [KAMILLA]: {
       standard: {
         teamImmunity: 1,
       },
     },
-    [STEVEN]: {
+    [KYLE]: {
       standard: {
         teamImmunity: 1,
       },
     },
   },
   {
-    eliminated: [ANNIE],
-    [ALEX]: {
+    eliminated: [AUBRY],
+    [ANGELINA]: {
       standard: {
         survival: 1,
         votes: 1,
@@ -182,7 +182,7 @@ export const weeks: Array<Week> = [
         abysmalChallenge: 2,
       },
     },
-    [ANNIE]: {
+    [AUBRY]: {
       standard: {
         survival: 1,
       },
@@ -193,7 +193,7 @@ export const weeks: Array<Week> = [
         outPreMerge: 4,
       },
     },
-    [JAKE]: {
+    [CHARLIE]: {
       standard: {
         survival: 1,
         votes: 1,
@@ -202,20 +202,20 @@ export const weeks: Array<Week> = [
         losingTeam: 2,
       },
     },
-    [JASON]: {
+    [CHRISSY]: {
       standard: {
         survival: 1,
         teamImmunity: 1,
       },
     },
-    [JAWAN]: {
+    [CHRISTIAN]: {
       standard: {
         survival: 1,
         teamImmunity: 1,
         advantage: 1,
       },
     },
-    [JEREMIAH]: {
+    [CIRIE]: {
       standard: {
         survival: 1,
         votes: 1,
@@ -224,25 +224,25 @@ export const weeks: Array<Week> = [
         losingTeam: 2,
       },
     },
-    [KRISTINA]: {
+    [COACH]: {
       standard: {
         survival: 1,
         teamImmunity: 1,
       },
     },
-    [MATT]: {
+    [COLBY]: {
       standard: {
         survival: 1,
         teamImmunity: 1,
       },
     },
-    [MC]: {
+    [DEE]: {
       standard: {
         survival: 1,
         teamImmunity: 1,
       },
     },
-    [NATE]: {
+    [EMILY]: {
       standard: {
         survival: 1,
         teamImmunity: 1,
@@ -254,7 +254,7 @@ export const weeks: Array<Week> = [
         teamImmunity: 1,
       },
     },
-    [SAGE]: {
+    [JENNA]: {
       standard: {
         survival: 1,
         teamImmunity: 1,
@@ -266,13 +266,13 @@ export const weeks: Array<Week> = [
         teamImmunity: 1,
       },
     },
-    [SHANNON]: {
+    [JOE]: {
       standard: {
         survival: 1,
         teamImmunity: 1,
       },
     },
-    [SOPHI]: {
+    [JONATHAN]: {
       standard: {
         survival: 1,
         votes: 1,
@@ -282,13 +282,13 @@ export const weeks: Array<Week> = [
         abysmalChallenge: 2,
       },
     },
-    [SOPHIE]: {
+    [KAMILLA]: {
       standard: {
         survival: 1,
         teamImmunity: 1,
       },
     },
-    [STEVEN]: {
+    [KYLE]: {
       standard: {
         survival: 1,
         teamImmunity: 1,
@@ -296,8 +296,8 @@ export const weeks: Array<Week> = [
     },
   },
   {
-    eliminated: [JAKE, JEREMIAH],
-    [ALEX]: {
+    eliminated: [CHARLIE, CIRIE],
+    [ANGELINA]: {
       standard: {
         survival: 1,
         votes: 1,
@@ -307,7 +307,7 @@ export const weeks: Array<Week> = [
         losingTeam: 2,
       },
     },
-    [JAKE]: {
+    [CHARLIE]: {
       standard: {
         survival: 1,
       },
@@ -315,19 +315,19 @@ export const weeks: Array<Week> = [
         medEvac: 4,
       },
     },
-    [JASON]: {
+    [CHRISSY]: {
       standard: {
         survival: 1,
         teamImmunity: 1,
       },
     },
-    [JAWAN]: {
+    [CHRISTIAN]: {
       standard: {
         survival: 1,
         teamImmunity: 1,
       },
     },
-    [JEREMIAH]: {
+    [CIRIE]: {
       standard: {
         survival: 1,
       },
@@ -337,26 +337,26 @@ export const weeks: Array<Week> = [
         outPreMerge: 4,
       },
     },
-    [KRISTINA]: {
+    [COACH]: {
       standard: {
         survival: 1,
         teamImmunity: 1,
       },
     },
-    [MATT]: {
+    [COLBY]: {
       standard: {
         survival: 1,
         teamImmunity: 1,
       },
     },
-    [MC]: {
+    [DEE]: {
       standard: {
         survival: 1,
         teamImmunity: 1,
         advantage: 1,
       },
     },
-    [NATE]: {
+    [EMILY]: {
       standard: {
         survival: 1,
         teamImmunity: 1,
@@ -369,7 +369,7 @@ export const weeks: Array<Week> = [
         advantage: 1,
       },
     },
-    [SAGE]: {
+    [JENNA]: {
       standard: {
         survival: 1,
         teamImmunity: 1,
@@ -381,13 +381,13 @@ export const weeks: Array<Week> = [
         teamImmunity: 1,
       },
     },
-    [SHANNON]: {
+    [JOE]: {
       standard: {
         survival: 1,
         teamImmunity: 1,
       },
     },
-    [SOPHI]: {
+    [JONATHAN]: {
       standard: {
         survival: 1,
         votes: 1,
@@ -396,13 +396,13 @@ export const weeks: Array<Week> = [
         losingTeam: 2,
       },
     },
-    [SOPHIE]: {
+    [KAMILLA]: {
       standard: {
         survival: 1,
         teamImmunity: 1,
       },
     },
-    [STEVEN]: {
+    [KYLE]: {
       standard: {
         survival: 1,
         teamImmunity: 1,
@@ -410,14 +410,14 @@ export const weeks: Array<Week> = [
     },
   },
   {
-    eliminated: [MATT],
-    [ALEX]: {
+    eliminated: [COLBY],
+    [ANGELINA]: {
       standard: {
         survival: 1,
         teamImmunity: 1,
       },
     },
-    [JASON]: {
+    [CHRISSY]: {
       standard: {
         survival: 1,
         votes: 1,
@@ -426,7 +426,7 @@ export const weeks: Array<Week> = [
         losingTeam: 2,
       },
     },
-    [JAWAN]: {
+    [CHRISTIAN]: {
       standard: {
         survival: 1,
         votes: 1,
@@ -435,13 +435,13 @@ export const weeks: Array<Week> = [
         losingTeam: 2,
       },
     },
-    [KRISTINA]: {
+    [COACH]: {
       standard: {
         survival: 1,
         teamImmunity: 1,
       },
     },
-    [MATT]: {
+    [COLBY]: {
       standard: {
         survival: 1,
       },
@@ -451,13 +451,13 @@ export const weeks: Array<Week> = [
         outFirst: 6,
       },
     },
-    [MC]: {
+    [DEE]: {
       standard: {
         survival: 1,
         teamImmunity: 1,
       },
     },
-    [NATE]: {
+    [EMILY]: {
       standard: {
         survival: 1,
         votes: 1,
@@ -473,7 +473,7 @@ export const weeks: Array<Week> = [
         idolFound: 2,
       },
     },
-    [SAGE]: {
+    [JENNA]: {
       standard: {
         survival: 1,
         teamImmunity: 1,
@@ -488,13 +488,13 @@ export const weeks: Array<Week> = [
         wrongVote: 2,
       },
     },
-    [SHANNON]: {
+    [JOE]: {
       standard: {
         survival: 1,
         teamImmunity: 1,
       },
     },
-    [SOPHI]: {
+    [JONATHAN]: {
       standard: {
         survival: 1,
       },
@@ -503,13 +503,13 @@ export const weeks: Array<Week> = [
         wrongVote: 2,
       },
     },
-    [SOPHIE]: {
+    [KAMILLA]: {
       standard: {
         survival: 1,
         teamImmunity: 1,
       },
     },
-    [STEVEN]: {
+    [KYLE]: {
       standard: {
         survival: 1,
         teamImmunity: 1,
@@ -517,14 +517,14 @@ export const weeks: Array<Week> = [
     },
   },
   {
-    eliminated: [JASON],
-    [ALEX]: {
+    eliminated: [CHRISSY],
+    [ANGELINA]: {
       standard: {
         survival: 1,
         teamImmunity: 1,
       },
     },
-    [JASON]: {
+    [CHRISSY]: {
       standard: {
         survival: 1,
       },
@@ -534,7 +534,7 @@ export const weeks: Array<Week> = [
         outPreMerge: 4,
       },
     },
-    [JAWAN]: {
+    [CHRISTIAN]: {
       standard: {
         survival: 1,
         votes: 1,
@@ -543,19 +543,19 @@ export const weeks: Array<Week> = [
         losingTeam: 2,
       },
     },
-    [KRISTINA]: {
+    [COACH]: {
       standard: {
         survival: 1,
         teamImmunity: 1,
       },
     },
-    [MC]: {
+    [DEE]: {
       standard: {
         survival: 1,
         teamImmunity: 1,
       },
     },
-    [NATE]: {
+    [EMILY]: {
       standard: {
         survival: 1,
         votes: 1,
@@ -573,7 +573,7 @@ export const weeks: Array<Week> = [
         losingTeam: 2,
       },
     },
-    [SAGE]: {
+    [JENNA]: {
       standard: {
         survival: 1,
         teamImmunity: 1,
@@ -588,13 +588,13 @@ export const weeks: Array<Week> = [
         losingTeam: 2,
       },
     },
-    [SHANNON]: {
+    [JOE]: {
       standard: {
         survival: 1,
         teamImmunity: 1,
       },
     },
-    [SOPHI]: {
+    [JONATHAN]: {
       standard: {
         survival: 1,
         votes: 1,
@@ -603,13 +603,13 @@ export const weeks: Array<Week> = [
         losingTeam: 2,
       },
     },
-    [SOPHIE]: {
+    [KAMILLA]: {
       standard: {
         survival: 1,
         teamImmunity: 1,
       },
     },
-    [STEVEN]: {
+    [KYLE]: {
       standard: {
         survival: 1,
         teamImmunity: 1,
@@ -617,14 +617,14 @@ export const weeks: Array<Week> = [
     },
   },
   {
-    eliminated: [SHANNON],
-    [ALEX]: {
+    eliminated: [JOE],
+    [ANGELINA]: {
       standard: {
         survival: 1,
         teamImmunity: 1,
       },
     },
-    [JAWAN]: {
+    [CHRISTIAN]: {
       standard: {
         survival: 1,
         votes: 1,
@@ -633,19 +633,19 @@ export const weeks: Array<Week> = [
         losingTeam: 2,
       },
     },
-    [KRISTINA]: {
+    [COACH]: {
       standard: {
         survival: 1,
         teamImmunity: 1,
       },
     },
-    [MC]: {
+    [DEE]: {
       standard: {
         survival: 1,
         teamImmunity: 1,
       },
     },
-    [NATE]: {
+    [EMILY]: {
       standard: {
         survival: 1,
         teamImmunity: 1,
@@ -657,7 +657,7 @@ export const weeks: Array<Week> = [
         teamImmunity: 1,
       },
     },
-    [SAGE]: {
+    [JENNA]: {
       standard: {
         survival: 1,
         votes: 1,
@@ -672,7 +672,7 @@ export const weeks: Array<Week> = [
         teamImmunity: 1,
       },
     },
-    [SHANNON]: {
+    [JOE]: {
       standard: {
         survival: 1,
       },
@@ -683,20 +683,20 @@ export const weeks: Array<Week> = [
         outFirst: 6,
       },
     },
-    [SOPHI]: {
+    [JONATHAN]: {
       standard: {
         survival: 1,
         teamImmunity: 1,
         advantage: 1,
       },
     },
-    [SOPHIE]: {
+    [KAMILLA]: {
       standard: {
         survival: 1,
         teamImmunity: 1,
       },
     },
-    [STEVEN]: {
+    [KYLE]: {
       standard: {
         survival: 1,
         votes: 1,
@@ -707,33 +707,33 @@ export const weeks: Array<Week> = [
     },
   },
   {
-    jury: [NATE],
-    [ALEX]: {
+    jury: [EMILY],
+    [ANGELINA]: {
       standard: {
         survival: 1,
         votes: 1,
       },
     },
-    [JAWAN]: {
+    [CHRISTIAN]: {
       standard: {
         survival: 1,
         votes: 1,
       },
     },
-    [KRISTINA]: {
+    [COACH]: {
       standard: {
         survival: 1,
         votes: 1,
       },
     },
-    [MC]: {
+    [DEE]: {
       standard: {
         survival: 1,
         idolFound: 2,
         votes: 1,
       },
     },
-    [NATE]: {
+    [EMILY]: {
       standard: {
         survival: 1,
         placement: 2,
@@ -751,7 +751,7 @@ export const weeks: Array<Week> = [
         wrongVote: 2,
       },
     },
-    [SAGE]: {
+    [JENNA]: {
       standard: {
         survival: 1,
         advantage: 1,
@@ -766,7 +766,7 @@ export const weeks: Array<Week> = [
         wrongVote: 2,
       },
     },
-    [SOPHI]: {
+    [JONATHAN]: {
       standard: {
         survival: 1,
       },
@@ -774,14 +774,14 @@ export const weeks: Array<Week> = [
         wrongVote: 2,
       },
     },
-    [SOPHIE]: {
+    [KAMILLA]: {
       standard: {
         survival: 1,
         individualImmunity: 2,
         votes: 1,
       },
     },
-    [STEVEN]: {
+    [KYLE]: {
       standard: {
         survival: 1,
         votes: 1,
@@ -789,27 +789,27 @@ export const weeks: Array<Week> = [
     },
   },
   {
-    jury: [MC],
-    [ALEX]: {
+    jury: [DEE],
+    [ANGELINA]: {
       standard: {
         survival: 1,
         teamImmunity: 1,
       },
     },
-    [JAWAN]: {
+    [CHRISTIAN]: {
       standard: {
         survival: 1,
         votes: 1,
       },
     },
-    [KRISTINA]: {
+    [COACH]: {
       standard: {
         survival: 1,
         idolFound: 2,
         teamImmunity: 1,
       },
     },
-    [MC]: {
+    [DEE]: {
       standard: {
         survival: 1,
         placement: 2,
@@ -825,7 +825,7 @@ export const weeks: Array<Week> = [
         votes: 1,
       },
     },
-    [SAGE]: {
+    [JENNA]: {
       standard: {
         survival: 1,
         votes: 1,
@@ -838,19 +838,19 @@ export const weeks: Array<Week> = [
         advantage: 1,
       },
     },
-    [SOPHI]: {
+    [JONATHAN]: {
       standard: {
         survival: 1,
         teamImmunity: 1,
       },
     },
-    [SOPHIE]: {
+    [KAMILLA]: {
       standard: {
         survival: 1,
         votes: 1,
       },
     },
-    [STEVEN]: {
+    [KYLE]: {
       standard: {
         survival: 1,
         teamImmunity: 1,
@@ -858,8 +858,8 @@ export const weeks: Array<Week> = [
     },
   },
   {
-    jury: [ALEX],
-    [ALEX]: {
+    jury: [ANGELINA],
+    [ANGELINA]: {
       standard: {
         survival: 1,
         placement: 2,
@@ -869,13 +869,13 @@ export const weeks: Array<Week> = [
         outPostMerge: 2,
       },
     },
-    [JAWAN]: {
+    [CHRISTIAN]: {
       standard: {
         survival: 1,
         votes: 1,
       },
     },
-    [KRISTINA]: {
+    [COACH]: {
       standard: {
         survival: 1,
       },
@@ -889,7 +889,7 @@ export const weeks: Array<Week> = [
         votes: 1,
       },
     },
-    [SAGE]: {
+    [JENNA]: {
       standard: {
         survival: 1,
         votes: 1,
@@ -902,19 +902,19 @@ export const weeks: Array<Week> = [
         votes: 1,
       },
     },
-    [SOPHI]: {
+    [JONATHAN]: {
       standard: {
         survival: 1,
         votes: 1,
       },
     },
-    [SOPHIE]: {
+    [KAMILLA]: {
       standard: {
         survival: 1,
         votes: 1,
       },
     },
-    [STEVEN]: {
+    [KYLE]: {
       standard: {
         survival: 1,
         individualImmunity: 2,
@@ -925,8 +925,8 @@ export const weeks: Array<Week> = [
     },
   },
   {
-    jury: [JAWAN],
-    [JAWAN]: {
+    jury: [CHRISTIAN],
+    [CHRISTIAN]: {
       standard: {
         survival: 1,
         placement: 2,
@@ -937,7 +937,7 @@ export const weeks: Array<Week> = [
         blindsided: 6,
       },
     },
-    [KRISTINA]: {
+    [COACH]: {
       standard: {
         survival: 1,
       },
@@ -955,7 +955,7 @@ export const weeks: Array<Week> = [
         crying: 4,
       },
     },
-    [SAGE]: {
+    [JENNA]: {
       standard: {
         survival: 1,
       },
@@ -969,20 +969,20 @@ export const weeks: Array<Week> = [
         votes: 2,
       },
     },
-    [SOPHI]: {
+    [JONATHAN]: {
       standard: {
         survival: 1,
         votes: 1,
       },
     },
-    [SOPHIE]: {
+    [KAMILLA]: {
       standard: {
         survival: 1,
         individualImmunity: 2,
         votes: 1,
       },
     },
-    [STEVEN]: {
+    [KYLE]: {
       standard: {
         survival: 1,
       },
@@ -992,8 +992,8 @@ export const weeks: Array<Week> = [
     },
   },
   {
-    jury: [SOPHIE],
-    [KRISTINA]: {
+    jury: [KAMILLA],
+    [COACH]: {
       standard: {
         survival: 1,
         votes: 1,
@@ -1005,7 +1005,7 @@ export const weeks: Array<Week> = [
         votes: 1,
       },
     },
-    [SAGE]: {
+    [JENNA]: {
       standard: {
         survival: 1,
         votes: 1,
@@ -1017,13 +1017,13 @@ export const weeks: Array<Week> = [
         votes: 1,
       },
     },
-    [SOPHI]: {
+    [JONATHAN]: {
       standard: {
         survival: 1,
         votes: 1,
       },
     },
-    [SOPHIE]: {
+    [KAMILLA]: {
       standard: {
         survival: 1,
         placement: 2,
@@ -1033,7 +1033,7 @@ export const weeks: Array<Week> = [
         outPostMerge: 2,
       },
     },
-    [STEVEN]: {
+    [KYLE]: {
       standard: {
         survival: 1,
         votes: 1,
@@ -1043,8 +1043,8 @@ export const weeks: Array<Week> = [
     },
   },
   {
-    jury: [STEVEN],
-    [KRISTINA]: {
+    jury: [KYLE],
+    [COACH]: {
       standard: {
         survival: 1,
         votes: 1,
@@ -1056,7 +1056,7 @@ export const weeks: Array<Week> = [
         votes: 1,
       },
     },
-    [SAGE]: {
+    [JENNA]: {
       standard: {
         survival: 1,
         votes: 1,
@@ -1068,13 +1068,13 @@ export const weeks: Array<Week> = [
         individualImmunity: 2,
       },
     },
-    [SOPHI]: {
+    [JONATHAN]: {
       standard: {
         survival: 1,
         votes: 1,
       },
     },
-    [STEVEN]: {
+    [KYLE]: {
       standard: {
         survival: 1,
         placement: 2,
@@ -1082,9 +1082,9 @@ export const weeks: Array<Week> = [
     },
   },
   {
-    eliminated: [SOPHI, SAGE],
-    jury: [KRISTINA, RIZO],
-    [KRISTINA]: {
+    eliminated: [JONATHAN, JENNA],
+    jury: [COACH, RIZO],
+    [COACH]: {
       standard: {
         survival: 1,
         placement: 3,
@@ -1097,7 +1097,7 @@ export const weeks: Array<Week> = [
         placement: 5,
       },
     },
-    [SAGE]: {
+    [JENNA]: {
       standard: {
         survival: 2,
         votes: 1,
@@ -1113,7 +1113,7 @@ export const weeks: Array<Week> = [
         fire: 1,
       },
     },
-    [SOPHI]: {
+    [JONATHAN]: {
       standard: {
         survival: 2,
         votes: 1,

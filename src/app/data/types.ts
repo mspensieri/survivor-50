@@ -1,22 +1,34 @@
 export enum PlayerKeys {
-  ALEX = "ALEX",
-  ANNIE = "ANNIE",
-  JAKE = "JAKE",
-  JASON = "JASON",
-  JAWAN = "JAWAN",
-  JEREMIAH = "JEREMIAH",
-  KRISTINA = "KRISTINA",
-  MATT = "MATT",
-  MC = "MC",
-  NATE = "NATE",
-  NICOLE = "NICOLE",
+  ANGELINA = "ANGELINA",
+  AUBRY = "AUBRY",
+  CHARLIE = "CHARLIE",
+  CHRISSY = "CHRISSY",
+  CHRISTIAN = "CHRISTIAN",
+  CIRIE = "CIRIE",
+  COACH = "COACH",
+  COLBY = "COLBY",
+  DEE = "DEE",
+  EMILY = "EMILY",
+  GENEVIEVE = "GENEVIEVE",
+  JENNA = "JENNA",
+  JOE = "JOE",
+  JONATHAN = "JONATHAN",
+  KAMILLA = "KAMILLA",
+  KYLE = "KYLE",
+  MIKE = "MIKE",
+  OZZY = "OZZY",
+  Q = "Q",
+  RICK = "RICK",
   RIZO = "RIZO",
-  SAGE = "SAGE",
   SAVANNAH = "SAVANNAH",
-  SHANNON = "SHANNON",
-  SOPHI = "SOPHI",
-  SOPHIE = "SOPHIE",
-  STEVEN = "STEVEN",
+  STEPHENIE = "STEPHENIE",
+  TIFFANY = "TIFFANY",
+}
+
+export enum PlayerTribes {
+  PURPLE = "PURPLE",
+  ORANGE = "ORANGE",
+  TEAL = "TEAL",
 }
 
 export const Captains = {
@@ -79,6 +91,7 @@ export const Captains = {
 export type Player = {
   key: PlayerKeys;
   name: string;
+  tribe: PlayerTribes;
 };
 
 export type Team = {

@@ -5,8 +5,15 @@ import React, { useContext } from "react";
 import { Accordion, Card, Col, Container, Row } from "react-bootstrap";
 
 import { PlayerRankings } from "../providers/types";
-import { PlayerScore, RuleSet, Team } from "../data/types";
+import {
+  Player,
+  PlayerScore,
+  RuleSet,
+  Team,
+  PlayerTribes,
+} from "../data/types";
 import RuleSetContext from "../context/ruleSetContext";
+import { players } from "../data/players";
 
 const styles: Record<string, React.CSSProperties> = {
   badge: { width: "90px", position: "absolute", top: "16px", right: "16px" },
@@ -75,6 +82,29 @@ const styles: Record<string, React.CSSProperties> = {
   popularityEmoji: {
     filter: "var(--upside-down-image-filter)",
   },
+  tribeDetailsContainer: {
+    display: "flex",
+    justifyContent: "space-between",
+    width: "100%",
+    marginBottom: "10px",
+    paddingBottom: "5px",
+    borderBottom: "1px solid var(--component-text-color-primary)",
+  },
+  tribeName: {
+    fontSize: "16pt",
+  },
+  tribeColorIndicator: {
+    height: "30px",
+    width: "30px",
+    borderRadius: "50%",
+    border: "2px solid var(--component-text-color-primary)",
+  },
+};
+
+const tribeColors = {
+  [PlayerTribes.ORANGE]: "#fe9824",
+  [PlayerTribes.PURPLE]: "#8246fa",
+  [PlayerTribes.TEAL]: "#46d1db",
 };
 
 const PointStringMap: Record<string, string> = {
@@ -200,144 +230,210 @@ export default function Scores(props: {
 
   const ruleSet = useContext(RuleSetContext);
 
+  const tribeGroups: Record<PlayerTribes, Player[]> = players.reduce(
+    (acc, player) => {
+      const { tribe } = player;
+      if (!acc[tribe]) {
+        acc[tribe] = [];
+      }
+      acc[tribe].push(player);
+      return acc;
+    },
+    {} as Record<PlayerTribes, Player[]>
+  );
+
   return (
-    <Container>
-      {...(thisWeekRankings || []).map((thisWeekScore) => {
-        const lastWeekScore = lastWeekRankings?.find(
-          (p) => p.player === thisWeekScore.player
-        );
+    <>
+      <div className="tribes-flex-container">
+        {...Object.entries(tribeGroups).map(([tribe, tribePlayers], i) => (
+          <div key={i} className="tribe-container">
+            <div style={styles.tribeDetailsContainer}>
+              <div style={styles.tribeName}>{tribe}</div>
+              <div
+                style={{
+                  ...styles.tribeColorIndicator,
+                  backgroundColor: tribeColors[tribe as PlayerTribes],
+                }}
+              ></div>
+            </div>
+            <div className="tribe-members-flex-container">
+              {...tribePlayers.map((player) => {
+                const thisWeekScore = (thisWeekRankings || []).find(
+                  (p) => p.player === player
+                );
 
-        let rank;
+                const isActive =
+                  thisWeekScore &&
+                  ["active", "winner"].includes(thisWeekScore.status);
 
-        if (lastWeekScore && lastWeekScore[ruleSet]) {
-          if (thisWeekScore[ruleSet].rank < lastWeekScore[ruleSet].rank) {
-            rank = (
-              <span>
-                #{thisWeekScore[ruleSet].rank}{" "}
-                <span style={styles.indicatorGreen}>
-                  (▲ {lastWeekScore[ruleSet].rank - thisWeekScore[ruleSet].rank}
-                  )
+                return (
+                  <img
+                    key={player.key}
+                    src={`${player.name.toLowerCase()}.jpg`}
+                    alt={player.name}
+                    width={75}
+                    height={75}
+                    className={isActive ? "" : "eliminated"}
+                  ></img>
+                );
+              })}
+            </div>
+          </div>
+        ))}
+      </div>
+      <Container>
+        {...(thisWeekRankings || []).map((thisWeekScore) => {
+          const lastWeekScore = lastWeekRankings?.find(
+            (p) => p.player === thisWeekScore.player
+          );
+
+          let rank;
+
+          if (lastWeekScore && lastWeekScore[ruleSet]) {
+            if (thisWeekScore[ruleSet].rank < lastWeekScore[ruleSet].rank) {
+              rank = (
+                <span>
+                  #{thisWeekScore[ruleSet].rank}{" "}
+                  <span style={styles.indicatorGreen}>
+                    (▲{" "}
+                    {lastWeekScore[ruleSet].rank - thisWeekScore[ruleSet].rank})
+                  </span>
                 </span>
-              </span>
-            );
-          } else if (
-            thisWeekScore[ruleSet].rank > lastWeekScore[ruleSet].rank
-          ) {
-            rank = (
-              <span>
-                #{thisWeekScore[ruleSet].rank}{" "}
-                <span style={styles.indicatorRed}>
-                  (▼ {thisWeekScore[ruleSet].rank - lastWeekScore[ruleSet].rank}
-                  )
+              );
+            } else if (
+              thisWeekScore[ruleSet].rank > lastWeekScore[ruleSet].rank
+            ) {
+              rank = (
+                <span>
+                  #{thisWeekScore[ruleSet].rank}{" "}
+                  <span style={styles.indicatorRed}>
+                    (▼{" "}
+                    {thisWeekScore[ruleSet].rank - lastWeekScore[ruleSet].rank})
+                  </span>
                 </span>
-              </span>
-            );
+              );
+            } else {
+              rank = (
+                <span>
+                  #{thisWeekScore[ruleSet].rank}{" "}
+                  <span style={styles.indicatorNeutral}>(-)</span>
+                </span>
+              );
+            }
           } else {
-            rank = (
-              <span>
-                #{thisWeekScore[ruleSet].rank}{" "}
-                <span style={styles.indicatorNeutral}>(-)</span>
-              </span>
-            );
+            rank = <span>#{thisWeekScore[ruleSet].rank}</span>;
           }
-        } else {
-          rank = <span>#{thisWeekScore[ruleSet].rank}</span>;
-        }
 
-        const popularity = teams.reduce((acc, curr) => {
-          return curr.players.includes(thisWeekScore.player) ? acc + 1 : acc;
-        }, 0);
+          const popularity = teams.reduce((acc, curr) => {
+            return curr.players.includes(thisWeekScore.player) ? acc + 1 : acc;
+          }, 0);
 
-        const popularityEmoji =
-          popularity >= 17
-            ? "⭐️"
-            : popularity >= 13
-            ? "🔥"
-            : popularity >= 11
-            ? "👍"
-            : "☘️";
+          const popularityEmoji =
+            popularity >= 17
+              ? "⭐️"
+              : popularity >= 13
+              ? "🔥"
+              : popularity >= 11
+              ? "👍"
+              : "☘️";
 
-        return (
-          <Row
-            key={thisWeekScore.player.name}
-            className="justify-content-center gx-0"
-          >
-            <Col xs={12} lg={9} xl={8} xxl={7}>
-              <Row className="justify-content-center gx-0">
-                <Col xs={12} md={6}>
-                  <Card
-                    style={
-                      screenWidth < 768 ? styles.leftCardSmall : styles.leftCard
-                    }
-                  >
-                    <div>
-                      <span style={styles.name}>
-                        {thisWeekScore.player.name}
-                      </span>
-                      <hr style={styles.hr} />
-                      <img
-                        src={`${thisWeekScore.player.name.toLowerCase()}.jpg`}
-                        alt={thisWeekScore.player.name}
-                        width={115}
-                        height={115}
-                        style={styles.avatar}
-                      ></img>
-                      <div style={styles.details}>
-                        <br />
-                        <strong style={styles.scoreLabel}>Rank: </strong>
-                        {rank}
-                        <br />
-                        <strong style={styles.scoreLabel}>Total: </strong>{" "}
-                        {getScoreElement(
-                          thisWeekScore[ruleSet].total,
-                          lastWeekScore?.[ruleSet]?.total
-                        )}
-                        <br />
-                        <strong style={styles.scoreLabel}>Popularity: </strong>
-                        {popularity} <span style={styles.units}> teams</span>{" "}
-                        <span style={styles.popularityEmoji}>
-                          {popularityEmoji}
+          return (
+            <Row
+              key={thisWeekScore.player.name}
+              className="justify-content-center gx-0"
+            >
+              <Col xs={12} lg={9} xl={8} xxl={7}>
+                <Row className="justify-content-center gx-0">
+                  <Col xs={12} md={6}>
+                    <Card
+                      style={
+                        screenWidth < 768
+                          ? styles.leftCardSmall
+                          : styles.leftCard
+                      }
+                    >
+                      <div>
+                        <span style={styles.name}>
+                          {thisWeekScore.player.name}
                         </span>
+                        <hr style={styles.hr} />
+                        <img
+                          src={`${thisWeekScore.player.name.toLowerCase()}.jpg`}
+                          alt={thisWeekScore.player.name}
+                          width={115}
+                          height={115}
+                          style={styles.avatar}
+                        ></img>
+                        <div style={styles.details}>
+                          <br />
+                          <strong style={styles.scoreLabel}>Rank: </strong>
+                          {rank}
+                          <br />
+                          <strong style={styles.scoreLabel}>
+                            Total:{" "}
+                          </strong>{" "}
+                          {getScoreElement(
+                            thisWeekScore[ruleSet].total,
+                            lastWeekScore?.[ruleSet]?.total
+                          )}
+                          <br />
+                          <strong style={styles.scoreLabel}>
+                            Popularity:{" "}
+                          </strong>
+                          {popularity} <span style={styles.units}> teams</span>{" "}
+                          <span style={styles.popularityEmoji}>
+                            {popularityEmoji}
+                          </span>
+                        </div>
+                        {getBadge(thisWeekScore)}
                       </div>
-                      {getBadge(thisWeekScore)}
-                    </div>
-                  </Card>
-                </Col>
-                <Col xs={12} md={5}>
-                  <Card
-                    style={
-                      screenWidth < 768
-                        ? styles.rightCardSmall
-                        : styles.rightCard
-                    }
-                  >
-                    <div>
-                      <Card.Body>
-                        {isSmallScreen ? (
-                          <Accordion flush className="player-details-accordion">
-                            <Accordion.Item eventKey="0">
-                              <Accordion.Header>Show details</Accordion.Header>
-                              <Accordion.Body>
-                                {getDetailsView(
-                                  ruleSet,
-                                  thisWeekScore,
-                                  lastWeekScore
-                                )}
-                              </Accordion.Body>
-                            </Accordion.Item>
-                          </Accordion>
-                        ) : (
-                          getDetailsView(ruleSet, thisWeekScore, lastWeekScore)
-                        )}
-                      </Card.Body>
-                    </div>
-                  </Card>
-                </Col>
-              </Row>
-            </Col>
-          </Row>
-        );
-      })}
-    </Container>
+                    </Card>
+                  </Col>
+                  <Col xs={12} md={5}>
+                    <Card
+                      style={
+                        screenWidth < 768
+                          ? styles.rightCardSmall
+                          : styles.rightCard
+                      }
+                    >
+                      <div>
+                        <Card.Body>
+                          {isSmallScreen ? (
+                            <Accordion
+                              flush
+                              className="player-details-accordion"
+                            >
+                              <Accordion.Item eventKey="0">
+                                <Accordion.Header>
+                                  Show details
+                                </Accordion.Header>
+                                <Accordion.Body>
+                                  {getDetailsView(
+                                    ruleSet,
+                                    thisWeekScore,
+                                    lastWeekScore
+                                  )}
+                                </Accordion.Body>
+                              </Accordion.Item>
+                            </Accordion>
+                          ) : (
+                            getDetailsView(
+                              ruleSet,
+                              thisWeekScore,
+                              lastWeekScore
+                            )
+                          )}
+                        </Card.Body>
+                      </div>
+                    </Card>
+                  </Col>
+                </Row>
+              </Col>
+            </Row>
+          );
+        })}
+      </Container>
+    </>
   );
 }

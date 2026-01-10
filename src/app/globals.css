@@ -1,10 +1,12 @@
 :root {
   background-color: black;
 
+  --border-radius-standard: 5px;
+  --border-radius-rounded: 12px;
   --bs-info-rgb: 7, 129, 154;
 
   .flip-card {
-    --background-color-primary: rgb(42, 2, 105);
+    --background-color-primary: #290269;
 
     &.upside-down {
       --background-color-primary: #1c1c1c;
@@ -16,7 +18,7 @@
     --text-color-primary: #faece5;
     --text-color-secondary: #b0aca2;
     --text-color-transparent: rgba(114, 111, 86, 0.814);
-    --background-color-primary: rgb(42, 2, 105);
+    --background-color-primary: #290269;
 
     --component-background-color-primary: #faece5;
     --component-background-color-secondary: #e5e0d2;
@@ -300,7 +302,7 @@
     margin-bottom: 15px;
 
     &.first-place-group {
-      border-radius: 6px;
+      border-radius: var(--border-radius-standard);
       padding: 15px;
       background-color: var(--component-background-color-highlight);
       width: fit-content;
@@ -315,10 +317,54 @@
     }
   }
 
+  .tribes-flex-container,
+  .tribe-members-flex-container {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+    align-content: flex-start;
+
+    .flex-item-card {
+      height: 130px;
+      width: 350px;
+      padding: 10px;
+    }
+  }
+
+  .tribes-flex-container {
+    gap: 15px;
+    margin-bottom: 15px;
+  }
+
+  .tribe-container {
+    padding: 10px;
+    width: 352px; /* 4 tiles + gaps + border */
+    height: auto;
+    border-radius: var(--border-radius-standard);
+    border: 1px solid var(--component-text-color-primary);
+    color: var(--component-text-color-primary);
+    background-color: var(--component-background-color-primary);
+  }
+
+  .tribe-members-flex-container {
+    gap: 10px;
+
+    img {
+      border-radius: var(--border-radius-standard);
+      filter: var(--upside-down-image-filter);
+      transform: var(--upside-down-image-transform);
+
+      &.eliminated {
+        filter: grayscale(1) contrast(70%) opacity(40%);
+      }
+    }
+  }
+
   .flex-item-card {
     background-color: var(--component-background-color-primary);
     border: 1px solid var(--component-text-color-secondary);
-    border-radius: 5px;
+    border-radius: var(--border-radius-standard);
     color: var(--component-text-color-primary);
   }
 

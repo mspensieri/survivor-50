@@ -39,7 +39,7 @@ const styles: Record<string, React.CSSProperties> = {
     fontSize: "12pt",
     padding: "2px 6px",
     marginBottom: "5px",
-    borderRadius: "6px",
+    borderRadius: "var(--border-radius-standard)",
     backgroundColor: "var(--component-background-color-secondary)",
   },
   placementHistory: {

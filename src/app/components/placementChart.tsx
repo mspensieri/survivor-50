@@ -214,7 +214,7 @@ export default function PlacementChart(props: {
         <Area
           dataKey="Rank"
           fill={`url(#area-${dataId})`}
-          stroke="var(--component-text-color-primary)"
+          stroke="var(--component-text-color-secondary)"
           baseValue={teamRankings[0].length}
         />
         <XAxis

@@ -26,9 +26,9 @@ export enum PlayerKeys {
 }
 
 export enum PlayerTribes {
-  PURPLE = "PURPLE",
-  ORANGE = "ORANGE",
-  TEAL = "TEAL",
+  PURPLE = "Purple",
+  ORANGE = "Orange",
+  TEAL = "Teal",
 }
 
 export const Captains = {

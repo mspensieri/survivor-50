@@ -5,6 +5,10 @@ import standings47 from "./47";
 import standings46 from "./46";
 import standings45 from "./45";
 import standings44 from "./44";
+import standings43 from "./43";
+import standings42 from "./42";
+import standings41 from "./41";
+import standings40 from "./40";
 
 const seasons: Array<SeasonHistory> = [
   standings49,
@@ -13,6 +17,10 @@ const seasons: Array<SeasonHistory> = [
   standings46,
   standings45,
   standings44,
+  standings43,
+  standings42,
+  standings41,
+  standings40,
 ];
 
 function calculateRating(rank: number, teamCount: number): number {

@@ -140,6 +140,7 @@ export default function MainView(props: {
             teams={teams}
             isSmallScreen={isSmallScreen}
             screenWidth={screenWidth}
+            hideSpoilers={true}
           ></Scores>
         </SpoilerMask>
       );

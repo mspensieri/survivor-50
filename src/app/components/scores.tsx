@@ -219,6 +219,7 @@ export default function Scores(props: {
   teams: Array<Team>;
   isSmallScreen: boolean;
   screenWidth: number;
+  hideSpoilers?: boolean;
 }) {
   const {
     thisWeekRankings,
@@ -226,6 +227,7 @@ export default function Scores(props: {
     teams,
     isSmallScreen,
     screenWidth,
+    hideSpoilers,
   } = props;
 
   const ruleSet = useContext(RuleSetContext);
@@ -269,11 +271,15 @@ export default function Scores(props: {
                 return (
                   <img
                     key={player.key}
-                    src={`${player.name.toLowerCase()}.jpg`}
+                    src={
+                      hideSpoilers
+                        ? "mystery-man.png"
+                        : `${player.name.toLowerCase()}.jpg`
+                    }
                     alt={player.name}
                     width={75}
                     height={75}
-                    className={isActive ? "" : "eliminated"}
+                    className={isActive || hideSpoilers ? "" : "eliminated"}
                   ></img>
                 );
               })}
@@ -358,7 +364,11 @@ export default function Scores(props: {
                         </span>
                         <hr style={styles.hr} />
                         <img
-                          src={`${thisWeekScore.player.name.toLowerCase()}.jpg`}
+                          src={
+                            hideSpoilers
+                              ? "mystery-man.png"
+                              : `${thisWeekScore.player.name.toLowerCase()}.jpg`
+                          }
                           alt={thisWeekScore.player.name}
                           width={115}
                           height={115}

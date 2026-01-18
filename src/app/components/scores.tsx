@@ -2,20 +2,14 @@
 
 import Badge from "react-bootstrap/Badge";
 import React, { useContext } from "react";
-import { Accordion, Card, Col, Container, Row, Table } from "react-bootstrap";
 
 import { PlayerRankings } from "../providers/types";
-import {
-  Player,
-  PlayerScore,
-  RuleSet,
-  Team,
-  PlayerTribes,
-} from "../data/types";
+import { Player, PlayerScore, Team, PlayerTribes } from "../data/types";
 import RuleSetContext from "../context/ruleSetContext";
 import { players } from "../data/players";
 
 const styles: Record<string, React.CSSProperties> = {
+  badgeContainer: { width: "100%" },
   badge: {
     width: "100%",
     lineHeight: "inherit",
@@ -28,62 +22,12 @@ const styles: Record<string, React.CSSProperties> = {
   indicatorRed: {
     color: "var(--red-indicator-color)",
   },
-  indicatorNeutral: {
+  smallText: {
     fontSize: "10pt",
   },
-  avatar: {
-    borderRadius: "12px",
-    marginTop: "20px",
-    marginLeft: "16px",
-    filter: "var(--upside-down-image-filter)",
-    transform: "var(--upside-down-image-transform)",
-  },
-  name: {
-    fontSize: "25pt",
-    marginLeft: "16px",
-  },
-  units: {
-    fontSize: "10pt",
-  },
-  details: {
-    position: "absolute",
-    top: "74px",
-    left: "145px",
-  },
-  hr: {
-    margin: "16px",
-    marginTop: "4px",
-    marginBottom: "10px",
-  },
-  leftCard: {
-    borderTopRightRadius: "0px",
-    borderBottomRightRadius: "0px",
-    minHeight: "215px",
-  },
-  leftCardSmall: {
-    borderBottomRightRadius: "0px",
-    borderBottomLeftRadius: "0px",
-    marginBottom: "0px",
-    minHeight: "215px",
-  },
-  rightCard: {
-    borderTopLeftRadius: "0px",
-    borderBottomLeftRadius: "0px",
-    borderLeft: "0px",
-    minHeight: "215px",
-  },
-  rightCardSmall: {
-    borderTopRightRadius: "0px",
-    borderTopLeftRadius: "0px",
-    borderTop: "0px",
-    marginTop: "0px",
-  },
-  scoreLabel: {
-    color: "var(--score-label-color-override)",
-    fontWeight: "var(--score-label-font-weight-override)",
-  },
-  popularityEmoji: {
-    filter: "var(--upside-down-image-filter)",
+  notQuiteTinyText: { fontSize: "9pt" },
+  tinyText: {
+    fontSize: "8pt",
   },
   tribeDetailsContainer: {
     display: "flex",
@@ -102,6 +46,72 @@ const styles: Record<string, React.CSSProperties> = {
     borderRadius: "50%",
     border: "2px solid var(--component-text-color-primary)",
   },
+  legend: {
+    marginLeft: "auto",
+    marginRight: "auto",
+    marginBottom: "15px",
+    padding: "10px",
+    gap: "15px",
+    backgroundColor: "var(--component-background-color-primary)",
+    width: "fit-content",
+    fontSize: "10pt",
+  },
+  playersGroup: {
+    gap: "15px",
+    marginBottom: "15px",
+  },
+  playerCard: {
+    maxWidth: "350px",
+    border: "none",
+  },
+  playerCardHeader: {
+    gridTemplateRows: "25px 15px",
+    gridTemplateColumns: "44px auto 44px",
+    marginBottom: "10px",
+    paddingTop: "10px",
+    paddingLeft: "10px",
+    paddingRight: "10px",
+    borderTopLeftRadius: "var(--border-radius-standard)",
+    borderTopRightRadius: "var(--border-radius-standard)",
+  },
+  rank: {
+    fontSize: "12pt",
+    padding: "0px 6px",
+    borderRadius: "var(--border-radius-standard)",
+    backgroundColor: "var(--component-background-color-secondary)",
+  },
+  playerName: {
+    fontSize: "14pt",
+    textAlign: "center",
+    justifySelf: "center",
+    alignSelf: "center",
+  },
+  playerCardBody: {
+    marginBottom: "5px",
+    paddingLeft: "10px",
+    paddingRight: "10px",
+  },
+  avatarImg: { borderRadius: "var(--border-radius-rounded)" },
+  tableContainer: {
+    marginBottom: "0px",
+    paddingLeft: "10px",
+    paddingTop: "10px",
+    paddingBottom: "10px",
+  },
+  table: {
+    marginBottom: "0px",
+    width: "100%",
+    height: "100%",
+    textAlign: "center",
+  },
+  tableHeader: {
+    height: "25px",
+  },
+  tableBody: { verticalAlign: "bottom", height: "25px" },
+  historyContainer: {
+    borderLeft: "1px solid var(--component-text-color-secondary)",
+  },
+  playerCardFooter: { marginBottom: "5px" },
 };
 
 const tribeColors = {
@@ -109,6 +119,18 @@ const tribeColors = {
   [PlayerTribes.PURPLE]: "#8246fa",
   [PlayerTribes.TEAL]: "#46d1db",
 };
+
+const tribeGroups: Record<PlayerTribes, Player[]> = players.reduce(
+  (acc, player) => {
+    const { tribe } = player;
+    if (!acc[tribe]) {
+      acc[tribe] = [];
+    }
+    acc[tribe].push(player);
+    return acc;
+  },
+  {} as Record<PlayerTribes, Player[]>
+);
 
 const tableCols: Record<string, JSX.Element> = {
   // Standard
@@ -364,32 +386,6 @@ const tableCols: Record<string, JSX.Element> = {
   ),
 };
 
-const PointStringMap: Record<string, string> = {
-  // Standard
-  survival: "Survived",
-  votes: "Correct votes",
-  teamImmunity: "Immunity (team)",
-  individualImmunity: "Immunity (indiv.)",
-  advantage: "Advantage",
-  idolFound: "Idol found",
-  voteNullified: "Votes nullified",
-  placement: "Jury placement",
-  fire: "Fire",
-
-  // Upside down
-  losingTeam: "Losing team",
-  abysmalChallenge: "Abysmal challenge",
-  crying: "Random crying",
-  wrongVote: "Voted wrong",
-  blindsided: "Blindsided at tribal",
-  outFirst: "Voted out first",
-  outPreMerge: "Voted out pre-merge",
-  outPostMerge: "Voted out post-merge",
-  medEvac: "Med evac pre-merge",
-  threatenedToQuit: "Threatening to quit",
-  vomit: "Vomit",
-};
-
 function getBadge(playerScore: PlayerScore) {
   if (playerScore.status === "eliminated") {
     return (
@@ -418,59 +414,46 @@ function getBadge(playerScore: PlayerScore) {
   }
 }
 
-function getScoreElement(
-  thisWeekPoints: number = 0,
-  lastWeekPoints: number | undefined
-) {
-  const scoreDiff = thisWeekPoints - (lastWeekPoints || 0);
-
-  if (scoreDiff > 0) {
-    return (
-      <span>
-        {thisWeekPoints}
-        <span style={styles.units}>pts</span>{" "}
-        <span style={styles.indicatorGreen}>(+{scoreDiff})</span>
-      </span>
-    );
+function getRankDiff(rank: number, lastRank: number = 0) {
+  if (lastRank) {
+    if (rank < lastRank) {
+      return (
+        <>
+          <span style={styles.indicatorGreen}>(▲ {lastRank - rank})</span>
+        </>
+      );
+    } else if (rank > lastRank) {
+      return (
+        <>
+          <span style={styles.indicatorRed}>(▼ {rank - lastRank})</span>
+        </>
+      );
+    } else {
+      return "(-)";
+    }
   } else {
-    return (
-      <span>
-        {thisWeekPoints}
-        <span style={styles.units}>pts</span>{" "}
-        <span style={styles.indicatorNeutral}>(-)</span>
-      </span>
-    );
+    return "(-)";
   }
 }
 
-function getDetailsView(
-  ruleSet: RuleSet,
-  thisWeekScore: PlayerScore,
-  lastWeekScore?: PlayerScore
+function getScoreDiff(
+  score: number,
+  lastScore: number = 0,
+  useBrackets: boolean = true
 ) {
-  return (
-    <>
-      {thisWeekScore[ruleSet].total! === 0 && <>No points earned yet :(</>}
+  const scoreDiff = score - lastScore;
 
-      {...Object.entries(PointStringMap).map(([key, label]) => {
-        const pointsThisWeek = thisWeekScore[ruleSet].points as any;
-        const pointsLastWeek = lastWeekScore?.[ruleSet].points as any;
+  if (scoreDiff > 0) {
+    const scoreString = useBrackets ? `(+${scoreDiff})` : `+${scoreDiff}`;
 
-        return (
-          pointsThisWeek[key] > 0 && (
-            <>
-              <span style={styles.scoreLabel}>{label}: </span>
-              {getScoreElement(
-                pointsThisWeek[key],
-                pointsLastWeek && (pointsLastWeek[key] || 0)
-              )}
-              <br />
-            </>
-          )
-        );
-      })}
-    </>
-  );
+    return (
+      <>
+        <span style={styles.indicatorGreen}>{scoreString}</span>
+      </>
+    );
+  } else {
+    return useBrackets ? "(-)" : "-";
+  }
 }
 
 export default function Scores(props: {
@@ -480,20 +463,7 @@ export default function Scores(props: {
   hideSpoilers?: boolean;
 }) {
   const { thisWeekRankings, lastWeekRankings, teams, hideSpoilers } = props;
-
   const ruleSet = useContext(RuleSetContext);
-
-  const tribeGroups: Record<PlayerTribes, Player[]> = players.reduce(
-    (acc, player) => {
-      const { tribe } = player;
-      if (!acc[tribe]) {
-        acc[tribe] = [];
-      }
-      acc[tribe].push(player);
-      return acc;
-    },
-    {} as Record<PlayerTribes, Player[]>
-  );
 
   return (
     <>
@@ -543,16 +513,7 @@ export default function Scores(props: {
       <h1>Players</h1>
       <div
         className="flex flex-wrap items-center justify-center flex-item-card"
-        style={{
-          marginLeft: "auto",
-          marginRight: "auto",
-          marginBottom: "15px",
-          padding: "10px",
-          gap: "15px",
-          backgroundColor: "var(--component-background-color-primary)",
-          width: "fit-content",
-          fontSize: "10pt",
-        }}
+        style={styles.legend}
       >
         <div>{tableCols.survival} Survived</div>
         <div>{tableCols.votes} Correct votes</div>
@@ -567,10 +528,7 @@ export default function Scores(props: {
 
       <div
         className="flex flex-wrap items-center justify-center"
-        style={{
-          gap: "15px",
-          marginBottom: "15px",
-        }}
+        style={styles.playersGroup}
       >
         {...(thisWeekRankings || []).map((score) => {
           const { player } = score;
@@ -582,145 +540,43 @@ export default function Scores(props: {
             return curr.players.includes(player) ? acc + 1 : acc;
           }, 0);
 
-          function getRankDiff() {
-            if (lastWeekScore) {
-              if (score[ruleSet].rank < lastWeekScore[ruleSet].rank) {
-                return (
-                  <>
-                    <span style={styles.indicatorGreen}>
-                      (▲ {lastWeekScore[ruleSet].rank - score[ruleSet].rank})
-                    </span>
-                  </>
-                );
-              } else if (score[ruleSet].rank > lastWeekScore[ruleSet].rank) {
-                return (
-                  <>
-                    <span style={styles.indicatorRed}>
-                      (▼ {score[ruleSet].rank - lastWeekScore[ruleSet].rank})
-                    </span>
-                  </>
-                );
-              } else {
-                return "(-)";
-              }
-            } else {
-              return "(-)";
-            }
-          }
-
-          function getScoreDiff() {
-            const scoreDiff =
-              score[ruleSet].total -
-              (lastWeekScore ? lastWeekScore[ruleSet].total : 0);
-
-            if (scoreDiff > 0) {
-              return (
-                <>
-                  <span style={styles.indicatorGreen}>
-                    (+
-                    {scoreDiff})
-                  </span>
-                </>
-              );
-            } else {
-              return "(-)";
-            }
-          }
-
           return (
             <div
               key={player.name}
               className="flex-item-card"
-              style={{
-                maxWidth: "350px",
-                border: "none",
-              }}
+              style={styles.playerCard}
             >
               <div
                 className="grid"
                 style={{
-                  gridTemplateRows: "25px 15px",
-                  gridTemplateColumns: "44px auto 44px",
-                  marginBottom: "10px",
-                  paddingTop: "10px",
-                  paddingLeft: "10px",
-                  paddingRight: "10px",
+                  ...styles.playerCardHeader,
                   borderTop: `10px solid ${tribeColors[score.player.tribe]}`,
-                  borderTopLeftRadius: "var(--border-radius-standard)",
-                  borderTopRightRadius: "var(--border-radius-standard)",
                 }}
               >
-                <div
-                  style={{
-                    justifySelf: "center",
-                  }}
-                >
-                  <div
-                    style={{
-                      fontSize: "12pt",
-                      padding: "0px 6px",
-                      borderRadius: "var(--border-radius-standard)",
-                      backgroundColor:
-                        "var(--component-background-color-secondary)",
-                    }}
-                  >
-                    #{score[ruleSet].rank}
-                  </div>
+                <div className="justify-self-center">
+                  <div style={styles.rank}>#{score[ruleSet].rank}</div>
                 </div>
-                <div
-                  style={{
-                    fontSize: "14pt",
-                    textAlign: "center",
-                    justifySelf: "center",
-                    alignSelf: "center",
-                  }}
-                >
-                  {player.name}
-                </div>
+                <div style={styles.playerName}>{player.name}</div>
 
-                <div
-                  style={{
-                    textAlign: "center",
-                    justifySelf: "center",
-                    alignSelf: "center",
-                  }}
-                >
+                <div className="justify-self-center self-center text-center">
                   {score[ruleSet].total}
-                  <span style={styles.units}>pts</span>
+                  <span style={styles.smallText}>pts</span>
                 </div>
-                <div
-                  style={{
-                    justifySelf: "center",
-                    fontSize: "8pt",
-                  }}
-                >
-                  {getRankDiff()}
+                <div className="justify-self-center" style={styles.tinyText}>
+                  {getRankDiff(
+                    score[ruleSet].rank,
+                    lastWeekScore?.[ruleSet].rank
+                  )}
                 </div>
-
-                <div
-                  style={{
-                    textAlign: "center",
-                    justifySelf: "center",
-                    alignSelf: "center",
-                  }}
-                ></div>
-                <div
-                  style={{
-                    justifySelf: "center",
-                    fontSize: "8pt",
-                  }}
-                >
-                  {getScoreDiff()}
+                <div>{/* Empty div for spacing */}</div>
+                <div className="justify-self-center" style={styles.tinyText}>
+                  {getScoreDiff(
+                    score[ruleSet].total,
+                    lastWeekScore?.[ruleSet].total
+                  )}
                 </div>
               </div>
-              <div
-                className="flex flex-wrap"
-                style={{
-                  marginBottom: "5px",
-                  paddingLeft: "10px",
-                  paddingRight: "10px",
-                }}
-              >
+              <div className="flex flex-wrap" style={styles.playerCardBody}>
                 <img
                   src={
                     hideSpoilers
@@ -730,49 +586,28 @@ export default function Scores(props: {
                   alt={player.name}
                   width={95}
                   height={95}
-                  style={{ borderRadius: "12px" }}
+                  style={styles.avatarImg}
                 ></img>
-                <div
-                  className="flex-grow"
-                  style={{
-                    marginBottom: "0px",
-                    paddingLeft: "10px",
-                    paddingTop: "10px",
-                    paddingBottom: "10px",
-                  }}
-                >
-                  <table
-                    style={{
-                      marginBottom: "0px",
-                      width: "100%",
-                      height: "100%",
-                      textAlign: "center",
-                    }}
-                  >
-                    <thead style={{ height: "25px" }}>
+                <div className="flex-grow" style={styles.tableContainer}>
+                  <table style={styles.table}>
+                    <thead style={styles.tableHeader}>
                       <tr>
                         {Object.keys(tableCols).map((key) => (
                           <th key={key}>{tableCols[key]}</th>
                         ))}
                       </tr>
                     </thead>
-                    <tbody style={{ verticalAlign: "bottom", height: "25px" }}>
+                    <tbody style={styles.tableBody}>
                       <tr>
                         {...Object.keys(tableCols).map((key) => {
-                          const points = score[ruleSet].points as any;
-                          const lastWeekPoints = lastWeekScore?.[ruleSet]
-                            .points as any;
-                          const scoreDiff =
-                            (points[key] || 0) - (lastWeekPoints?.[key] || 0);
-
                           return (
-                            <td key={key} style={{ fontSize: "9pt" }}>
-                              {scoreDiff > 0 ? (
-                                <span style={styles.indicatorGreen}>
-                                  +{scoreDiff}
-                                </span>
-                              ) : (
-                                <span style={styles.indicatorNeutral}>-</span>
+                            <td key={key} style={styles.notQuiteTinyText}>
+                              {getScoreDiff(
+                                (score[ruleSet] as any).points?.[key] || 0,
+                                (lastWeekScore?.[ruleSet].points as any)?.[
+                                  key
+                                ] || 0,
+                                false
                               )}
                             </td>
                           );
@@ -782,7 +617,7 @@ export default function Scores(props: {
                         {...Object.keys(tableCols).map((key) => {
                           const points = score[ruleSet].points as any;
                           return (
-                            <td key={key} style={{ fontSize: "10pt" }}>
+                            <td key={key} style={styles.smallText}>
                               {points[key] || 0}
                             </td>
                           );
@@ -792,183 +627,19 @@ export default function Scores(props: {
                   </table>
                 </div>
               </div>
-              <div className="grid grid-cols-2" style={{ marginBottom: "5px" }}>
-                <div style={{ textAlign: "center" }}>
-                  <span style={styles.units}>{popularity} teams</span>
+              <div className="grid grid-cols-2" style={styles.playerCardFooter}>
+                <div className="text-center">
+                  <span style={styles.smallText}>{popularity} teams</span>
                 </div>
-                <div
-                  style={{
-                    textAlign: "center",
-                    borderLeft:
-                      "1px solid var(--component-text-color-secondary)",
-                  }}
-                >
-                  <span style={styles.units}>{player.history}</span>
+                <div className="text-center" style={styles.historyContainer}>
+                  <span style={styles.smallText}>{player.history}</span>
                 </div>
               </div>
-
-              <div style={{ width: "100%" }}>{getBadge(score)}</div>
+              <div style={styles.badgeContainer}>{getBadge(score)}</div>
             </div>
           );
         })}
       </div>
-      {/* <Container>
-        {...(thisWeekRankings || []).map((thisWeekScore) => {
-          const lastWeekScore = lastWeekRankings?.find(
-            (p) => p.player === thisWeekScore.player
-          );
-
-          let rank;
-
-          if (lastWeekScore && lastWeekScore[ruleSet]) {
-            if (thisWeekScore[ruleSet].rank < lastWeekScore[ruleSet].rank) {
-              rank = (
-                <span>
-                  #{thisWeekScore[ruleSet].rank}{" "}
-                  <span style={styles.indicatorGreen}>
-                    (▲{" "}
-                    {lastWeekScore[ruleSet].rank - thisWeekScore[ruleSet].rank})
-                  </span>
-                </span>
-              );
-            } else if (
-              thisWeekScore[ruleSet].rank > lastWeekScore[ruleSet].rank
-            ) {
-              rank = (
-                <span>
-                  #{thisWeekScore[ruleSet].rank}{" "}
-                  <span style={styles.indicatorRed}>
-                    (▼{" "}
-                    {thisWeekScore[ruleSet].rank - lastWeekScore[ruleSet].rank})
-                  </span>
-                </span>
-              );
-            } else {
-              rank = (
-                <span>
-                  #{thisWeekScore[ruleSet].rank}{" "}
-                  <span style={styles.indicatorNeutral}>(-)</span>
-                </span>
-              );
-            }
-          } else {
-            rank = <span>#{thisWeekScore[ruleSet].rank}</span>;
-          }
-
-          const popularity = teams.reduce((acc, curr) => {
-            return curr.players.includes(thisWeekScore.player) ? acc + 1 : acc;
-          }, 0);
-
-          const popularityEmoji =
-            popularity >= 17
-              ? "⭐️"
-              : popularity >= 13
-              ? "🔥"
-              : popularity >= 11
-              ? "👍"
-              : "☘️";
-
-          return (
-            <Row
-              key={thisWeekScore.player.name}
-              className="justify-content-center gx-0"
-            >
-              <Col xs={12} lg={9} xl={8} xxl={7}>
-                <Row className="justify-content-center gx-0">
-                  <Col xs={12} md={6}>
-                    <Card
-                      style={
-                        screenWidth < 768
-                          ? styles.leftCardSmall
-                          : styles.leftCard
-                      }
-                    >
-                      <div>
-                        <span style={styles.name}>
-                          {thisWeekScore.player.name}
-                        </span>
-                        <hr style={styles.hr} />
-                        <img
-                          src={
-                            hideSpoilers
-                              ? "mystery-man.png"
-                              : `${thisWeekScore.player.name.toLowerCase()}.jpg`
-                          }
-                          alt={thisWeekScore.player.name}
-                          width={115}
-                          height={115}
-                          style={styles.avatar}
-                        ></img>
-                        <div style={styles.details}>
-                          <br />
-                          <strong style={styles.scoreLabel}>Rank: </strong>
-                          {rank}
-                          <br />
-                          <strong style={styles.scoreLabel}>
-                            Total:{" "}
-                          </strong>{" "}
-                          {getScoreElement(
-                            thisWeekScore[ruleSet].total,
-                            lastWeekScore?.[ruleSet]?.total
-                          )}
-                          <br />
-                          <strong style={styles.scoreLabel}>
-                            Popularity:{" "}
-                          </strong>
-                          {popularity} <span style={styles.units}> teams</span>{" "}
-                          <span style={styles.popularityEmoji}>
-                            {popularityEmoji}
-                          </span>
-                        </div>
-                        {getBadge(thisWeekScore)}
-                      </div>
-                    </Card>
-                  </Col>
-                  <Col xs={12} md={5}>
-                    <Card
-                      style={
-                        screenWidth < 768
-                          ? styles.rightCardSmall
-                          : styles.rightCard
-                      }
-                    >
-                      <div>
-                        <Card.Body>
-                          {isSmallScreen ? (
-                            <Accordion
-                              flush
-                              className="player-details-accordion"
-                            >
-                              <Accordion.Item eventKey="0">
-                                <Accordion.Header>
-                                  Show details
-                                </Accordion.Header>
-                                <Accordion.Body>
-                                  {getDetailsView(
-                                    ruleSet,
-                                    thisWeekScore,
-                                    lastWeekScore
-                                  )}
-                                </Accordion.Body>
-                              </Accordion.Item>
-                            </Accordion>
-                          ) : (
-                            getDetailsView(
-                              ruleSet,
-                              thisWeekScore,
-                              lastWeekScore
-                            )
-                          )}
-                        </Card.Body>
-                      </div>
-                    </Card>
-                  </Col>
-                </Row>
-              </Col>
-            </Row>
-          );
-        })}
-      </Container> */}
     </>
   );
 }

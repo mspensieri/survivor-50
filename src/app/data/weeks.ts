@@ -45,11 +45,17 @@ const {
   JONATHAN,
   KAMILLA,
   KYLE,
+  MIKE,
+  OZZY,
+  Q,
+  RICK,
+  STEPHENIE,
+  TIFFANY,
 } = PlayerKeys;
 
 export const weeks: Array<Week> = [
   {
-    eliminated: [GENEVIEVE],
+    eliminated: [GENEVIEVE, MIKE, OZZY, Q, RICK, STEPHENIE, TIFFANY],
     [ANGELINA]: {
       standard: {
         votes: 1,

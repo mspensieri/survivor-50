@@ -5,8 +5,12 @@
   --border-radius-rounded: 12px;
   --bs-info-rgb: 7, 129, 154;
 
+  .badge {
+    --bs-badge-border-radius: var(--border-radius-standard);
+  }
+
   .flip-card {
-    --background-color-primary: #290269;
+    --background-color-primary: #230159;
 
     &.upside-down {
       --background-color-primary: #1c1c1c;
@@ -18,7 +22,7 @@
     --text-color-primary: #faece5;
     --text-color-secondary: #b0aca2;
     --text-color-transparent: rgba(114, 111, 86, 0.814);
-    --background-color-primary: #290269;
+    --background-color-primary: #230159;
 
     --component-background-color-primary: #faece5;
     --component-background-color-secondary: #e5e0d2;
@@ -26,6 +30,7 @@
     --component-background-color-active: #f1e1a8;
     --component-text-color-primary: #000000;
     --component-text-color-secondary: #84827a;
+    --component-border: none;
 
     --green-indicator-color: green;
     --red-indicator-color: red;
@@ -57,6 +62,7 @@
     --component-background-color-active: #606060;
     --component-text-color-primary: #dddddd;
     --component-text-color-secondary: #aaaaaa;
+    --component-border: 1px solid var(--component-text-color-secondary);
 
     --green-indicator-color: rgb(0, 200, 5);
     --red-indicator-color: rgb(255, 54, 36);
@@ -182,13 +188,6 @@
 
   .nav-underline {
     --bs-nav-underline-link-active-color: var(--text-color-primary);
-  }
-
-  .card {
-    --bs-card-spacer-y: 10px;
-    --bs-card-bg: var(--component-background-color-primary);
-    --bs-card-border-color: var(--component-text-color-secondary);
-    margin-bottom: 24px;
   }
 
   .card-text {
@@ -339,7 +338,7 @@
 
   .tribe-container {
     padding: 10px;
-    width: 352px; /* 4 tiles + gaps + border */
+    width: 340px; /* 4 tiles + gaps + border */
     height: auto;
     border-radius: var(--border-radius-standard);
     border: 1px solid var(--component-text-color-primary);
@@ -387,6 +386,23 @@
   .flex-break {
     flex-basis: 100%;
     height: 0;
+  }
+
+  table {
+    border-collapse: collapse;
+    border-style: hidden;
+  }
+
+  table td,
+  table th {
+    border: 1px solid var(--component-text-color-secondary);
+  }
+
+  h1 {
+    text-align: center;
+    font-size: 16pt;
+    color: var(--text-color-primary);
+    margin-bottom: 20px;
   }
 }
 

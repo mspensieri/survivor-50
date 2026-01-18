@@ -38,7 +38,6 @@ const styles: Record<string, React.CSSProperties> = {
   rank: {
     fontSize: "12pt",
     padding: "2px 6px",
-    marginBottom: "5px",
     borderRadius: "var(--border-radius-standard)",
     backgroundColor: "var(--component-background-color-secondary)",
   },

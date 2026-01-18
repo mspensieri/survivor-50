@@ -138,8 +138,6 @@ export default function MainView(props: {
           <Scores
             thisWeekRankings={getPlayerRankings(players).standard[0]}
             teams={teams}
-            isSmallScreen={isSmallScreen}
-            screenWidth={screenWidth}
             hideSpoilers={true}
           ></Scores>
         </SpoilerMask>
@@ -150,8 +148,6 @@ export default function MainView(props: {
           thisWeekRankings={playerRankings?.[weekNumber]}
           lastWeekRankings={playerRankings?.[weekNumber - 1]}
           teams={teams}
-          isSmallScreen={isSmallScreen}
-          screenWidth={screenWidth}
         ></Scores>
       );
     }

@@ -157,7 +157,7 @@ function Page() {
     );
   } else {
     return (
-      <div className={`flip-card-front ${standardFontClass}`}>
+      <div className={`single-view ${standardFontClass}`}>
         <RuleSetContext.Provider value={RuleSet.STANDARD}>
           <TeamContext.Provider value={teamRankings.standard}>
             <PlayerContext.Provider value={playerRankings.standard}>

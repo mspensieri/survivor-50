@@ -168,7 +168,7 @@ function Page() {
                 onRevealChange={setReveal}
                 isSmallScreen={isSmallScreen}
                 screenWidth={screenWidth}
-                active={side === "front"}
+                active={true}
                 activeTab={activeTab}
                 setActiveTab={updateTabAndStore}
               ></MainView>

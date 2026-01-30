@@ -115,9 +115,9 @@ const styles: Record<string, React.CSSProperties> = {
 };
 
 const tribeColors = {
-  [PlayerTribes.ORANGE]: "#fe9824",
-  [PlayerTribes.PURPLE]: "#8246fa",
-  [PlayerTribes.TEAL]: "#46d1db",
+  [PlayerTribes.CILA]: "#e86d40",
+  [PlayerTribes.VATU]: "#dd70ac",
+  [PlayerTribes.KALO]: "#60a9a4",
 };
 
 const tribeGroups: Record<PlayerTribes, Player[]> = players.reduce(
@@ -129,7 +129,7 @@ const tribeGroups: Record<PlayerTribes, Player[]> = players.reduce(
     acc[tribe].push(player);
     return acc;
   },
-  {} as Record<PlayerTribes, Player[]>
+  {} as Record<PlayerTribes, Player[]>,
 );
 const PointStringMap: Record<string, string> = {
   survival: "Survived",
@@ -196,7 +196,7 @@ function getRankDiff(rank: number, lastRank: number = 0) {
 function getScoreDiff(
   score: number,
   lastScore: number = 0,
-  useBrackets: boolean = true
+  useBrackets: boolean = true,
 ) {
   const scoreDiff = score - lastScore;
 
@@ -240,7 +240,7 @@ export default function Scores(props: {
             <div className="tribe-members-flex-container">
               {...tribePlayers.map((player) => {
                 const thisWeekScore = (thisWeekRankings || []).find(
-                  (p) => p.player === player
+                  (p) => p.player === player,
                 );
 
                 const isActive =
@@ -287,7 +287,7 @@ export default function Scores(props: {
         {...(thisWeekRankings || []).map((score) => {
           const { player } = score;
           const lastWeekScore = lastWeekRankings?.find(
-            (p) => p.player === score.player
+            (p) => p.player === score.player,
           );
 
           const popularity = teams.reduce((acc, curr) => {
@@ -319,14 +319,14 @@ export default function Scores(props: {
                 <div className="justify-self-center" style={styles.tinyText}>
                   {getRankDiff(
                     score[ruleSet].rank,
-                    lastWeekScore?.[ruleSet].rank
+                    lastWeekScore?.[ruleSet].rank,
                   )}
                 </div>
                 <div>{/* Empty div for spacing */}</div>
                 <div className="justify-self-center" style={styles.tinyText}>
                   {getScoreDiff(
                     score[ruleSet].total,
-                    lastWeekScore?.[ruleSet].total
+                    lastWeekScore?.[ruleSet].total,
                   )}
                 </div>
               </div>
@@ -366,7 +366,7 @@ export default function Scores(props: {
                                 (lastWeekScore?.[ruleSet].points as any)?.[
                                   key
                                 ] || 0,
-                                false
+                                false,
                               )}
                             </td>
                           );

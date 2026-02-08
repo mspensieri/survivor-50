@@ -171,6 +171,7 @@ function Page() {
                 active={true}
                 activeTab={activeTab}
                 setActiveTab={updateTabAndStore}
+                singleView={true}
               ></MainView>
             </PlayerContext.Provider>
           </TeamContext.Provider>

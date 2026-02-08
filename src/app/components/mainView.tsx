@@ -50,7 +50,11 @@ const styles: Record<string, React.CSSProperties> = {
     filter: "var(--upside-down-image-filter)",
     transform: "var(--upside-down-image-transform)",
   },
-  logoSmall: {
+  singleViewLogo: {
+    left: "auto",
+    right: 10,
+  },
+  logoHidden: {
     display: "none",
   },
   poolTitle: {
@@ -68,6 +72,7 @@ export default function MainView(props: {
   active: boolean;
   activeTab: string;
   setActiveTab: (tab: string) => void;
+  singleView?: boolean;
 }) {
   const {
     reveal,
@@ -79,6 +84,7 @@ export default function MainView(props: {
     active,
     activeTab,
     setActiveTab,
+    singleView,
   } = props;
 
   const teamRankings = useContext(TeamContext);
@@ -166,7 +172,8 @@ export default function MainView(props: {
           className="logo"
           style={{
             ...styles.logo,
-            ...(screenWidth < 490 ? styles.logoSmall : {}),
+            ...(screenWidth < 425 ? styles.logoHidden : {}),
+            ...(singleView ? styles.singleViewLogo : {}),
           }}
         ></img>
         <Navbar className="bg-body-tertiary">

@@ -21,6 +21,12 @@ const {
   JONATHAN,
   KAMILLA,
   KYLE,
+  MIKE,
+  OZZY,
+  Q,
+  STEPHENIE,
+  TIFFANY,
+  RICK,
 } = PLAYERS;
 
 export const SWAP_DEADLINE = 6;
@@ -31,508 +37,395 @@ export const teams: Array<Team> = computeHistory([
       ids: ["alex"],
     },
     name: "Wendy's Chickens",
-    players: [SAVANNAH, CIRIE, ANGELINA, COACH, JONATHAN, JOE],
-    winner: ANGELINA,
-    swap: {
-      week: 5,
-      playerOut: CIRIE,
-      playerIn: JENNA,
-    },
+    players: [CHRISTIAN, EMILY, TIFFANY, CHARLIE, ANGELINA, GENEVIEVE, RIZO, Q],
+    winner: EMILY,
   },
   {
     captain: {
       ids: ["kara"],
     },
     name: "Here's Your Headstone",
-    players: [AUBRY, COACH, DEE, CHARLIE, JOE, JONATHAN],
-    winner: AUBRY,
-    swap: {
-      week: 3,
-      playerOut: CHARLIE,
-      playerIn: EMILY,
-    },
+    players: [],
+    winner: "UNKNOWN",
   },
   {
     captain: {
       ids: ["joanne"],
     },
     name: "TEAM JO",
-    players: [SAVANNAH, KYLE, RIZO, CHARLIE, ANGELINA, COLBY],
-    winner: KYLE,
-    swap: {
-      week: 5,
-      playerOut: COLBY,
-      playerIn: DEE,
-    },
+    players: [],
+    winner: "UNKNOWN",
   },
   {
     captain: {
       ids: ["spen"],
     },
     name: "Come On In Guys",
-    players: [CHARLIE, COLBY, AUBRY, KYLE, JOE, DEE],
-    winner: DEE,
-    swap: {
-      week: 3,
-      playerOut: AUBRY,
-      playerIn: CHRISSY,
-    },
+    players: [CHARLIE, EMILY, DEE, KAMILLA, CHRISTIAN, GENEVIEVE, AUBRY, RICK],
+    winner: CHARLIE,
   },
   {
     captain: {
       ids: ["andrea_d", "susan"],
     },
     name: "The Dils",
-    players: [SAVANNAH, AUBRY, DEE, CHARLIE, COLBY, KAMILLA],
-    winner: DEE,
-    swap: {
-      week: 3,
-      playerOut: CHARLIE,
-      playerIn: ANGELINA,
-    },
+    players: [],
+    winner: "UNKNOWN",
   },
   {
     captain: {
       ids: ["diego"],
     },
     name: "Operation Italy",
-    players: [AUBRY, JENNA, CHRISSY, CHARLIE, CHRISTIAN, KAMILLA],
-    winner: CHRISSY,
-    swap: {
-      week: 2,
-      playerOut: AUBRY,
-      playerIn: SAVANNAH,
-    },
+    players: [
+      OZZY,
+      RICK,
+      CHRISTIAN,
+      COACH,
+      CHRISSY,
+      KAMILLA,
+      JONATHAN,
+      GENEVIEVE,
+    ],
+    winner: GENEVIEVE,
   },
   {
     captain: {
       ids: ["elizabeth"],
     },
     name: "Play Your Idol",
-    players: [CHRISTIAN, CIRIE, AUBRY, KYLE, KAMILLA, DEE],
-    winner: CHRISTIAN,
-    swap: {
-      week: 2,
-      playerOut: AUBRY,
-      playerIn: SAVANNAH,
-    },
+    players: [],
+    winner: "UNKNOWN",
   },
   {
     captain: {
       ids: ["mikey"],
     },
-    name: "First Time in Fiji",
-    players: [COLBY, CHARLIE, KYLE, JENNA, KAMILLA, JOE],
-    winner: JOE,
-    swap: {
-      week: 3,
-      playerOut: CHARLIE,
-      playerIn: DEE,
-    },
+    name: "Fiftieth Time in Fiji",
+    players: [DEE, ANGELINA, CIRIE, RIZO, MIKE, RICK, CHARLIE, CHRISSY],
+    winner: RIZO,
   },
   {
     captain: {
       ids: ["alec"],
     },
     name: "The Ghost of Andy",
-    players: [SAVANNAH, AUBRY, RIZO, CHRISSY, CHARLIE, JONATHAN],
-    winner: CHARLIE,
+    players: [],
+    winner: "UNKNOWN",
   },
   {
     captain: {
       ids: ["leila"],
     },
     name: "Got Nothin' For Ya",
-    players: [COACH, KYLE, CHRISSY, CHARLIE, CHRISTIAN, KAMILLA],
-    winner: KYLE,
+    players: [],
+    winner: "UNKNOWN",
   },
   {
     captain: {
       ids: ["katie"],
     },
     name: "Truth Kamikazee",
-    players: [KYLE, RIZO, EMILY, CHARLIE, CHRISTIAN, GENEVIEVE],
-    winner: CHARLIE,
-    swap: {
-      week: 1,
-      playerOut: GENEVIEVE,
-      playerIn: CHRISSY,
-    },
+    players: [
+      KAMILLA,
+      GENEVIEVE,
+      CHARLIE,
+      COACH,
+      RICK,
+      JONATHAN,
+      CHRISSY,
+      RIZO,
+    ],
+    winner: RICK,
   },
   {
     captain: {
       ids: ["danny"],
     },
-    name: "chud (lower case)",
-    players: [COACH, CIRIE, EMILY, CHRISTIAN, ANGELINA, GENEVIEVE],
-    winner: EMILY,
-    swap: {
-      week: 1,
-      playerOut: GENEVIEVE,
-      playerIn: COLBY,
-    },
+    name: "chud",
+    players: [KAMILLA, GENEVIEVE, CHARLIE, CIRIE, JONATHAN, JOE, EMILY],
+    winner: AUBRY,
   },
   {
     captain: {
       ids: ["stanley"],
     },
     name: "UNDERDOGS",
-    players: [KAMILLA, ANGELINA, EMILY, GENEVIEVE, COLBY, CIRIE],
-    winner: KAMILLA,
-    swap: {
-      week: 1,
-      playerOut: GENEVIEVE,
-      playerIn: CHRISSY,
-    },
+    players: [],
+    winner: "UNKNOWN",
   },
   {
     captain: {
       ids: ["sandy"],
     },
     name: "Sandy's Spynest",
-    players: [COACH, DEE, RIZO, CHARLIE, COLBY, KAMILLA],
-    winner: COACH,
-    swap: {
-      week: 3,
-      playerOut: CHARLIE,
-      playerIn: CHRISSY,
-    },
+    players: [TIFFANY, GENEVIEVE, JOE, JONATHAN, Q, CIRIE, JENNA, RIZO],
+    winner: TIFFANY,
   },
   {
     captain: {
       ids: ["colleen"],
     },
-    name: "Mermaid Dragon",
-    players: [SAVANNAH, RIZO, DEE, CHARLIE, CHRISTIAN, JOE],
-    winner: CHRISTIAN,
-    swap: {
-      week: 4,
-      playerOut: CHARLIE,
-      playerIn: EMILY,
-    },
+    name: "Put me in, Coach",
+    players: [CHARLIE, RIZO, COACH, ANGELINA, JOE, EMILY, RICK, KYLE],
+    winner: JOE,
   },
   {
     captain: {
       ids: ["brendan"],
     },
     name: "KING OF THE JUNGLE",
-    players: [SAVANNAH, JENNA, RIZO, CHARLIE, JONATHAN, JOE],
-    winner: CHARLIE,
-    swap: {
-      week: 4,
-      playerOut: CHARLIE,
-      playerIn: KYLE,
-    },
+    players: [
+      TIFFANY,
+      GENEVIEVE,
+      JOE,
+      JONATHAN,
+      CHRISTIAN,
+      RIZO,
+      CHRISSY,
+      COACH,
+    ],
+    winner: JOE,
   },
   {
     captain: {
       ids: ["kevin"],
     },
     name: "Jeff's Dimples",
-    players: [COACH, DEE, RIZO, CHRISSY, CHARLIE, CHRISTIAN],
-    winner: DEE,
-    swap: {
-      week: 3,
-      playerOut: CHARLIE,
-      playerIn: ANGELINA,
-    },
+    players: [],
+    winner: "UNKNOWN",
   },
   {
     captain: {
       ids: ["carrie"],
     },
     name: "4blackcats",
-    players: [SAVANNAH, CIRIE, KYLE, CHARLIE, CHRISTIAN, DEE],
-    winner: CHRISTIAN,
-    swap: {
-      week: 4,
-      playerOut: CIRIE,
-      playerIn: RIZO,
-    },
+    players: [DEE, GENEVIEVE, KAMILLA, KYLE, JONATHAN, RIZO, CHARLIE],
+    winner: DEE,
   },
   {
     captain: {
       ids: ["sean"],
     },
     name: "Leafs Nation",
-    players: [SAVANNAH, KYLE, RIZO, CHARLIE, JONATHAN, JOE],
-    winner: JONATHAN,
-    swap: {
-      week: 4,
-      playerOut: CHARLIE,
-      playerIn: ANGELINA,
-    },
+    players: [],
+    winner: "UNKNOWN",
   },
   {
     captain: {
       ids: ["sarah"],
     },
     name: "Sole Survivor of Sass",
-    players: [SAVANNAH, JENNA, COACH, CHRISTIAN, ANGELINA, GENEVIEVE],
-    winner: SAVANNAH,
-    swap: {
-      week: 1,
-      playerOut: GENEVIEVE,
-      playerIn: DEE,
-    },
+    players: [CHRISSY, STEPHENIE, AUBRY, CIRIE, JOE, JONATHAN, RIZO, CHRISTIAN],
+    winner: AUBRY,
   },
   {
     captain: {
       ids: ["frank"],
     },
     name: "Bottom of the Pool",
-    players: [JENNA, CIRIE, CHRISTIAN, CHRISSY, COLBY, JOE],
-    winner: CHRISTIAN,
+    players: [],
+    winner: "UNKNOWN",
   },
   {
     captain: {
-      ids: ["thomas"],
+      ids: ["thomas", "ashley"],
     },
     name: "Chicken Dinner",
-    players: [KYLE, JENNA, EMILY, CHARLIE, JONATHAN, KAMILLA],
-    winner: JONATHAN,
-    swap: {
-      week: 4,
-      playerOut: CHARLIE,
-      playerIn: RIZO,
-    },
+    players: [COLBY, STEPHENIE, COACH, AUBRY, CHRISSY, MIKE, DEE, RIZO],
+    winner: RIZO,
   },
   {
     captain: {
       ids: ["vanesa"],
     },
     name: "The Immunity Drip",
-    players: [SAVANNAH, KYLE, RIZO, CHARLIE, DEE, GENEVIEVE],
-    winner: CHARLIE,
-    swap: {
-      week: 1,
-      playerOut: GENEVIEVE,
-      playerIn: EMILY,
-    },
+    players: [],
+    winner: "UNKNOWN",
   },
   {
     captain: {
       ids: ["erick"],
     },
     name: "Chuckwurself before you jeckwurself",
-    players: [CHARLIE, KYLE, RIZO, CHRISSY, DEE, JONATHAN],
-    winner: DEE,
-    swap: {
-      week: 3,
-      playerOut: CHARLIE,
-      playerIn: EMILY,
-    },
+    players: [],
+    winner: "UNKNOWN",
   },
   {
     captain: {
       ids: ["andrea_r"],
     },
     name: "Here For Friendship",
-    players: [AUBRY, JENNA, CHRISTIAN, COLBY, COACH, DEE],
-    winner: JENNA,
-    swap: {
-      week: 4,
-      playerOut: AUBRY,
-      playerIn: RIZO,
-    },
+    players: [],
+    winner: "UNKNOWN",
   },
   {
     captain: {
       ids: ["menard"],
     },
     name: "You Go Girl",
-    players: [SAVANNAH, JENNA, COACH, JONATHAN, KAMILLA, JOE],
-    winner: SAVANNAH,
-    swap: {
-      week: 6,
-      playerOut: JOE,
-      playerIn: ANGELINA,
-    },
+    players: [],
+    winner: "UNKNOWN",
   },
   {
     captain: {
       ids: ["leigh"],
     },
     name: "LIVIN'",
-    players: [SAVANNAH, CIRIE, KYLE, CHRISSY, EMILY, JOE],
-    winner: JOE,
-    swap: {
-      week: 5,
-      playerOut: CHRISSY,
-      playerIn: ANGELINA,
-    },
+    players: [],
+    winner: "UNKNOWN",
   },
   {
     captain: {
       ids: ["elana"],
     },
     name: "Probst Malone",
-    players: [CIRIE, EMILY, DEE, COLBY, GENEVIEVE, AUBRY],
-    winner: DEE,
+    players: [],
+    winner: "UNKNOWN",
   },
   {
     captain: {
       ids: ["alyssa", "adam"],
     },
     name: "AA Tribe",
-    players: [AUBRY, EMILY, DEE, CHARLIE, CHRISTIAN, COACH],
-    winner: CHARLIE,
-    swap: {
-      week: 5,
-      playerOut: AUBRY,
-      playerIn: JENNA,
-    },
+    players: [],
+    winner: "UNKNOWN",
   },
   {
     captain: {
       ids: ["greg"],
     },
     name: "Ate 2 Much Kokoda",
-    players: [SAVANNAH, CIRIE, RIZO, CHARLIE, JONATHAN, JOE],
-    winner: CIRIE,
-    swap: {
-      week: 3,
-      playerOut: CIRIE,
-      playerIn: ANGELINA,
-    },
+    players: [],
+    winner: "UNKNOWN",
   },
   {
     captain: {
       ids: ["andy", "lally"],
     },
     name: "Ogatally DeVotes",
-    players: [JENNA, DEE, CHARLIE, CHRISSY, CHRISTIAN, GENEVIEVE],
-    winner: CHRISTIAN,
-    swap: {
-      week: 4,
-      playerOut: GENEVIEVE,
-      playerIn: RIZO,
-    },
+    players: [],
+    winner: "UNKNOWN",
   },
   {
     captain: {
       ids: ["jacob"],
     },
     name: "With You 100%",
-    players: [COACH, CHARLIE, ANGELINA, EMILY, AUBRY, CIRIE],
-    winner: COACH,
-    swap: {
-      week: 3,
-      playerOut: CHARLIE,
-      playerIn: JOE,
-    },
+    players: [],
+    winner: "UNKNOWN",
   },
   {
     captain: {
       ids: ["jacklyn"],
     },
     name: "JSpenny",
-    players: [DEE, COACH, CHARLIE, CHRISSY, KAMILLA, CHRISTIAN],
-    winner: DEE,
-    swap: {
-      week: 3,
-      playerOut: CHARLIE,
-      playerIn: ANGELINA,
-    },
+    players: [],
+    winner: "UNKNOWN",
   },
   {
     captain: {
       ids: ["sab", "bruno"],
     },
     name: "Bing and Bugz",
-    players: [CHARLIE, SAVANNAH, JENNA, AUBRY, KYLE, CHRISTIAN],
-    winner: SAVANNAH,
+    players: [],
+    winner: "UNKNOWN",
   },
   {
     captain: {
       ids: ["meagan"],
     },
     name: "Totally Oswald",
-    players: [AUBRY, DEE, CHARLIE, COLBY, GENEVIEVE, KAMILLA],
-    winner: AUBRY,
-    swap: {
-      week: 1,
-      playerOut: GENEVIEVE,
-      playerIn: SAVANNAH,
-    },
+    players: [],
+    winner: "UNKNOWN",
   },
   {
     captain: {
       ids: ["taylor"],
     },
     name: "Clyde's Castaways",
-    players: [AUBRY, JENNA, DEE, CHRISTIAN, CHRISSY, CIRIE],
-    winner: CHRISTIAN,
-    swap: {
-      week: 3,
-      playerOut: AUBRY,
-      playerIn: ANGELINA,
-    },
+    players: [],
+    winner: "UNKNOWN",
   },
   {
     captain: {
       ids: ["dan", "dana"],
     },
     name: "Ducky & Boinko Forever",
-    players: [AUBRY, DEE, CHARLIE, CHRISSY, GENEVIEVE, KAMILLA],
-    winner: CHRISSY,
-    swap: {
-      week: 4,
-      playerOut: AUBRY,
-      playerIn: RIZO,
-    },
+    players: [],
+    winner: "UNKNOWN",
   },
   {
     captain: {
       ids: ["dean"],
     },
-    name: "Dean's ⒿETⓈ",
-    players: [KYLE, JENNA, CHARLIE, JONATHAN, KAMILLA, JOE],
-    winner: CHARLIE,
-    swap: {
-      week: 3,
-      playerOut: CHARLIE,
-      playerIn: ANGELINA,
-    },
+    name: "daddw",
+    players: [COACH, JOE, COLBY, STEPHENIE, ANGELINA, CHRISSY, DEE, EMILY],
+    winner: COACH,
   },
   {
     captain: {
       ids: ["jeremy"],
     },
     name: "Jere-atrics",
-    players: [EMILY, CHARLIE, KYLE, KAMILLA, JOE, SAVANNAH],
-    winner: KAMILLA,
-    swap: {
-      week: 4,
-      playerOut: CHARLIE,
-      playerIn: DEE,
-    },
+    players: [],
+    winner: "UNKNOWN",
   },
   {
     captain: {
       ids: ["jessie"],
     },
     name: "Outwit, Outplay, Out-Rizz",
-    players: [SAVANNAH, KYLE, RIZO, CHARLIE, JONATHAN, KAMILLA],
+    players: [RIZO, JOE, CIRIE, AUBRY, STEPHENIE, CHRISSY, JONATHAN, TIFFANY],
     winner: RIZO,
-    swap: {
-      week: 7,
-      playerOut: CHARLIE,
-      playerIn: ANGELINA,
-    },
   },
   {
     captain: {
       ids: ["anne"],
     },
     name: "Challenge Beasts",
-    players: [SAVANNAH, KYLE, RIZO, CHARLIE, DEE, KAMILLA],
-    winner: SAVANNAH,
-    swap: {
-      week: 3,
-      playerOut: CHARLIE,
-      playerIn: CHRISSY,
+    players: [CHRISSY, CHRISTIAN, SAVANNAH, RICK, DEE, CHARLIE, GENEVIEVE, JOE],
+    winner: JOE,
+  },
+  {
+    captain: {
+      ids: ["kathy", "fergus"],
     },
+    name: "Fergus' Fortunetelling",
+    players: [JENNA, STEPHENIE, CHRISSY, RICK, DEE, CHARLIE, KYLE, RIZO],
+    winner: RICK,
+  },
+  {
+    captain: {
+      ids: ["christine", "jocelyn"],
+    },
+    name: "Banana Etiquette",
+    players: [AUBRY, GENEVIEVE, CHRISTIAN, EMILY, JOE, JONATHAN, COACH, DEE],
+    winner: AUBRY,
+  },
+  {
+    captain: {
+      ids: ["jensen"],
+    },
+    name: "Reba Theme Song",
+    players: [OZZY, Q, RICK, DEE, MIKE, CHRISSY, CIRIE, RIZO],
+    winner: CHRISSY,
+  },
+  {
+    captain: {
+      ids: ["brittany", "jesse"],
+    },
+    name: "BJ-ISLAND",
+    players: [DEE, MIKE, GENEVIEVE, CHARLIE, CHRISSY, KAMILLA, JONATHAN, CIRIE],
+    winner: DEE,
+  },
+  {
+    captain: {
+      ids: ["sheldon"],
+    },
+    name: "Jeff Probst For President",
+    players: [JENNA, OZZY, CHRISSY, RICK, RIZO, CHARLIE, GENEVIEVE, KAMILLA],
+    winner: GENEVIEVE,
   },
 ]);
 
@@ -543,7 +436,16 @@ export const fakeTeams: Array<Team> = [
       ids: ["alex"],
     },
     winner: ANGELINA,
-    players: [ANGELINA, AUBRY, CHARLIE, CHRISSY, CHRISTIAN, CIRIE],
+    players: [
+      ANGELINA,
+      AUBRY,
+      CHARLIE,
+      CHRISSY,
+      CHRISTIAN,
+      CIRIE,
+      GENEVIEVE,
+      RIZO,
+    ],
     history: {
       overallRating: 1,
       placements: [],
@@ -555,7 +457,7 @@ export const fakeTeams: Array<Team> = [
       ids: ["alex"],
     },
     winner: ANGELINA,
-    players: [COACH, COLBY, DEE, EMILY, GENEVIEVE, RIZO],
+    players: [COACH, COLBY, DEE, EMILY, GENEVIEVE, RIZO, JENNA, SAVANNAH],
     history: {
       overallRating: 1,
       placements: [],
@@ -567,7 +469,7 @@ export const fakeTeams: Array<Team> = [
       ids: ["alex"],
     },
     winner: ANGELINA,
-    players: [JENNA, SAVANNAH, JOE, JONATHAN, KAMILLA, KYLE],
+    players: [JENNA, SAVANNAH, JOE, JONATHAN, KAMILLA, KYLE, GENEVIEVE, RIZO],
     history: {
       overallRating: 1,
       placements: [],
@@ -579,7 +481,7 @@ export const fakeTeams: Array<Team> = [
       ids: ["alex"],
     },
     winner: ANGELINA,
-    players: [COLBY, DEE, EMILY, GENEVIEVE, RIZO, JENNA],
+    players: [COLBY, DEE, EMILY, GENEVIEVE, RIZO, JENNA, SAVANNAH, JOE],
     history: {
       overallRating: 1,
       placements: [],
@@ -591,7 +493,7 @@ export const fakeTeams: Array<Team> = [
       ids: ["alex"],
     },
     winner: ANGELINA,
-    players: [JONATHAN, KAMILLA, KYLE, COACH, COLBY, DEE],
+    players: [JONATHAN, KAMILLA, KYLE, COACH, COLBY, DEE, EMILY, GENEVIEVE],
     history: {
       overallRating: 1,
       placements: [],
@@ -603,7 +505,7 @@ export const fakeTeams: Array<Team> = [
       ids: ["alex"],
     },
     winner: ANGELINA,
-    players: [CHRISTIAN, CIRIE, COACH, COLBY, DEE, EMILY],
+    players: [CHRISTIAN, CIRIE, COACH, COLBY, DEE, EMILY, GENEVIEVE, RIZO],
     history: {
       overallRating: 1,
       placements: [],
@@ -615,7 +517,7 @@ export const fakeTeams: Array<Team> = [
       ids: ["alex"],
     },
     winner: ANGELINA,
-    players: [EMILY, GENEVIEVE, RIZO, JENNA, SAVANNAH, JOE],
+    players: [EMILY, GENEVIEVE, RIZO, JENNA, SAVANNAH, JOE, JONATHAN, KAMILLA],
     history: {
       overallRating: 1,
       placements: [],
@@ -627,7 +529,7 @@ export const fakeTeams: Array<Team> = [
       ids: ["alex"],
     },
     winner: ANGELINA,
-    players: [JOE, JONATHAN, KAMILLA, KYLE, COACH, COLBY],
+    players: [JOE, JONATHAN, KAMILLA, KYLE, COACH, COLBY, DEE, EMILY],
     history: {
       overallRating: 1,
       placements: [],
@@ -639,7 +541,7 @@ export const fakeTeams: Array<Team> = [
       ids: ["alex"],
     },
     winner: ANGELINA,
-    players: [CHRISTIAN, CIRIE, COACH, COLBY, DEE, EMILY],
+    players: [CHRISTIAN, CIRIE, COACH, COLBY, DEE, EMILY, GENEVIEVE, RIZO],
     history: {
       overallRating: 1,
       placements: [],
@@ -651,7 +553,7 @@ export const fakeTeams: Array<Team> = [
       ids: ["alex"],
     },
     winner: ANGELINA,
-    players: [GENEVIEVE, RIZO, JENNA, SAVANNAH, JOE, JONATHAN],
+    players: [GENEVIEVE, RIZO, JENNA, SAVANNAH, JOE, JONATHAN, KAMILLA, KYLE],
     history: {
       overallRating: 1,
       placements: [],
@@ -663,7 +565,7 @@ export const fakeTeams: Array<Team> = [
       ids: ["alex"],
     },
     winner: ANGELINA,
-    players: [KAMILLA, KYLE, COACH, COLBY, DEE, EMILY],
+    players: [KAMILLA, KYLE, COACH, COLBY, DEE, EMILY, GENEVIEVE, RIZO],
     history: {
       overallRating: 1,
       placements: [],
@@ -675,7 +577,16 @@ export const fakeTeams: Array<Team> = [
       ids: ["alex"],
     },
     winner: ANGELINA,
-    players: [CHRISTIAN, CIRIE, GENEVIEVE, RIZO, JENNA, SAVANNAH],
+    players: [
+      CHRISTIAN,
+      CIRIE,
+      GENEVIEVE,
+      RIZO,
+      JENNA,
+      SAVANNAH,
+      JOE,
+      JONATHAN,
+    ],
     history: {
       overallRating: 1,
       placements: [],
@@ -687,7 +598,7 @@ export const fakeTeams: Array<Team> = [
       ids: ["alex"],
     },
     winner: ANGELINA,
-    players: [JOE, JONATHAN, KAMILLA, KYLE, COACH, EMILY],
+    players: [JOE, JONATHAN, KAMILLA, KYLE, COACH, EMILY, GENEVIEVE, RIZO],
     history: {
       overallRating: 1,
       placements: [],
@@ -699,7 +610,7 @@ export const fakeTeams: Array<Team> = [
       ids: ["alex"],
     },
     winner: ANGELINA,
-    players: [COLBY, DEE, GENEVIEVE, RIZO, JENNA, SAVANNAH],
+    players: [COLBY, DEE, GENEVIEVE, RIZO, JENNA, SAVANNAH, KYLE, CIRIE],
     history: {
       overallRating: 1,
       placements: [],
@@ -711,7 +622,7 @@ export const fakeTeams: Array<Team> = [
       ids: ["alex"],
     },
     winner: ANGELINA,
-    players: [CHRISTIAN, CIRIE, JOE, JONATHAN, KAMILLA, KYLE],
+    players: [CHRISTIAN, CIRIE, JOE, JONATHAN, KAMILLA, KYLE, GENEVIEVE, RIZO],
     history: {
       overallRating: 1,
       placements: [],
@@ -723,7 +634,7 @@ export const fakeTeams: Array<Team> = [
       ids: ["alex"],
     },
     winner: ANGELINA,
-    players: [COACH, COLBY, DEE, EMILY, GENEVIEVE, RIZO],
+    players: [COACH, COLBY, DEE, EMILY, GENEVIEVE, RIZO, JENNA, SAVANNAH],
     history: {
       overallRating: 1,
       placements: [],
@@ -735,7 +646,7 @@ export const fakeTeams: Array<Team> = [
       ids: ["alex"],
     },
     winner: ANGELINA,
-    players: [JENNA, SAVANNAH, JOE, JONATHAN, KAMILLA, KYLE],
+    players: [JENNA, SAVANNAH, JOE, JONATHAN, KAMILLA, KYLE, GENEVIEVE, RIZO],
     history: {
       overallRating: 1,
       placements: [],
@@ -747,7 +658,7 @@ export const fakeTeams: Array<Team> = [
       ids: ["alex"],
     },
     winner: ANGELINA,
-    players: [CHRISTIAN, CIRIE, COACH, COLBY, DEE, EMILY],
+    players: [CHRISTIAN, CIRIE, COACH, COLBY, DEE, EMILY, GENEVIEVE, RIZO],
     history: {
       overallRating: 1,
       placements: [],

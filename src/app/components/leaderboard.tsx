@@ -9,6 +9,7 @@ import PlayerContext from "../context/playerContext";
 import PlacementChart from "./placementChart";
 import Sidebar from "./sidebar";
 import { captainNames, stars } from "../utils/format";
+import { SWAP_DEADLINE } from "../data/teams";
 
 function UserIcon() {
   return (
@@ -82,6 +83,9 @@ const styles: Record<string, React.CSSProperties> = {
     borderBottom: "1px solid var(--component-text-color-secondary)",
     gridColumn: "span 4",
   },
+  inactivePlayer: {
+    opacity: 0.2,
+  },
 };
 
 export default function Leaderboard(props: {
@@ -112,7 +116,7 @@ export default function Leaderboard(props: {
   }
 
   let firstPlaceGroup = thisWeekRankings.filter(
-    (teamScore) => teamScore[ruleSet].rank === 1
+    (teamScore) => teamScore[ruleSet].rank === 1,
   );
 
   let remainingTeams: TeamRankings;
@@ -121,7 +125,7 @@ export default function Leaderboard(props: {
     remainingTeams = thisWeekRankings;
   } else {
     remainingTeams = thisWeekRankings.filter(
-      (teamScore) => teamScore[ruleSet].rank > 1
+      (teamScore) => teamScore[ruleSet].rank > 1,
     );
   }
 
@@ -130,7 +134,7 @@ export default function Leaderboard(props: {
       <>
         {...rankings.map((thisWeekScore, index) => {
           const lastWeekScore = lastWeekRankings?.find(
-            (r) => r.team === thisWeekScore.team
+            (r) => r.team === thisWeekScore.team,
           );
 
           function getScoreDiff() {
@@ -187,15 +191,16 @@ export default function Leaderboard(props: {
           }
 
           const { team } = thisWeekScore;
+          const swapAvailable = !team.swap && currentWeek <= SWAP_DEADLINE;
 
           const players = [...team.players].concat(
             team.swap && team.swap.week <= currentWeek
               ? [team.swap.playerIn]
-              : []
+              : [],
           );
           const activePlayers = players.filter((player) => {
             const playerScore = playerRankings[currentWeek].find(
-              (r) => r.player === player
+              (r) => r.player === player,
             );
 
             return (
@@ -236,6 +241,11 @@ export default function Leaderboard(props: {
                 {activePlayers.map((_, i) => (
                   <UserIcon key={i} />
                 ))}
+                {swapAvailable && (
+                  <span style={styles.inactivePlayer}>
+                    <UserIcon />
+                  </span>
+                )}
               </div>
               <div style={styles.placementHistory}>
                 <PlacementChart

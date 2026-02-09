@@ -69,8 +69,8 @@ export const teams: Array<Team> = computeHistory([
       ids: ["andrea_d", "susan"],
     },
     name: "The Dils",
-    players: [],
-    winner: "UNKNOWN",
+    players: [CHRISTIAN, CIRIE, JOE, AUBRY, GENEVIEVE, CHARLIE, KAMILLA, TIFFANY],
+    winner: GENEVIEVE,
   },
   {
     captain: {
@@ -208,8 +208,8 @@ export const teams: Array<Team> = computeHistory([
       ids: ["sean"],
     },
     name: "Leafs Nation",
-    players: [],
-    winner: "UNKNOWN",
+    players: [JENNA, STEPHENIE, CHRISTIAN, CHARLIE, RIZO, SAVANNAH, DEE, MIKE],
+    winner: RIZO,
   },
   {
     captain: {
@@ -264,8 +264,8 @@ export const teams: Array<Team> = computeHistory([
       ids: ["menard"],
     },
     name: "You Go Girl",
-    players: [],
-    winner: "UNKNOWN",
+    players: [CIRIE, DEE, AUBRY, EMILY, ANGELINA, STEPHENIE, TIFFANY, CHRISSY],
+    winner: DEE,
   },
   {
     captain: {
@@ -295,9 +295,9 @@ export const teams: Array<Team> = computeHistory([
     captain: {
       ids: ["greg"],
     },
-    name: "Ate 2 Much Kokoda",
-    players: [],
-    winner: "UNKNOWN",
+    name: "Kookoo 4 Kokoda",
+    players: [CHARLIE, KAMILLA, DEE, KYLE, RIZO, AUBRY, GENEVIEVE, RICK],
+    winner: RICK,
   },
   {
     captain: {
@@ -312,16 +312,16 @@ export const teams: Array<Team> = computeHistory([
       ids: ["jacob"],
     },
     name: "With You 100%",
-    players: [],
-    winner: "UNKNOWN",
+    players: [KYLE, CHARLIE, SAVANNAH, JONATHAN, AUBRY, STEPHENIE, RIZO, GENEVIEVE],
+    winner: CHARLIE,
   },
   {
     captain: {
       ids: ["jacklyn"],
     },
-    name: "JSpenny",
-    players: [],
-    winner: "UNKNOWN",
+    name: "and-i'm-pissed",
+    players: [GENEVIEVE, SAVANNAH, OZZY, KAMILLA, EMILY, CHARLIE, CHRISSY, JONATHAN],
+    winner: KAMILLA,
   },
   {
     captain: {
@@ -336,8 +336,8 @@ export const teams: Array<Team> = computeHistory([
       ids: ["meagan"],
     },
     name: "Totally Oswald",
-    players: [],
-    winner: "UNKNOWN",
+    players: [TIFFANY, GENEVIEVE, EMILY, CHRISSY, CHARLIE, CHRISTIAN, RIZO, JOE],
+    winner: CHARLIE,
   },
   {
     captain: {
@@ -426,6 +426,14 @@ export const teams: Array<Team> = computeHistory([
     name: "Jeff Probst For President",
     players: [JENNA, OZZY, CHRISSY, RICK, RIZO, CHARLIE, GENEVIEVE, KAMILLA],
     winner: GENEVIEVE,
+  },
+  {
+    captain: {
+      ids: ["roberto", "christina"],
+    },
+    name: "The Baras",
+    players: [CIRIE, CHRISSY, KAMILLA, MIKE, JOE, CHRISTIAN, CHARLIE, SAVANNAH],
+    winner: CHARLIE,
   },
 ]);
 

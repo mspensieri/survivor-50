@@ -44,17 +44,17 @@ export const teams: Array<Team> = computeHistory([
     captain: {
       ids: ["kara"],
     },
-    name: "Here's Your Headstone",
-    players: [],
-    winner: "UNKNOWN",
+    name: "Uncle Jeff & The Numbers",
+    players: [GENEVIEVE, CHRISTIAN, CIRIE, DEE, KAMILLA, KYLE, RIZO, STEPHENIE],
+    winner: GENEVIEVE,
   },
   {
     captain: {
       ids: ["joanne"],
     },
     name: "TEAM JO",
-    players: [],
-    winner: "UNKNOWN",
+    players: [KAMILLA, OZZY, CHRISTIAN, CHARLIE, JENNA, KYLE, DEE, JONATHAN],
+    winner: KAMILLA,
   },
   {
     captain: {
@@ -69,7 +69,16 @@ export const teams: Array<Team> = computeHistory([
       ids: ["andrea_d", "susan"],
     },
     name: "The Dils",
-    players: [CHRISTIAN, CIRIE, JOE, AUBRY, GENEVIEVE, CHARLIE, KAMILLA, TIFFANY],
+    players: [
+      CHRISTIAN,
+      CIRIE,
+      JOE,
+      AUBRY,
+      GENEVIEVE,
+      CHARLIE,
+      KAMILLA,
+      TIFFANY,
+    ],
     winner: GENEVIEVE,
   },
   {
@@ -94,8 +103,17 @@ export const teams: Array<Team> = computeHistory([
       ids: ["elizabeth"],
     },
     name: "Play Your Idol",
-    players: [],
-    winner: "UNKNOWN",
+    players: [
+      JENNA,
+      CHRISTIAN,
+      STEPHENIE,
+      CIRIE,
+      EMILY,
+      TIFFANY,
+      CHARLIE,
+      AUBRY,
+    ],
+    winner: JENNA,
   },
   {
     captain: {
@@ -191,9 +209,18 @@ export const teams: Array<Team> = computeHistory([
     captain: {
       ids: ["kevin"],
     },
-    name: "Jeff's Dimples",
-    players: [],
-    winner: "UNKNOWN",
+    name: "Survivor 50: Dimples at War",
+    players: [
+      RICK,
+      RIZO,
+      KAMILLA,
+      GENEVIEVE,
+      CHARLIE,
+      CHRISTIAN,
+      MIKE,
+      SAVANNAH,
+    ],
+    winner: RICK,
   },
   {
     captain: {
@@ -223,9 +250,9 @@ export const teams: Array<Team> = computeHistory([
     captain: {
       ids: ["frank"],
     },
-    name: "Bottom of the Pool",
-    players: [],
-    winner: "UNKNOWN",
+    name: "Muscle Mania - Smackdown",
+    players: [JONATHAN, SAVANNAH, Q, DEE, JOE, RICK, OZZY, COLBY],
+    winner: JONATHAN,
   },
   {
     captain: {
@@ -234,14 +261,6 @@ export const teams: Array<Team> = computeHistory([
     name: "Chicken Dinner",
     players: [COLBY, STEPHENIE, COACH, AUBRY, CHRISSY, MIKE, DEE, RIZO],
     winner: RIZO,
-  },
-  {
-    captain: {
-      ids: ["vanesa"],
-    },
-    name: "The Immunity Drip",
-    players: [],
-    winner: "UNKNOWN",
   },
   {
     captain: {
@@ -256,8 +275,8 @@ export const teams: Array<Team> = computeHistory([
       ids: ["andrea_r"],
     },
     name: "Here For Friendship",
-    players: [],
-    winner: "UNKNOWN",
+    players: [CIRIE, MIKE, KAMILLA, CHRISTIAN, Q, JENNA, TIFFANY, OZZY],
+    winner: MIKE,
   },
   {
     captain: {
@@ -271,24 +290,16 @@ export const teams: Array<Team> = computeHistory([
     captain: {
       ids: ["leigh"],
     },
-    name: "LIVIN'",
-    players: [],
-    winner: "UNKNOWN",
+    name: "Justice for Jesse!!!",
+    players: [CHARLIE, EMILY, COLBY, RIZO, GENEVIEVE, DEE, KAMILLA, SAVANNAH],
+    winner: EMILY,
   },
   {
     captain: {
       ids: ["elana"],
     },
     name: "Probst Malone",
-    players: [],
-    winner: "UNKNOWN",
-  },
-  {
-    captain: {
-      ids: ["alyssa", "adam"],
-    },
-    name: "AA Tribe",
-    players: [],
+    players: [CHRISTIAN, ANGELINA, KAMILLA, CHRISSY, CIRIE, KYLE, JOE, JENNA],
     winner: "UNKNOWN",
   },
   {
@@ -301,18 +312,19 @@ export const teams: Array<Team> = computeHistory([
   },
   {
     captain: {
-      ids: ["andy", "lally"],
-    },
-    name: "Ogatally DeVotes",
-    players: [],
-    winner: "UNKNOWN",
-  },
-  {
-    captain: {
       ids: ["jacob"],
     },
     name: "With You 100%",
-    players: [KYLE, CHARLIE, SAVANNAH, JONATHAN, AUBRY, STEPHENIE, RIZO, GENEVIEVE],
+    players: [
+      KYLE,
+      CHARLIE,
+      SAVANNAH,
+      JONATHAN,
+      AUBRY,
+      STEPHENIE,
+      RIZO,
+      GENEVIEVE,
+    ],
     winner: CHARLIE,
   },
   {
@@ -320,23 +332,33 @@ export const teams: Array<Team> = computeHistory([
       ids: ["jacklyn"],
     },
     name: "and-i'm-pissed",
-    players: [GENEVIEVE, SAVANNAH, OZZY, KAMILLA, EMILY, CHARLIE, CHRISSY, JONATHAN],
+    players: [
+      GENEVIEVE,
+      SAVANNAH,
+      OZZY,
+      KAMILLA,
+      EMILY,
+      CHARLIE,
+      CHRISSY,
+      JONATHAN,
+    ],
     winner: KAMILLA,
-  },
-  {
-    captain: {
-      ids: ["sab", "bruno"],
-    },
-    name: "Bing and Bugz",
-    players: [],
-    winner: "UNKNOWN",
   },
   {
     captain: {
       ids: ["meagan"],
     },
     name: "Totally Oswald",
-    players: [TIFFANY, GENEVIEVE, EMILY, CHRISSY, CHARLIE, CHRISTIAN, RIZO, JOE],
+    players: [
+      TIFFANY,
+      GENEVIEVE,
+      EMILY,
+      CHRISSY,
+      CHARLIE,
+      CHRISTIAN,
+      RIZO,
+      JOE,
+    ],
     winner: CHARLIE,
   },
   {
@@ -344,16 +366,16 @@ export const teams: Array<Team> = computeHistory([
       ids: ["taylor"],
     },
     name: "Clyde's Castaways",
-    players: [],
-    winner: "UNKNOWN",
+    players: [CIRIE, CHRISTIAN, MIKE, RICK, DEE, TIFFANY, Q, KAMILLA],
+    winner: RICK,
   },
   {
     captain: {
       ids: ["dan", "dana"],
     },
     name: "Ducky & Boinko Forever",
-    players: [],
-    winner: "UNKNOWN",
+    players: [KAMILLA, TIFFANY, OZZY, RICK, GENEVIEVE, STEPHENIE, RIZO, EMILY],
+    winner: KAMILLA,
   },
   {
     captain: {
@@ -434,6 +456,14 @@ export const teams: Array<Team> = computeHistory([
     name: "The Baras",
     players: [CIRIE, CHRISSY, KAMILLA, MIKE, JOE, CHRISTIAN, CHARLIE, SAVANNAH],
     winner: CHARLIE,
+  },
+  {
+    captain: {
+      ids: ["rachel"],
+    },
+    name: "SURVIVOR 50 EXTRAVAGANZA",
+    players: [OZZY, CHRISSY, CHARLIE, KAMILLA, JOE, KYLE, RIZO, SAVANNAH],
+    winner: OZZY,
   },
 ]);
 

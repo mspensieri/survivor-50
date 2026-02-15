@@ -83,6 +83,7 @@ export const Captains = {
   meagan: "Meagan",
   menard: "Menard",
   mikey: "Mikey",
+  rachel: "Rachel",
   renee: "Renee",
   roberto: "Roberto",
   ryan: "Ryan",

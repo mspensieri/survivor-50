@@ -300,7 +300,7 @@ export const teams: Array<Team> = computeHistory([
     },
     name: "Probst Malone",
     players: [CHRISTIAN, ANGELINA, KAMILLA, CHRISSY, CIRIE, KYLE, JOE, JENNA],
-    winner: "UNKNOWN",
+    winner: ANGELINA,
   },
   {
     captain: {

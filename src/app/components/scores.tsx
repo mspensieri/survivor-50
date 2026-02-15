@@ -388,7 +388,10 @@ export default function Scores(props: {
               </div>
               <div className="grid grid-cols-2" style={styles.playerCardFooter}>
                 <div className="text-center">
-                  <span style={styles.smallText}>{popularity} teams</span>
+                  <span style={styles.smallText}>
+                    {popularity} teams (
+                    {Math.floor((popularity / teams.length) * 100)}%)
+                  </span>
                 </div>
                 <div className="text-center" style={styles.historyContainer}>
                   <span style={styles.smallText}>{player.history}</span>

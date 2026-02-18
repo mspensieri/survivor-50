@@ -266,9 +266,9 @@ export const teams: Array<Team> = computeHistory([
     captain: {
       ids: ["erick"],
     },
-    name: "Chuckwurself before you jeckwurself",
-    players: [],
-    winner: "UNKNOWN",
+    name: "Fight Milk",
+    players: [SAVANNAH, GENEVIEVE, COLBY, DEE, JOE, KAMILLA, KYLE, RIZO],
+    winner: SAVANNAH,
   },
   {
     captain: {
@@ -390,8 +390,8 @@ export const teams: Array<Team> = computeHistory([
       ids: ["jeremy"],
     },
     name: "Jere-atrics",
-    players: [],
-    winner: "UNKNOWN",
+    players: [RIZO, GENEVIEVE, SAVANNAH, DEE, CHARLIE, JOE, CHRISTIAN, TIFFANY],
+    winner: RIZO,
   },
   {
     captain: {

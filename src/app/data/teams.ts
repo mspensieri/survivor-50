@@ -128,16 +128,16 @@ export const teams: Array<Team> = computeHistory([
       ids: ["alec"],
     },
     name: "The Ghost of Andy",
-    players: [],
-    winner: "UNKNOWN",
+    players: [CHRISSY, OZZY, JONATHAN, AUBRY, CIRIE, DEE, EMILY, CHRISTIAN],
+    winner: DEE,
   },
   {
     captain: {
       ids: ["leila"],
     },
     name: "Got Nothin' For Ya",
-    players: [],
-    winner: "UNKNOWN",
+    players: [RIZO, MIKE, OZZY, KAMILLA, CIRIE, COACH, KYLE, RICK],
+    winner: OZZY,
   },
   {
     captain: {
@@ -169,8 +169,8 @@ export const teams: Array<Team> = computeHistory([
       ids: ["stanley"],
     },
     name: "UNDERDOGS",
-    players: [],
-    winner: "UNKNOWN",
+    players: [COLBY, ANGELINA, Q, JENNA, COACH, SAVANNAH, MIKE, KYLE],
+    winner: MIKE,
   },
   {
     captain: {
@@ -464,6 +464,40 @@ export const teams: Array<Team> = computeHistory([
     name: "SURVIVOR 50 EXTRAVAGANZA",
     players: [OZZY, CHRISSY, CHARLIE, KAMILLA, JOE, KYLE, RIZO, SAVANNAH],
     winner: OZZY,
+  },
+  {
+    captain: {
+      ids: ["savannah"],
+    },
+    name: "Hidden Immunity Stick",
+    players: [
+      AUBRY,
+      CIRIE,
+      STEPHENIE,
+      RICK,
+      CHRISSY,
+      CHRISTIAN,
+      EMILY,
+      CHARLIE,
+    ],
+    winner: AUBRY,
+  },
+  {
+    captain: {
+      ids: ["robbie"],
+    },
+    name: "Going Probstal",
+    players: [
+      CIRIE,
+      OZZY,
+      CHRISTIAN,
+      COACH,
+      CHARLIE,
+      STEPHENIE,
+      AUBRY,
+      CHRISSY,
+    ],
+    winner: CHRISTIAN,
   },
 ]);
 

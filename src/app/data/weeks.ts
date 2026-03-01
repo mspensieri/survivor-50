@@ -38,9 +38,7 @@ const {
   DEE,
   EMILY,
   GENEVIEVE,
-  RIZO,
   JENNA,
-  SAVANNAH,
   JOE,
   JONATHAN,
   KAMILLA,
@@ -49,8 +47,123 @@ const {
   OZZY,
   Q,
   RICK,
+  RIZO,
+  SAVANNAH,
   STEPHENIE,
   TIFFANY,
 } = PlayerKeys;
 
-export const weeks: Array<Week> = [{}];
+export const weeks: Array<Week> = [
+  {
+    eliminated: [JENNA, KYLE],
+    [ANGELINA]: {
+      [RuleSet.STANDARD]: {
+        teamImmunity: 1,
+      },
+    },
+    [AUBRY]: {
+      [RuleSet.STANDARD]: {
+        teamImmunity: 1,
+      },
+    },
+    [CHARLIE]: {
+      [RuleSet.STANDARD]: {
+        teamImmunity: 1,
+      },
+    },
+    [CHRISSY]: {
+      [RuleSet.STANDARD]: {
+        teamImmunity: 1,
+      },
+    },
+    [CHRISTIAN]: {
+      [RuleSet.STANDARD]: {
+        votes: 1,
+      },
+    },
+    [CIRIE]: {
+      [RuleSet.STANDARD]: {
+        votes: 1,
+      },
+    },
+    [COACH]: {
+      [RuleSet.STANDARD]: {
+        teamImmunity: 1,
+      },
+    },
+    [COLBY]: {
+      [RuleSet.STANDARD]: {
+        teamImmunity: 1,
+      },
+    },
+    [DEE]: {
+      [RuleSet.STANDARD]: {
+        teamImmunity: 1,
+      },
+    },
+    [EMILY]: {
+      [RuleSet.STANDARD]: { votes: 1 },
+    },
+    [GENEVIEVE]: {
+      [RuleSet.STANDARD]: {
+        teamImmunity: 1,
+        idolFound: 2,
+      },
+    },
+    [JOE]: {
+      [RuleSet.STANDARD]: { votes: 1 },
+    },
+    [JONATHAN]: {
+      [RuleSet.STANDARD]: {
+        teamImmunity: 1,
+      },
+    },
+    [KAMILLA]: {
+      [RuleSet.STANDARD]: {
+        teamImmunity: 1,
+      },
+    },
+    [KYLE]: {
+      [RuleSet.STANDARD]: {
+        teamImmunity: 1,
+      },
+    },
+    [MIKE]: {
+      [RuleSet.STANDARD]: {
+        teamImmunity: 1,
+      },
+    },
+    [OZZY]: {
+      [RuleSet.STANDARD]: { votes: 1 },
+    },
+    [Q]: {
+      [RuleSet.STANDARD]: {
+        teamImmunity: 1,
+      },
+    },
+    [RICK]: {
+      [RuleSet.STANDARD]: { votes: 1 },
+    },
+    [RIZO]: {
+      [RuleSet.STANDARD]: {
+        teamImmunity: 1,
+      },
+    },
+    [SAVANNAH]: {
+      [RuleSet.STANDARD]: {
+        votes: 1,
+        advantage: 1,
+      },
+    },
+    [STEPHENIE]: {
+      [RuleSet.STANDARD]: {
+        teamImmunity: 1,
+      },
+    },
+    [TIFFANY]: {
+      [RuleSet.STANDARD]: {
+        teamImmunity: 1,
+      },
+    },
+  },
+];

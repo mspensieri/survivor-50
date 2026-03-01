@@ -171,6 +171,11 @@ export const teams: Array<Team> = computeHistory([
     name: "UNDERDOGS",
     players: [COLBY, ANGELINA, Q, JENNA, COACH, SAVANNAH, MIKE, KYLE],
     winner: MIKE,
+    swap: {
+      playerIn: TIFFANY,
+      playerOut: JENNA,
+      week: 1,
+    },
   },
   {
     captain: {

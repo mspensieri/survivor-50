@@ -34,14 +34,6 @@ export const SWAP_DEADLINE = 6;
 export const teams: Array<Team> = computeHistory([
   {
     captain: {
-      ids: ["alex"],
-    },
-    name: "Wendy's Chickens",
-    players: [CHRISTIAN, EMILY, TIFFANY, CHARLIE, ANGELINA, GENEVIEVE, RIZO, Q],
-    winner: EMILY,
-  },
-  {
-    captain: {
       ids: ["kara"],
     },
     name: "Uncle Jeff & The Numbers",
@@ -191,6 +183,14 @@ export const teams: Array<Team> = computeHistory([
       playerOut: JENNA,
       week: 1,
     },
+  },
+  {
+    captain: {
+      ids: ["alex"],
+    },
+    name: "Wendy's Chickens",
+    players: [CHRISTIAN, EMILY, TIFFANY, CHARLIE, ANGELINA, GENEVIEVE, RIZO, Q],
+    winner: EMILY,
   },
   {
     captain: {

@@ -47,6 +47,11 @@ export const teams: Array<Team> = computeHistory([
     name: "Uncle Jeff & The Numbers",
     players: [GENEVIEVE, CHRISTIAN, CIRIE, DEE, KAMILLA, KYLE, RIZO, STEPHENIE],
     winner: GENEVIEVE,
+    swap: {
+      playerIn: EMILY,
+      playerOut: KYLE,
+      week: 1,
+    },
   },
   {
     captain: {
@@ -55,6 +60,11 @@ export const teams: Array<Team> = computeHistory([
     name: "TEAM JO",
     players: [KAMILLA, OZZY, CHRISTIAN, CHARLIE, JENNA, KYLE, DEE, JONATHAN],
     winner: KAMILLA,
+    swap: {
+      playerIn: GENEVIEVE,
+      playerOut: KYLE,
+      week: 1,
+    },
   },
   {
     captain: {
@@ -114,6 +124,11 @@ export const teams: Array<Team> = computeHistory([
       AUBRY,
     ],
     winner: JENNA,
+    swap: {
+      playerIn: GENEVIEVE,
+      playerOut: JENNA,
+      week: 2,
+    },
   },
   {
     captain: {
@@ -192,6 +207,11 @@ export const teams: Array<Team> = computeHistory([
     name: "Put me in, Coach",
     players: [CHARLIE, RIZO, COACH, ANGELINA, JOE, EMILY, RICK, KYLE],
     winner: JOE,
+    swap: {
+      playerIn: TIFFANY,
+      playerOut: KYLE,
+      week: 1,
+    },
   },
   {
     captain: {
@@ -234,6 +254,11 @@ export const teams: Array<Team> = computeHistory([
     name: "4blackcats",
     players: [DEE, GENEVIEVE, KAMILLA, KYLE, JONATHAN, RIZO, CHARLIE, CHRISSY],
     winner: DEE,
+    swap: {
+      playerIn: CHRISTIAN,
+      playerOut: KYLE,
+      week: 1,
+    },
   },
   {
     captain: {
@@ -242,6 +267,11 @@ export const teams: Array<Team> = computeHistory([
     name: "Leafs Nation",
     players: [JENNA, STEPHENIE, CHRISTIAN, CHARLIE, RIZO, SAVANNAH, DEE, MIKE],
     winner: RIZO,
+    swap: {
+      playerIn: CHRISTIAN,
+      playerOut: JENNA,
+      week: 1,
+    },
   },
   {
     captain: {
@@ -274,6 +304,11 @@ export const teams: Array<Team> = computeHistory([
     name: "Fight Milk",
     players: [SAVANNAH, GENEVIEVE, COLBY, DEE, JOE, KAMILLA, KYLE, RIZO],
     winner: SAVANNAH,
+    swap: {
+      playerIn: CIRIE,
+      playerOut: KYLE,
+      week: 1,
+    },
   },
   {
     captain: {
@@ -282,6 +317,11 @@ export const teams: Array<Team> = computeHistory([
     name: "Here For Friendship",
     players: [CIRIE, MIKE, KAMILLA, CHRISTIAN, Q, JENNA, TIFFANY, OZZY],
     winner: MIKE,
+    swap: {
+      playerIn: RIZO,
+      playerOut: JENNA,
+      week: 1,
+    },
   },
   {
     captain: {
@@ -314,6 +354,11 @@ export const teams: Array<Team> = computeHistory([
     name: "Kookoo 4 Kokoda",
     players: [CHARLIE, KAMILLA, DEE, KYLE, RIZO, AUBRY, GENEVIEVE, RICK],
     winner: RICK,
+    swap: {
+      playerIn: JONATHAN,
+      playerOut: KYLE,
+      week: 1,
+    },
   },
   {
     captain: {
@@ -331,6 +376,11 @@ export const teams: Array<Team> = computeHistory([
       GENEVIEVE,
     ],
     winner: CHARLIE,
+    swap: {
+      playerIn: MIKE,
+      playerOut: KYLE,
+      week: 1,
+    },
   },
   {
     captain: {

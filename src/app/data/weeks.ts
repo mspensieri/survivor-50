@@ -166,4 +166,121 @@ export const weeks: Array<Week> = [
       },
     },
   },
+  {
+    eliminated: [SAVANNAH],
+    [ANGELINA]: {
+      [RuleSet.STANDARD]: {
+        survival: 1,
+        teamImmunity: 1,
+      },
+    },
+    [AUBRY]: {
+      [RuleSet.STANDARD]: {
+        survival: 1,
+        teamImmunity: 1,
+      },
+    },
+    [CHARLIE]: {
+      [RuleSet.STANDARD]: { survival: 1, teamImmunity: 1 },
+    },
+    [CHRISSY]: {
+      [RuleSet.STANDARD]: { survival: 1, teamImmunity: 1 },
+    },
+    [CHRISTIAN]: {
+      [RuleSet.STANDARD]: {
+        survival: 1,
+        idolFound: 2,
+        votes: 1,
+      },
+    },
+    [CIRIE]: {
+      [RuleSet.STANDARD]: {
+        survival: 1,
+        votes: 1,
+      },
+    },
+    [COACH]: {
+      [RuleSet.STANDARD]: {
+        teamImmunity: 1,
+        survival: 1,
+      },
+    },
+    [COLBY]: {
+      [RuleSet.STANDARD]: {
+        survival: 1,
+        teamImmunity: 1,
+      },
+    },
+    [DEE]: {
+      [RuleSet.STANDARD]: {
+        teamImmunity: 1,
+        survival: 1,
+      },
+    },
+    [EMILY]: {
+      [RuleSet.STANDARD]: { survival: 1, votes: 1 },
+    },
+    [GENEVIEVE]: {
+      [RuleSet.STANDARD]: {
+        survival: 1,
+        teamImmunity: 1,
+      },
+    },
+    [JOE]: {
+      [RuleSet.STANDARD]: { survival: 1, votes: 1 },
+    },
+    [JONATHAN]: {
+      [RuleSet.STANDARD]: {
+        survival: 1,
+        teamImmunity: 1,
+      },
+    },
+    [KAMILLA]: {
+      [RuleSet.STANDARD]: {
+        survival: 1,
+        teamImmunity: 1,
+      },
+    },
+    [MIKE]: {
+      [RuleSet.STANDARD]: {
+        survival: 1,
+        teamImmunity: 1,
+      },
+    },
+    [OZZY]: {
+      [RuleSet.STANDARD]: { survival: 1, votes: 1 },
+    },
+    [Q]: {
+      [RuleSet.STANDARD]: {
+        survival: 1,
+        teamImmunity: 1,
+      },
+    },
+    [RICK]: {
+      [RuleSet.STANDARD]: { survival: 1, votes: 1 },
+    },
+    [RIZO]: {
+      [RuleSet.STANDARD]: {
+        survival: 1,
+        teamImmunity: 1,
+      },
+    },
+    [SAVANNAH]: {
+      [RuleSet.STANDARD]: {
+        survival: 1,
+      },
+    },
+    [STEPHENIE]: {
+      [RuleSet.STANDARD]: {
+        survival: 1,
+        teamImmunity: 1,
+      },
+    },
+    [TIFFANY]: {
+      [RuleSet.STANDARD]: {
+        survival: 1,
+        teamImmunity: 1,
+      },
+    },
+  },
 ];

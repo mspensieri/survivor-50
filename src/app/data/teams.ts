@@ -246,6 +246,11 @@ export const teams: Array<Team> = computeHistory([
       SAVANNAH,
     ],
     winner: RICK,
+    swap: {
+      playerIn: COLBY,
+      playerOut: SAVANNAH,
+      week: 2,
+    },
   },
   {
     captain: {
@@ -288,6 +293,11 @@ export const teams: Array<Team> = computeHistory([
     name: "Muscle Mania - Smackdown",
     players: [JONATHAN, SAVANNAH, Q, DEE, JOE, RICK, OZZY, COLBY],
     winner: JONATHAN,
+    swap: {
+      playerIn: MIKE,
+      playerOut: SAVANNAH,
+      week: 2,
+    },
   },
   {
     captain: {
@@ -463,6 +473,11 @@ export const teams: Array<Team> = computeHistory([
     name: "Challenge Beasts",
     players: [CHRISSY, CHRISTIAN, SAVANNAH, RICK, DEE, CHARLIE, GENEVIEVE, JOE],
     winner: JOE,
+    swap: {
+      playerIn: EMILY,
+      playerOut: SAVANNAH,
+      week: 2,
+    },
   },
   {
     captain: {
@@ -471,6 +486,11 @@ export const teams: Array<Team> = computeHistory([
     name: "Fergus' Fortunetelling",
     players: [JENNA, STEPHENIE, CHRISSY, RICK, DEE, CHARLIE, KYLE, RIZO],
     winner: RICK,
+    swap: {
+      playerIn: GENEVIEVE,
+      playerOut: JENNA,
+      week: 2,
+    },
   },
   {
     captain: {
@@ -503,6 +523,11 @@ export const teams: Array<Team> = computeHistory([
     name: "Jeff Probst For President",
     players: [JENNA, OZZY, CHRISSY, RICK, RIZO, CHARLIE, GENEVIEVE, KAMILLA],
     winner: GENEVIEVE,
+    swap: {
+      playerIn: ANGELINA,
+      playerOut: JENNA,
+      week: 2,
+    },
   },
   {
     captain: {
@@ -511,6 +536,11 @@ export const teams: Array<Team> = computeHistory([
     name: "The Baras",
     players: [CIRIE, CHRISSY, KAMILLA, MIKE, JOE, CHRISTIAN, CHARLIE, SAVANNAH],
     winner: CHARLIE,
+    swap: {
+      playerIn: JONATHAN,
+      playerOut: SAVANNAH,
+      week: 2,
+    },
   },
   {
     captain: {

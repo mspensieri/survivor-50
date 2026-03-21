@@ -433,6 +433,11 @@ export const teams: Array<Team> = computeHistory([
     name: "Clyde's Castaways",
     players: [CIRIE, CHRISTIAN, MIKE, RICK, DEE, TIFFANY, Q, KAMILLA],
     winner: RICK,
+    swap: {
+      playerIn: CHARLIE,
+      playerOut: Q,
+      week: 3,
+    },
   },
   {
     captain: {

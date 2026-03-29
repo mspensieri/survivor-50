@@ -108,7 +108,7 @@ export default function Sidebar(props: {
               {team.swap.playerOut.name} ➔ {team.swap.playerIn.name} (
               {airDates[team.swap.week]})
             </>
-          ) : currentWeek > SWAP_DEADLINE ? (
+          ) : currentWeek >= SWAP_DEADLINE ? (
             "Swap expired"
           ) : (
             "Swap available"

@@ -29,7 +29,7 @@ const {
   RICK,
 } = PLAYERS;
 
-export const SWAP_DEADLINE = 6;
+export const SWAP_DEADLINE = 5;
 
 export const teams: Array<Team> = computeHistory([
   {
@@ -65,6 +65,11 @@ export const teams: Array<Team> = computeHistory([
     name: "Come On In Guys",
     players: [CHARLIE, EMILY, DEE, KAMILLA, CHRISTIAN, GENEVIEVE, AUBRY, RICK],
     winner: CHARLIE,
+    swap: {
+      playerIn: TIFFANY,
+      playerOut: CHARLIE,
+      week: 5,
+    },
   },
   {
     captain: {
@@ -206,6 +211,11 @@ export const teams: Array<Team> = computeHistory([
     name: "Wendy's Chickens",
     players: [CHRISTIAN, EMILY, TIFFANY, CHARLIE, ANGELINA, GENEVIEVE, RIZO, Q],
     winner: EMILY,
+    swap: {
+      playerIn: RICK,
+      playerOut: CHARLIE,
+      week: 5,
+    },
   },
   {
     captain: {
@@ -214,6 +224,11 @@ export const teams: Array<Team> = computeHistory([
     name: "Sandy's Spynest",
     players: [TIFFANY, GENEVIEVE, JOE, JONATHAN, Q, CIRIE, JENNA, RIZO],
     winner: TIFFANY,
+    swap: {
+      playerIn: KAMILLA,
+      playerOut: JENNA,
+      week: 5,
+    },
   },
   {
     captain: {
@@ -360,6 +375,11 @@ export const teams: Array<Team> = computeHistory([
     name: "You Go Girl",
     players: [CIRIE, DEE, AUBRY, EMILY, ANGELINA, STEPHENIE, TIFFANY, CHRISSY],
     winner: DEE,
+    swap: {
+      playerIn: KAMILLA,
+      playerOut: ANGELINA,
+      week: 5,
+    },
   },
   {
     captain: {
@@ -479,6 +499,11 @@ export const teams: Array<Team> = computeHistory([
     name: "daddw",
     players: [COACH, JOE, COLBY, STEPHENIE, ANGELINA, CHRISSY, DEE, EMILY],
     winner: COACH,
+    swap: {
+      playerIn: OZZY,
+      playerOut: ANGELINA,
+      week: 5,
+    },
   },
   {
     captain: {
@@ -579,6 +604,11 @@ export const teams: Array<Team> = computeHistory([
     name: "SURVIVOR 50 EXTRAVAGANZA",
     players: [OZZY, CHRISSY, CHARLIE, KAMILLA, JOE, KYLE, RIZO, SAVANNAH],
     winner: OZZY,
+    swap: {
+      playerIn: TIFFANY,
+      playerOut: CHARLIE,
+      week: 5,
+    },
   },
   {
     captain: {

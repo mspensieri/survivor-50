@@ -192,7 +192,7 @@ export default function Leaderboard(props: {
 
           const { team } = thisWeekScore;
           const swapAvailable =
-            (!team.swap && currentWeek <= SWAP_DEADLINE) ||
+            (!team.swap && currentWeek < SWAP_DEADLINE) ||
             (team.swap && team.swap.week > currentWeek);
 
           const players = [...team.players].concat(

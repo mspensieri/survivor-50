@@ -155,6 +155,11 @@ export const teams: Array<Team> = computeHistory([
     name: "Got Nothin' For Ya",
     players: [RIZO, MIKE, OZZY, KAMILLA, CIRIE, COACH, KYLE, RICK],
     winner: OZZY,
+    swap: {
+      playerIn: DEE,
+      playerOut: KYLE,
+      week: 5,
+    },
   },
   {
     captain: {
@@ -388,6 +393,11 @@ export const teams: Array<Team> = computeHistory([
     name: "Justice for Jesse!!!",
     players: [CHARLIE, EMILY, COLBY, RIZO, GENEVIEVE, DEE, KAMILLA, SAVANNAH],
     winner: EMILY,
+    swap: {
+      playerIn: RICK,
+      playerOut: CHARLIE,
+      week: 5,
+    },
   },
   {
     captain: {
@@ -448,6 +458,11 @@ export const teams: Array<Team> = computeHistory([
       JONATHAN,
     ],
     winner: KAMILLA,
+    swap: {
+      playerIn: JOE,
+      playerOut: CHARLIE,
+      week: 5,
+    },
   },
   {
     captain: {
@@ -512,6 +527,11 @@ export const teams: Array<Team> = computeHistory([
     name: "Jere-atrics",
     players: [RIZO, GENEVIEVE, SAVANNAH, DEE, CHARLIE, JOE, CHRISTIAN, TIFFANY],
     winner: RIZO,
+    swap: {
+      playerIn: RICK,
+      playerOut: CHARLIE,
+      week: 5,
+    },
   },
   {
     captain: {
@@ -570,6 +590,11 @@ export const teams: Array<Team> = computeHistory([
     name: "BJ-ISLAND",
     players: [DEE, MIKE, GENEVIEVE, CHARLIE, CHRISSY, KAMILLA, JONATHAN, CIRIE],
     winner: DEE,
+    swap: {
+      playerIn: OZZY,
+      playerOut: CHARLIE,
+      week: 5,
+    },
   },
   {
     captain: {
@@ -651,6 +676,11 @@ export const teams: Array<Team> = computeHistory([
     name: "MalnuTricia",
     players: [CHARLIE, GENEVIEVE, STEPHENIE, Q, AUBRY, CHRISTIAN, EMILY, OZZY],
     winner: CHARLIE,
+    swap: {
+      playerIn: RICK,
+      playerOut: CHARLIE,
+      week: 5,
+    },
   },
 ]);
 

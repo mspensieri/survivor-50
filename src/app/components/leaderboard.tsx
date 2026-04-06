@@ -120,7 +120,7 @@ export default function Leaderboard(props: {
   );
 
   let remainingTeams: TeamRankings;
-  if (firstPlaceGroup.length > 5) {
+  if (firstPlaceGroup.length > 6) {
     firstPlaceGroup = [];
     remainingTeams = thisWeekRankings;
   } else {

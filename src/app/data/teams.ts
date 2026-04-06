@@ -87,6 +87,11 @@ export const teams: Array<Team> = computeHistory([
       TIFFANY,
     ],
     winner: GENEVIEVE,
+    swap: {
+      playerIn: RIZO,
+      playerOut: CHARLIE,
+      week: 5,
+    },
   },
   {
     captain: {
@@ -406,6 +411,11 @@ export const teams: Array<Team> = computeHistory([
     name: "Probst Malone",
     players: [CHRISTIAN, ANGELINA, KAMILLA, CHRISSY, CIRIE, KYLE, JOE, JENNA],
     winner: ANGELINA,
+    swap: {
+      playerIn: EMILY,
+      playerOut: ANGELINA,
+      week: 5,
+    },
   },
   {
     captain: {
@@ -582,6 +592,11 @@ export const teams: Array<Team> = computeHistory([
     name: "Reba Theme Song",
     players: [OZZY, Q, RICK, DEE, MIKE, CHRISSY, CIRIE, RIZO],
     winner: CHRISSY,
+    swap: {
+      playerIn: CHRISTIAN,
+      playerOut: Q,
+      week: 5,
+    },
   },
   {
     captain: {
@@ -651,6 +666,11 @@ export const teams: Array<Team> = computeHistory([
       CHARLIE,
     ],
     winner: AUBRY,
+    swap: {
+      playerIn: JOE,
+      playerOut: CHARLIE,
+      week: 5,
+    },
   },
   {
     captain: {
@@ -668,6 +688,11 @@ export const teams: Array<Team> = computeHistory([
       CHRISSY,
     ],
     winner: CHRISTIAN,
+    swap: {
+      playerIn: RIZO,
+      playerOut: CHARLIE,
+      week: 5,
+    },
   },
   {
     captain: {

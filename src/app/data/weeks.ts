@@ -593,4 +593,92 @@ export const weeks: Array<Week> = [
       },
     },
   },
+  {
+    eliminated: [GENEVIEVE, KAMILLA, COLBY],
+    [AUBRY]: {
+      [RuleSet.STANDARD]: {
+        survival: 1,
+        votes: 1,
+      },
+    },
+    [CHRISSY]: {
+      [RuleSet.STANDARD]: { survival: 1, votes: 1 },
+    },
+    [CHRISTIAN]: {
+      [RuleSet.STANDARD]: {
+        survival: 1,
+        individualImmunity: 2,
+        votes: 1,
+      },
+    },
+    [CIRIE]: {
+      [RuleSet.STANDARD]: {
+        survival: 1,
+        votes: 1,
+      },
+    },
+    [COACH]: {
+      [RuleSet.STANDARD]: {
+        survival: 1,
+        votes: 1,
+      },
+    },
+    [COLBY]: {
+      [RuleSet.STANDARD]: {
+        survival: 1,
+      },
+    },
+    [DEE]: {
+      [RuleSet.STANDARD]: {
+        survival: 1,
+        individualImmunity: 2,
+        votes: 1,
+      },
+    },
+    [EMILY]: {
+      [RuleSet.STANDARD]: { survival: 1, votes: 1 },
+    },
+    [GENEVIEVE]: {
+      [RuleSet.STANDARD]: {
+        survival: 1,
+      },
+    },
+    [JOE]: {
+      [RuleSet.STANDARD]: { survival: 1, votes: 1 },
+    },
+    [JONATHAN]: {
+      [RuleSet.STANDARD]: {
+        survival: 1,
+        votes: 1,
+      },
+    },
+    [KAMILLA]: {
+      [RuleSet.STANDARD]: {
+        survival: 1,
+      },
+    },
+    [OZZY]: {
+      [RuleSet.STANDARD]: { survival: 1 },
+    },
+    [RICK]: {
+      [RuleSet.STANDARD]: { survival: 1, votes: 1 },
+    },
+    [RIZO]: {
+      [RuleSet.STANDARD]: {
+        survival: 1,
+      },
+    },
+    [STEPHENIE]: {
+      [RuleSet.STANDARD]: {
+        survival: 1,
+        individualImmunity: 2,
+        votes: 1,
+      },
+    },
+    [TIFFANY]: {
+      [RuleSet.STANDARD]: {
+        survival: 1,
+      },
+    },
+  },
 ];

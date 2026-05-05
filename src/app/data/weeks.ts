@@ -873,4 +873,56 @@ export const weeks: Array<Week> = [
       },
     },
   },
+  {
+    eliminated: [STEPHENIE],
+    [AUBRY]: {
+      [RuleSet.STANDARD]: {
+        survival: 1,
+        votes: 1,
+      },
+    },
+    [CIRIE]: {
+      [RuleSet.STANDARD]: {
+        survival: 1,
+        votes: 1,
+      },
+    },
+    [EMILY]: {
+      [RuleSet.STANDARD]: { survival: 1, votes: 1 },
+    },
+    [JOE]: {
+      [RuleSet.STANDARD]: { survival: 1, votes: 1 },
+    },
+    [JONATHAN]: {
+      [RuleSet.STANDARD]: {
+        survival: 1,
+        votes: 1,
+      },
+    },
+    [OZZY]: {
+      [RuleSet.STANDARD]: { survival: 1, votes: 1 },
+    },
+    [RICK]: {
+      [RuleSet.STANDARD]: { survival: 1, advantage: 1, idolFound: 2 },
+    },
+    [RIZO]: {
+      [RuleSet.STANDARD]: {
+        survival: 1,
+        votes: 1,
+      },
+    },
+    [STEPHENIE]: {
+      [RuleSet.STANDARD]: {
+        survival: 1,
+        placement: 2,
+      },
+    },
+    [TIFFANY]: {
+      [RuleSet.STANDARD]: {
+        survival: 1,
+        votes: 1,
+        individualImmunity: 2,
+      },
+    },
+  },
 ];

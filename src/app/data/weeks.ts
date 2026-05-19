@@ -682,7 +682,7 @@ export const weeks: Array<Week> = [
     },
   },
   {
-    eliminated: [DEE],
+    jury: [DEE],
     [AUBRY]: {
       [RuleSet.STANDARD]: {
         survival: 1,
@@ -752,7 +752,7 @@ export const weeks: Array<Week> = [
     },
   },
   {
-    eliminated: [COACH, CHRISSY],
+    jury: [COACH, CHRISSY],
     [AUBRY]: {
       [RuleSet.STANDARD]: {
         survival: 1,
@@ -818,7 +818,7 @@ export const weeks: Array<Week> = [
     },
   },
   {
-    eliminated: [CHRISTIAN],
+    jury: [CHRISTIAN],
     [AUBRY]: {
       [RuleSet.STANDARD]: {
         survival: 1,
@@ -874,7 +874,7 @@ export const weeks: Array<Week> = [
     },
   },
   {
-    eliminated: [STEPHENIE],
+    jury: [STEPHENIE],
     [AUBRY]: {
       [RuleSet.STANDARD]: {
         survival: 1,
@@ -926,7 +926,7 @@ export const weeks: Array<Week> = [
     },
   },
   {
-    eliminated: [EMILY, OZZY],
+    jury: [EMILY, OZZY],
     [AUBRY]: {
       [RuleSet.STANDARD]: {
         survival: 1,
@@ -972,7 +972,7 @@ export const weeks: Array<Week> = [
     },
   },
   {
-    eliminated: [CIRIE, RICK],
+    jury: [CIRIE, RICK],
     [AUBRY]: {
       [RuleSet.STANDARD]: {
         survival: 1,

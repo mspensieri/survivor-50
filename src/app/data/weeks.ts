@@ -1012,4 +1012,41 @@ export const weeks: Array<Week> = [
       },
     },
   },
+  {
+    jury: [TIFFANY, RIZO],
+    eliminated: [JOE, JONATHAN],
+    [AUBRY]: {
+      [RuleSet.STANDARD]: {
+        survival: 1,
+        individualImmunity: 2,
+        votes: 1,
+        placement: 10,
+      },
+    },
+    [JOE]: {
+      [RuleSet.STANDARD]: { survival: 1, votes: 1, placement: 7 },
+    },
+    [JONATHAN]: {
+      [RuleSet.STANDARD]: {
+        survival: 1,
+        individualImmunity: 2,
+        votes: 1,
+        fire: 1,
+        placement: 8,
+      },
+    },
+    [RIZO]: {
+      [RuleSet.STANDARD]: {
+        survival: 1,
+        votes: 1,
+        placement: 5,
+      },
+    },
+    [TIFFANY]: {
+      [RuleSet.STANDARD]: {
+        survival: 1,
+        placement: 3,
+      },
+    },
+  },
 ];
